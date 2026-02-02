@@ -1,0 +1,290 @@
+[2026-02-02 16:44:59.097] [INFO] Tick data received: 5 ticks processed
+[2026-02-02 16:45:00.088] [INFO] OHLC: Processed 55 bars
+[2026-02-02 16:45:00.088] [INFO]   ✓ Candle time matches target!
+[2026-02-02 16:45:00.088] [INFO]   Candle Key: 107_1770050700 (Magic + CloseTime)
+[2026-02-02 16:45:00.088] [INFO]   Candle Details:
+[2026-02-02 16:45:00.088] [INFO]     Open Time:  2026-02-02 16:30:00
+[2026-02-02 16:45:00.088] [INFO]     Close Time: 2026-02-02 16:45:00
+[2026-02-02 16:45:00.089] [INFO]     Open:  4721.43000
+[2026-02-02 16:45:00.089] [INFO]     High:  4794.33000
+[2026-02-02 16:45:00.089] [INFO]     Low:   4709.23000
+[2026-02-02 16:45:00.089] [INFO]     Close: 4753.91000
+[2026-02-02 16:45:00.089] [INFO]   Bar Height: 85.10000 | Min: 1.98000
+[2026-02-02 16:45:00.089] [INFO]   ⏭ Strong Thrust conditions not met (BB breach + min height required)
+[2026-02-02 16:45:00.089] [INFO]   ✓ Candle time matches target!
+[2026-02-02 16:45:00.089] [INFO]   Candle Key: 109_1770050700 (Magic + CloseTime)
+[2026-02-02 16:45:00.089] [INFO]   Candle Details:
+[2026-02-02 16:45:00.089] [INFO]     Open Time:  2026-02-02 16:30:00
+[2026-02-02 16:45:00.089] [INFO]     Close Time: 2026-02-02 16:45:00
+[2026-02-02 16:45:00.089] [INFO]     Open:  4721.43000
+[2026-02-02 16:45:00.089] [INFO]     High:  4794.33000
+[2026-02-02 16:45:00.089] [INFO]     Low:   4709.23000
+[2026-02-02 16:45:00.089] [INFO]     Close: 4753.91000
+[2026-02-02 16:45:00.089] [INFO]   Bar Height: 85.10000 | Min: 1.98000
+[2026-02-02 16:45:00.091] [INFO]     [OrthodoxCC] Check: Open(4721.43000) > Mid(4752.80000) = false | Close(4753.91000) > Mid(4752.80000) = true
+[2026-02-02 16:45:00.107] [INFO]   ✓ Orthodox CC VALID: IMMEDIATE crossover candle after LOWER breach
+[2026-02-02 16:45:00.123] [INFO]   BB Data: Upper=4817.23000, Middle=4752.80000, Lower=4688.37000
+[2026-02-02 16:45:00.123] [INFO]   ★ SIGNAL DETECTED! Orthodox CC: Crossover after BB breach + min height met
+[2026-02-02 16:45:00.123] [INFO]   → Preparing trade command...
+[2026-02-02 16:45:00.123] [INFO]       ═══ GENERATING TRADE COMMANDS (14 ORDERS: 7 BUY + 7 SELL) ═══
+[2026-02-02 16:45:00.124] [INFO]         Robot: Gold Ortho CC M15
+[2026-02-02 16:45:00.124] [INFO]         Magic: 109
+[2026-02-02 16:45:00.124] [INFO]         Symbol: XAUUSD M15
+[2026-02-02 16:45:00.132] [INFO]         Bar: H:4794.33 L:4709.23 Height:85.10000
+[2026-02-02 16:45:00.133] [INFO]         Candle Open Time: 2026-02-02 16:30
+[2026-02-02 16:45:00.133] [INFO]         Candle Close Time: 2026-02-02 16:45
+[2026-02-02 16:45:00.134] [INFO]         Current Bid: 4753.70000
+[2026-02-02 16:45:00.134] [INFO]         ✓ Account balance is fresh: $50000.00 AUD (updated 2.6 sec ago)
+[2026-02-02 16:45:00.135] [INFO]         → Calling analyzeSignalAndGenerateCommands...
+[2026-02-02 16:45:00.153] [INFO]         → Robot Config: XAUUSD | Disable Leapfrog: true
+[2026-02-02 16:45:00.171] [INFO]         → Commission Enabled: false | Type: No_Commissions | Value: 0.0
+[2026-02-02 16:45:00.191] [INFO]         → TP1: 50.0% Vol:10% | TP2: 138.0% Vol:90%
+[2026-02-02 16:45:00.192] [INFO]         → Account Currency: AUD
+[2026-02-02 16:45:00.192] [INFO]         → Available Conversion Rates: [NZDUSD, USDEUR, SPY.US, .USSPY, JPYUSD, USDCHF, CADUSD, CHFUSD, JPYAUD, AUDEUR, AUDUSD, USDNZD, USDJPY, USDGBP, EURUSD, USDAUD, USDXAU, AUDJPY, XAUUSD, EURAUD, USDCAD, GBPUSD]
+[2026-02-02 16:45:00.197] [INFO]         [ENTRY] analyzeSignalAndGenerateCommands called for XAUUSD
+[2026-02-02 16:45:00.199] [INFO]         [VALIDATION] Starting signal validation...
+[2026-02-02 16:45:00.218] [INFO]         [DURATION CHECK] Actual: 900s | Expected: 900s | Valid: true
+[2026-02-02 16:45:00.218] [INFO]         [TIMES] Open: 2026-02-02 16:30 | Close: 2026-02-02 16:45
+[2026-02-02 16:45:00.219] [INFO]         [VALIDATION] Signal candle validation PASSED
+[2026-02-02 16:45:00.219] [INFO]         Leapfrog Status: DISABLED (checkbox checked)
+[2026-02-02 16:45:00.220] [INFO]         BUY Entry: 4805.39300 | SELL Entry: 4698.16700
+[2026-02-02 16:45:00.220] [INFO]         → Leapfrog disabled - generating ALL orders regardless of price
+[2026-02-02 16:45:00.220] [INFO]         → About to generate BUY side orders...
+[2026-02-02 16:45:00.222] [INFO]         [SL DEBUG] Raw SL Distance: 107.22600000000057
+[2026-02-02 16:45:00.222] [INFO]         [SL DEBUG] Pip Size: 0.01
+[2026-02-02 16:45:00.222] [INFO]         [SL DEBUG] SL in Pips: 10722.600000000057
+[2026-02-02 16:45:00.223] [INFO]         [CALC] Account Balance: $50000.00
+[2026-02-02 16:45:00.223] [INFO]         [CALC] Total Risk Amount: $75.00
+[2026-02-02 16:45:00.225] [INFO]         [CALC] Contract Size for XAUUSD: 100.0
+[2026-02-02 16:45:00.227] [INFO]         [CALC] Current Price: 4753.7
+[2026-02-02 16:45:00.231] [INFO]         [CALC] Risk per Lot (Quote Currency): 10722.600000000057 (SL Distance: 107.22600000000057 * Contract: 100.0)
+[2026-02-02 16:45:00.231] [INFO]         [CALC] About to convert 10722.600000000057 from quote to account currency
+[2026-02-02 16:45:00.231] [INFO]         [CALC] Conversion rates available: [NZDUSD, USDEUR, SPY.US, .USSPY, JPYUSD, USDCHF, CADUSD, CHFUSD, JPYAUD, AUDEUR, AUDUSD, USDNZD, USDJPY, USDGBP, EURUSD, USDAUD, USDXAU, AUDJPY, XAUUSD, EURAUD, USDCAD, GBPUSD]
+[2026-02-02 16:45:00.232] [INFO]         [CONVERT] Extracted quote currency: USD from symbol: XAUUSD
+[2026-02-02 16:45:00.238] [INFO]         [CONVERT] Amount to convert: 10722.600000000057 USD to AUD
+[2026-02-02 16:45:00.238] [INFO]         [CONVERT] Looking for conversion pair: USDAUD
+[2026-02-02 16:45:00.256] [INFO]         [CONVERT] Found USDAUD = 1.4366577593885583 | Result: 10722.600000000057 * 1.4366577593885583 = 15404.706490819837
+[2026-02-02 16:45:00.257] [INFO]         [CALC] Risk per Lot (Account Currency AUD): 15404.706490819837
+[2026-02-02 16:45:00.272] [INFO]         [CALC] TP1 Volume: 10% | Risk: $7.50 | Raw Lot: 0.0005 | Normalized: 0.00
+[2026-02-02 16:45:00.272] [INFO]         [CALC] TP2 Volume: 90% | Risk: $67.50 | Raw Lot: 0.0044 | Normalized: 0.00
+[2026-02-02 16:45:00.273] [INFO]         [LOT SIZE DEBUG] Symbol: XAUUSD
+[2026-02-02 16:45:00.274] [INFO]         [LOT SIZE DEBUG] Account Balance: 50000.0
+[2026-02-02 16:45:00.274] [INFO]         [LOT SIZE DEBUG] Stop Loss Distance: 107.22600000000057
+[2026-02-02 16:45:00.274] [INFO]         [LOT SIZE DEBUG] RPT %: 0.15 | RPT Fixed: 0.0
+[2026-02-02 16:45:00.274] [INFO]         [LOT SIZE DEBUG] Calculated Lot Sizes: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00]
+[2026-02-02 16:45:00.278] [INFO]         → BUY side returned 0 commands
+[2026-02-02 16:45:00.278] [INFO]         → About to generate SELL side orders...
+[2026-02-02 16:45:00.279] [INFO]         [SL DEBUG] Raw SL Distance: 107.22600000000057
+[2026-02-02 16:45:00.279] [INFO]         [SL DEBUG] Pip Size: 0.01
+[2026-02-02 16:45:00.279] [INFO]         [SL DEBUG] SL in Pips: 10722.600000000057
+[2026-02-02 16:45:00.279] [INFO]         [CALC] Account Balance: $50000.00
+[2026-02-02 16:45:00.279] [INFO]         [CALC] Total Risk Amount: $75.00
+[2026-02-02 16:45:00.279] [INFO]         [CALC] Contract Size for XAUUSD: 100.0
+[2026-02-02 16:45:00.279] [INFO]         [CALC] Current Price: 4753.7
+[2026-02-02 16:45:00.279] [INFO]         [CALC] Risk per Lot (Quote Currency): 10722.600000000057 (SL Distance: 107.22600000000057 * Contract: 100.0)
+[2026-02-02 16:45:00.279] [INFO]         [CALC] About to convert 10722.600000000057 from quote to account currency
+[2026-02-02 16:45:00.279] [INFO]         [CALC] Conversion rates available: [NZDUSD, USDEUR, SPY.US, .USSPY, JPYUSD, USDCHF, CADUSD, CHFUSD, JPYAUD, AUDEUR, AUDUSD, USDNZD, USDJPY, USDGBP, EURUSD, USDAUD, USDXAU, AUDJPY, XAUUSD, EURAUD, USDCAD, GBPUSD]
+[2026-02-02 16:45:00.279] [INFO]         [CONVERT] Extracted quote currency: USD from symbol: XAUUSD
+[2026-02-02 16:45:00.279] [INFO]         [CONVERT] Amount to convert: 10722.600000000057 USD to AUD
+[2026-02-02 16:45:00.279] [INFO]         [CONVERT] Looking for conversion pair: USDAUD
+[2026-02-02 16:45:00.280] [INFO]         [CONVERT] Found USDAUD = 1.4366577593885583 | Result: 10722.600000000057 * 1.4366577593885583 = 15404.706490819837
+[2026-02-02 16:45:00.280] [INFO]         [CALC] Risk per Lot (Account Currency AUD): 15404.706490819837
+[2026-02-02 16:45:00.280] [INFO]         [CALC] TP1 Volume: 10% | Risk: $7.50 | Raw Lot: 0.0005 | Normalized: 0.00
+[2026-02-02 16:45:00.280] [INFO]         [CALC] TP2 Volume: 90% | Risk: $67.50 | Raw Lot: 0.0044 | Normalized: 0.00
+[2026-02-02 16:45:00.280] [INFO]         [LOT SIZE DEBUG] Symbol: XAUUSD
+[2026-02-02 16:45:00.280] [INFO]         [LOT SIZE DEBUG] Account Balance: 50000.0
+[2026-02-02 16:45:00.280] [INFO]         [LOT SIZE DEBUG] Stop Loss Distance: 107.22600000000057
+[2026-02-02 16:45:00.280] [INFO]         [LOT SIZE DEBUG] RPT %: 0.15 | RPT Fixed: 0.0
+[2026-02-02 16:45:00.280] [INFO]         [LOT SIZE DEBUG] Calculated Lot Sizes: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00]
+[2026-02-02 16:45:00.280] [INFO]         → SELL side returned 0 commands
+[2026-02-02 16:45:00.281] [INFO]         → Total commands generated: 0
+[2026-02-02 16:45:00.281] [ERROR]         ✗ NO COMMANDS GENERATED despite leapfrog being disabled!
+[2026-02-02 16:45:00.281] [INFO]         → analyzeSignalAndGenerateCommands completed. Commands returned: 0
+[2026-02-02 16:45:00.281] [INFO]         ✗ No commands generated (leapfrog protection or validation failed)
+[2026-02-02 16:45:00.281] [INFO] Analysis complete: 9 enabled, 2 disabled, 9 signals checked
+[2026-02-02 16:45:00.282] [INFO] Processed 5 tick updates - Symbols: EURUSD USDJPY XAUUSD GER40 SPY.US 
+[2026-02-02 16:45:00.282] [INFO] Tick data received: 5 ticks processed
+[2026-02-02 16:45:01.092] [INFO] OHLC: Processed 55 bars
+[2026-02-02 16:45:01.094] [INFO]   ✓ Candle time matches target!
+[2026-02-02 16:45:01.094] [INFO]   Candle Key: 106_1770050700 (Magic + CloseTime)
+[2026-02-02 16:45:01.094] [INFO]   Candle Details:
+[2026-02-02 16:45:01.094] [INFO]     Open Time:  2026-02-02 16:30:00
+[2026-02-02 16:45:01.094] [INFO]     Close Time: 2026-02-02 16:45:00
+[2026-02-02 16:45:01.094] [INFO]     Open:  690.44000
+[2026-02-02 16:45:01.094] [INFO]     High:  692.70000
+[2026-02-02 16:45:01.094] [INFO]     Low:   689.60000
+[2026-02-02 16:45:01.094] [INFO]     Close: 692.56000
+[2026-02-02 16:45:01.095] [INFO]   Bar Height: 3.10000 | Min: 0.30000
+[2026-02-02 16:45:01.095] [INFO]   ★ SIGNAL DETECTED! Normal: Bar height exceeds minimum
+[2026-02-02 16:45:01.095] [INFO]   → Preparing trade command...
+[2026-02-02 16:45:01.095] [INFO]       ═══ GENERATING TRADE COMMANDS (14 ORDERS: 7 BUY + 7 SELL) ═══
+[2026-02-02 16:45:01.095] [INFO]         Robot: SPY
+[2026-02-02 16:45:01.095] [INFO]         Magic: 106
+[2026-02-02 16:45:01.095] [INFO]         Symbol: SPY.US M15
+[2026-02-02 16:45:01.095] [INFO]         Bar: H:692.7 L:689.6 Height:3.10000
+[2026-02-02 16:45:01.095] [INFO]         Candle Open Time: 2026-02-02 16:30
+[2026-02-02 16:45:01.095] [INFO]         Candle Close Time: 2026-02-02 16:45
+[2026-02-02 16:45:01.095] [INFO]         Current Bid: 692.70000
+[2026-02-02 16:45:01.095] [INFO]         ✓ Account balance is fresh: $50000.00 AUD (updated 3.6 sec ago)
+[2026-02-02 16:45:01.095] [INFO]         → Calling analyzeSignalAndGenerateCommands...
+[2026-02-02 16:45:01.095] [INFO]         → Robot Config: SPY.US | Disable Leapfrog: true
+[2026-02-02 16:45:01.095] [INFO]         → Commission Enabled: true | Type: ETF_Stock | Value: 0.02
+[2026-02-02 16:45:01.095] [INFO]         → TP1: 138.0% Vol:50% | TP2: 285.0% Vol:50%
+[2026-02-02 16:45:01.095] [INFO]         → Account Currency: AUD
+[2026-02-02 16:45:01.095] [INFO]         → Available Conversion Rates: [NZDUSD, USDEUR, SPY.US, .USSPY, JPYUSD, USDCHF, CADUSD, CHFUSD, JPYAUD, AUDEUR, AUDUSD, USDNZD, USDJPY, USDGBP, EURUSD, USDAUD, USDXAU, AUDJPY, XAUUSD, EURAUD, USDCAD, GBPUSD]
+[2026-02-02 16:45:01.097] [INFO]         [ENTRY] analyzeSignalAndGenerateCommands called for SPY.US
+[2026-02-02 16:45:01.099] [INFO]         [VALIDATION] Starting signal validation...
+[2026-02-02 16:45:01.099] [INFO]         [DURATION CHECK] Actual: 900s | Expected: 900s | Valid: true
+[2026-02-02 16:45:01.099] [INFO]         [TIMES] Open: 2026-02-02 16:30 | Close: 2026-02-02 16:45
+[2026-02-02 16:45:01.099] [INFO]         [VALIDATION] Signal candle validation PASSED
+[2026-02-02 16:45:01.099] [INFO]         Leapfrog Status: DISABLED (checkbox checked)
+[2026-02-02 16:45:01.099] [INFO]         BUY Entry: 693.16500 | SELL Entry: 689.13500
+[2026-02-02 16:45:01.099] [INFO]         → Leapfrog disabled - generating ALL orders regardless of price
+[2026-02-02 16:45:01.099] [INFO]         → About to generate BUY side orders...
+[2026-02-02 16:45:01.099] [INFO]         [SL DEBUG] Raw SL Distance: 4.030000000000086
+[2026-02-02 16:45:01.100] [INFO]         [SL DEBUG] Pip Size: 1.0E-4
+[2026-02-02 16:45:01.100] [INFO]         [SL DEBUG] SL in Pips: 40300.00000000086
+[2026-02-02 16:45:01.100] [INFO]         [CALC] Account Balance: $50000.00
+[2026-02-02 16:45:01.100] [INFO]         [CALC] Total Risk Amount: $150.00
+[2026-02-02 16:45:01.100] [INFO]         [CALC] Contract Size for SPY.US: 1.0
+[2026-02-02 16:45:01.100] [INFO]         [CALC] Current Price: 692.7
+[2026-02-02 16:45:01.100] [INFO]         [CALC] Risk per Lot (Quote Currency): 4.030000000000086 (SL Distance: 4.030000000000086 * Contract: 1.0)
+[2026-02-02 16:45:01.100] [INFO]         [CALC] About to convert 4.030000000000086 from quote to account currency
+[2026-02-02 16:45:01.100] [INFO]         [CALC] Conversion rates available: [NZDUSD, USDEUR, SPY.US, .USSPY, JPYUSD, USDCHF, CADUSD, CHFUSD, JPYAUD, AUDEUR, AUDUSD, USDNZD, USDJPY, USDGBP, EURUSD, USDAUD, USDXAU, AUDJPY, XAUUSD, EURAUD, USDCAD, GBPUSD]
+[2026-02-02 16:45:01.100] [INFO]         [CONVERT] Extracted quote currency: USD from symbol: SPY.US
+[2026-02-02 16:45:01.100] [INFO]         [CONVERT] Amount to convert: 4.030000000000086 USD to AUD
+[2026-02-02 16:45:01.100] [INFO]         [CONVERT] Looking for conversion pair: USDAUD
+[2026-02-02 16:45:01.101] [INFO]         [CONVERT] Found USDAUD = 1.4366577593885583 | Result: 4.030000000000086 * 1.4366577593885583 = 5.789730770336014
+[2026-02-02 16:45:01.101] [INFO]         [CALC] Risk per Lot (Account Currency AUD): 5.789730770336014
+[2026-02-02 16:45:01.101] [INFO]         [CONVERT] Extracted quote currency: USD from symbol: SPY.US
+[2026-02-02 16:45:01.101] [INFO]         [CONVERT] Amount to convert: 0.04 USD to AUD
+[2026-02-02 16:45:01.101] [INFO]         [CONVERT] Looking for conversion pair: USDAUD
+[2026-02-02 16:45:01.101] [INFO]         [CONVERT] Found USDAUD = 1.4366577593885583 | Result: 0.04 * 1.4366577593885583 = 0.05746631037554233
+[2026-02-02 16:45:01.101] [INFO]         [CALC] TP1 Volume: 50% | Risk: $75.00 | Raw Lot: 12.8267 | Normalized: 13.00
+[2026-02-02 16:45:01.101] [INFO]         [CALC] TP2 Volume: 50% | Risk: $75.00 | Raw Lot: 12.8267 | Normalized: 13.00
+[2026-02-02 16:45:01.101] [INFO]         [LOT SIZE DEBUG] Symbol: SPY.US
+[2026-02-02 16:45:01.101] [INFO]         [LOT SIZE DEBUG] Account Balance: 50000.0
+[2026-02-02 16:45:01.101] [INFO]         [LOT SIZE DEBUG] Stop Loss Distance: 4.030000000000086
+[2026-02-02 16:45:01.101] [INFO]         [LOT SIZE DEBUG] RPT %: 0.3 | RPT Fixed: 0.0
+[2026-02-02 16:45:01.103] [INFO]         [LOT SIZE DEBUG] Calculated Lot Sizes: [13.00, 13.00, 0.00, 0.00, 0.00, 0.00, 0.00]
+[2026-02-02 16:45:01.103] [INFO]         → BUY side returned 2 commands
+[2026-02-02 16:45:01.104] [INFO]         → About to generate SELL side orders...
+[2026-02-02 16:45:01.104] [INFO]         [SL DEBUG] Raw SL Distance: 4.030000000000086
+[2026-02-02 16:45:01.104] [INFO]         [SL DEBUG] Pip Size: 1.0E-4
+[2026-02-02 16:45:01.104] [INFO]         [SL DEBUG] SL in Pips: 40300.00000000086
+[2026-02-02 16:45:01.104] [INFO]         [CALC] Account Balance: $50000.00
+[2026-02-02 16:45:01.104] [INFO]         [CALC] Total Risk Amount: $150.00
+[2026-02-02 16:45:01.104] [INFO]         [CALC] Contract Size for SPY.US: 1.0
+[2026-02-02 16:45:01.104] [INFO]         [CALC] Current Price: 692.7
+[2026-02-02 16:45:01.104] [INFO]         [CALC] Risk per Lot (Quote Currency): 4.030000000000086 (SL Distance: 4.030000000000086 * Contract: 1.0)
+[2026-02-02 16:45:01.104] [INFO]         [CALC] About to convert 4.030000000000086 from quote to account currency
+[2026-02-02 16:45:01.105] [INFO]         [CALC] Conversion rates available: [NZDUSD, USDEUR, SPY.US, .USSPY, JPYUSD, USDCHF, CADUSD, CHFUSD, JPYAUD, AUDEUR, AUDUSD, USDNZD, USDJPY, USDGBP, EURUSD, USDAUD, USDXAU, AUDJPY, XAUUSD, EURAUD, USDCAD, GBPUSD]
+[2026-02-02 16:45:01.105] [INFO]         [CONVERT] Extracted quote currency: USD from symbol: SPY.US
+[2026-02-02 16:45:01.105] [INFO]         [CONVERT] Amount to convert: 4.030000000000086 USD to AUD
+[2026-02-02 16:45:01.105] [INFO]         [CONVERT] Looking for conversion pair: USDAUD
+[2026-02-02 16:45:01.105] [INFO]         [CONVERT] Found USDAUD = 1.4366577593885583 | Result: 4.030000000000086 * 1.4366577593885583 = 5.789730770336014
+[2026-02-02 16:45:01.105] [INFO]         [CALC] Risk per Lot (Account Currency AUD): 5.789730770336014
+[2026-02-02 16:45:01.105] [INFO]         [CONVERT] Extracted quote currency: USD from symbol: SPY.US
+[2026-02-02 16:45:01.105] [INFO]         [CONVERT] Amount to convert: 0.04 USD to AUD
+[2026-02-02 16:45:01.106] [INFO]         [CONVERT] Looking for conversion pair: USDAUD
+[2026-02-02 16:45:01.106] [INFO]         [CONVERT] Found USDAUD = 1.4366577593885583 | Result: 0.04 * 1.4366577593885583 = 0.05746631037554233
+[2026-02-02 16:45:01.106] [INFO]         [CALC] TP1 Volume: 50% | Risk: $75.00 | Raw Lot: 12.8267 | Normalized: 13.00
+[2026-02-02 16:45:01.106] [INFO]         [CALC] TP2 Volume: 50% | Risk: $75.00 | Raw Lot: 12.8267 | Normalized: 13.00
+[2026-02-02 16:45:01.106] [INFO]         [LOT SIZE DEBUG] Symbol: SPY.US
+[2026-02-02 16:45:01.106] [INFO]         [LOT SIZE DEBUG] Account Balance: 50000.0
+[2026-02-02 16:45:01.106] [INFO]         [LOT SIZE DEBUG] Stop Loss Distance: 4.030000000000086
+[2026-02-02 16:45:01.106] [INFO]         [LOT SIZE DEBUG] RPT %: 0.3 | RPT Fixed: 0.0
+[2026-02-02 16:45:01.106] [INFO]         [LOT SIZE DEBUG] Calculated Lot Sizes: [13.00, 13.00, 0.00, 0.00, 0.00, 0.00, 0.00]
+[2026-02-02 16:45:01.107] [INFO]         → SELL side returned 2 commands
+[2026-02-02 16:45:01.107] [INFO]         → Total commands generated: 4
+[2026-02-02 16:45:01.130] [INFO] OCO Manager: Registering order group - Magic: 106, BUY: true, SELL: true, OCO Wait: false
+[2026-02-02 16:45:01.134] [INFO] OCO Manager: Registered order group for magic 106 (Total active groups: 1)
+[2026-02-02 16:45:01.134] [INFO] Registered OCO group with OcoManager: Magic=106, Symbol=SPY.US, Orders=4
+[2026-02-02 16:45:01.134] [INFO]         → analyzeSignalAndGenerateCommands completed. Commands returned: 4
+[2026-02-02 16:45:01.134] [INFO]         ✓ Generated 4 trade commands
+[2026-02-02 16:45:01.135] [INFO] Added command to pending: 35530332-9bed-4f41-a88c-b1f2a7f715de (Action: PLACE_ORDER, Magic: 106)
+[2026-02-02 16:45:01.135] [INFO] Added command to pending: c0f09ac3-ff10-4905-96a8-d3dc8cfd6447 (Action: PLACE_ORDER, Magic: 106)
+[2026-02-02 16:45:01.135] [INFO] Added command to pending: 530ff510-594a-40d1-a013-625618d623c4 (Action: PLACE_ORDER, Magic: 106)
+[2026-02-02 16:45:01.136] [INFO] Added command to pending: f77765fe-fbca-435f-a0a3-7fc8515f0305 (Action: PLACE_ORDER, Magic: 106)
+[2026-02-02 16:45:01.136] [INFO]         DEBUG: About to register OCO group for magic 106
+[2026-02-02 16:45:01.136] [INFO] OCO Manager: Registering order group - Magic: 106, BUY: true, SELL: true, OCO Wait: false
+[2026-02-02 16:45:01.136] [INFO] OCO Manager: Registered order group for magic 106 (Total active groups: 1)
+[2026-02-02 16:45:01.151] [INFO] ★★★ OCO POLLER: Registered magic 106 for SPY.US (Total groups: 1)
+[2026-02-02 16:45:01.151] [INFO]         DEBUG: OCO group registration completed (both OcoManager and SimpleOcoPoller)
+[2026-02-02 16:45:01.151] [INFO] OCO BACKSTOP: Scheduled 5-second final check for magic 106
+[2026-02-02 16:45:01.154] [INFO]         DEBUG: Scheduled 20-second imbalance check for magic 106
+[2026-02-02 16:45:01.154] [INFO] Smart TS DISABLED for Magic 106
+[2026-02-02 16:45:01.155] [INFO] Smart TS: Registered entry price 693.16500 for Magic 106
+[2026-02-02 16:45:01.155] [INFO]         DEBUG: Smart TS DISABLED for magic 106
+[2026-02-02 16:45:01.159] [INFO]         Summary: 2 BUY orders, 2 SELL orders
+[2026-02-02 16:45:01.159] [INFO]         Status: QUEUED → awaiting MT5 poll
+[2026-02-02 16:45:01.159] [INFO]       ═══ COMMAND GENERATION COMPLETE ═══
+[2026-02-02 16:45:01.175] [INFO] Trade commands generated: 4 orders (2 BUY, 2 SELL) for robot SPY
+[2026-02-02 16:45:01.176] [INFO] Analysis complete: 9 enabled, 2 disabled, 9 signals checked
+[2026-02-02 16:45:01.178] [INFO] Processed 4 tick updates - Symbols: EURUSD XAUUSD GER40 SPY.US 
+[2026-02-02 16:45:01.178] [INFO] Tick data received: 4 ticks processed
+[2026-02-02 16:45:01.182] [INFO] Added command to pending: 35530332-9bed-4f41-a88c-b1f2a7f715de (Action: PLACE_ORDER, Magic: 106)
+[2026-02-02 16:45:01.182] [INFO] Marked command as SENT: 35530332-9bed-4f41-a88c-b1f2a7f715de
+[2026-02-02 16:45:01.205] [INFO] COMMAND POLL: Sent command 35530332-9bed-4f41-a88c-b1f2a7f715de to MT5 (Action: PLACE_ORDER, Magic: 106, Symbol: SPY.US, Type: BUY_STOP, Price: 693.16500)
+[2026-02-02 16:45:01.207] [INFO] Command sent to MT5: 35530332-9bed-4f41-a88c-b1f2a7f715de - PLACE_ORDER SPY.US
+[2026-02-02 16:45:01.218] [WARNING] Command FAILED: 35530332-9bed-4f41-a88c-b1f2a7f715de - OrderSend failed: AutoTrading disabled by client
+[2026-02-02 16:45:01.219] [INFO] EXECUTION FEEDBACK: Command 35530332-9bed-4f41-a88c-b1f2a7f715de (PLACE_ORDER) finished. Status: FAILED, RetCode: 10027, Magic: 106
+[2026-02-02 16:45:01.219] [INFO] EXECUTION FEEDBACK: Command 35530332-9bed-4f41-a88c-b1f2a7f715de (PLACE_ORDER) finished. Status: FAILED, RetCode: 10027, Magic: 106
+[2026-02-02 16:45:01.219] [INFO] EXECUTION FEEDBACK ERROR: OrderSend failed: AutoTrading disabled by client
+[2026-02-02 16:45:01.219] [ERROR] Command failed: 35530332-9bed-4f41-a88c-b1f2a7f715de - OrderSend failed: AutoTrading disabled by client
+[2026-02-02 16:45:01.220] [INFO] STATE RECONCILIATION: Command 35530332-9bed-4f41-a88c-b1f2a7f715de failed - no state change
+[2026-02-02 16:45:01.223] [INFO] Added command to pending: c0f09ac3-ff10-4905-96a8-d3dc8cfd6447 (Action: PLACE_ORDER, Magic: 106)
+[2026-02-02 16:45:01.223] [INFO] Marked command as SENT: c0f09ac3-ff10-4905-96a8-d3dc8cfd6447
+[2026-02-02 16:45:01.223] [INFO] COMMAND POLL: Sent command c0f09ac3-ff10-4905-96a8-d3dc8cfd6447 to MT5 (Action: PLACE_ORDER, Magic: 106, Symbol: SPY.US, Type: BUY_STOP, Price: 693.16500)
+[2026-02-02 16:45:01.223] [INFO] Command sent to MT5: c0f09ac3-ff10-4905-96a8-d3dc8cfd6447 - PLACE_ORDER SPY.US
+[2026-02-02 16:45:01.225] [WARNING] Command FAILED: c0f09ac3-ff10-4905-96a8-d3dc8cfd6447 - OrderSend failed: AutoTrading disabled by client
+[2026-02-02 16:45:01.225] [INFO] EXECUTION FEEDBACK: Command c0f09ac3-ff10-4905-96a8-d3dc8cfd6447 (PLACE_ORDER) finished. Status: FAILED, RetCode: 10027, Magic: 106
+[2026-02-02 16:45:01.225] [INFO] EXECUTION FEEDBACK: Command c0f09ac3-ff10-4905-96a8-d3dc8cfd6447 (PLACE_ORDER) finished. Status: FAILED, RetCode: 10027, Magic: 106
+[2026-02-02 16:45:01.225] [INFO] EXECUTION FEEDBACK ERROR: OrderSend failed: AutoTrading disabled by client
+[2026-02-02 16:45:01.225] [ERROR] Command failed: c0f09ac3-ff10-4905-96a8-d3dc8cfd6447 - OrderSend failed: AutoTrading disabled by client
+[2026-02-02 16:45:01.225] [INFO] STATE RECONCILIATION: Command c0f09ac3-ff10-4905-96a8-d3dc8cfd6447 failed - no state change
+[2026-02-02 16:45:01.296] [INFO] Added command to pending: 530ff510-594a-40d1-a013-625618d623c4 (Action: PLACE_ORDER, Magic: 106)
+[2026-02-02 16:45:01.296] [INFO] Marked command as SENT: 530ff510-594a-40d1-a013-625618d623c4
+[2026-02-02 16:45:01.297] [INFO] COMMAND POLL: Sent command 530ff510-594a-40d1-a013-625618d623c4 to MT5 (Action: PLACE_ORDER, Magic: 106, Symbol: SPY.US, Type: SELL_STOP, Price: 689.13500)
+[2026-02-02 16:45:01.297] [INFO] Command sent to MT5: 530ff510-594a-40d1-a013-625618d623c4 - PLACE_ORDER SPY.US
+[2026-02-02 16:45:01.300] [WARNING] Command FAILED: 530ff510-594a-40d1-a013-625618d623c4 - OrderSend failed: AutoTrading disabled by client
+[2026-02-02 16:45:01.300] [INFO] EXECUTION FEEDBACK: Command 530ff510-594a-40d1-a013-625618d623c4 (PLACE_ORDER) finished. Status: FAILED, RetCode: 10027, Magic: 106
+[2026-02-02 16:45:01.300] [INFO] EXECUTION FEEDBACK: Command 530ff510-594a-40d1-a013-625618d623c4 (PLACE_ORDER) finished. Status: FAILED, RetCode: 10027, Magic: 106
+[2026-02-02 16:45:01.300] [INFO] EXECUTION FEEDBACK ERROR: OrderSend failed: AutoTrading disabled by client
+[2026-02-02 16:45:01.300] [ERROR] Command failed: 530ff510-594a-40d1-a013-625618d623c4 - OrderSend failed: AutoTrading disabled by client
+[2026-02-02 16:45:01.300] [INFO] STATE RECONCILIATION: Command 530ff510-594a-40d1-a013-625618d623c4 failed - no state change
+[2026-02-02 16:45:01.397] [INFO] Added command to pending: f77765fe-fbca-435f-a0a3-7fc8515f0305 (Action: PLACE_ORDER, Magic: 106)
+[2026-02-02 16:45:01.397] [INFO] Marked command as SENT: f77765fe-fbca-435f-a0a3-7fc8515f0305
+[2026-02-02 16:45:01.399] [INFO] COMMAND POLL: Sent command f77765fe-fbca-435f-a0a3-7fc8515f0305 to MT5 (Action: PLACE_ORDER, Magic: 106, Symbol: SPY.US, Type: SELL_STOP, Price: 689.13500)
+[2026-02-02 16:45:01.399] [INFO] Command sent to MT5: f77765fe-fbca-435f-a0a3-7fc8515f0305 - PLACE_ORDER SPY.US
+[2026-02-02 16:45:01.400] [WARNING] Command FAILED: f77765fe-fbca-435f-a0a3-7fc8515f0305 - OrderSend failed: AutoTrading disabled by client
+[2026-02-02 16:45:01.401] [INFO] EXECUTION FEEDBACK: Command f77765fe-fbca-435f-a0a3-7fc8515f0305 (PLACE_ORDER) finished. Status: FAILED, RetCode: 10027, Magic: 106
+[2026-02-02 16:45:01.401] [INFO] EXECUTION FEEDBACK: Command f77765fe-fbca-435f-a0a3-7fc8515f0305 (PLACE_ORDER) finished. Status: FAILED, RetCode: 10027, Magic: 106
+[2026-02-02 16:45:01.401] [INFO] EXECUTION FEEDBACK ERROR: OrderSend failed: AutoTrading disabled by client
+[2026-02-02 16:45:01.401] [ERROR] Command failed: f77765fe-fbca-435f-a0a3-7fc8515f0305 - OrderSend failed: AutoTrading disabled by client
+[2026-02-02 16:45:01.401] [INFO] STATE RECONCILIATION: Command f77765fe-fbca-435f-a0a3-7fc8515f0305 failed - no state change
+[2026-02-02 16:45:02.088] [INFO] OHLC: Processed 55 bars
+[2026-02-02 16:45:02.088] [INFO] Analysis complete: 9 enabled, 2 disabled, 9 signals checked
+[2026-02-02 16:45:02.089] [INFO] Processed 5 tick updates - Symbols: EURUSD USDJPY XAUUSD GER40 SPY.US 
+[2026-02-02 16:45:02.089] [INFO] Tick data received: 5 ticks processed
+[2026-02-02 16:45:02.500] [INFO] Updated conversion rates from account info: [AUDUSD, EURUSD, USDJPY, EURAUD, AUDJPY]
+[2026-02-02 16:45:02.500] [INFO] Account balance updated in RobotMatrixTable: 50000.00 (was: 50000.00)
+[2026-02-02 16:45:02.500] [INFO] Account info updated: Balance=50000.00 AUD
+[2026-02-02 16:45:03.091] [INFO] OHLC: Processed 55 bars
+[2026-02-02 16:45:03.091] [INFO] Analysis complete: 9 enabled, 2 disabled, 9 signals checked
+[2026-02-02 16:45:03.092] [INFO] Processed 5 tick updates - Symbols: EURUSD USDJPY XAUUSD GER40 SPY.US 
+[2026-02-02 16:45:03.092] [INFO] Tick data received: 5 ticks processed
+[2026-02-02 16:45:04.101] [INFO] OHLC: Processed 55 bars
+[2026-02-02 16:45:04.102] [INFO] Analysis complete: 9 enabled, 2 disabled, 9 signals checked
+[2026-02-02 16:45:04.103] [INFO] Processed 5 tick updates - Symbols: EURUSD USDJPY XAUUSD GER40 SPY.US 
+[2026-02-02 16:45:04.103] [INFO] Tick data received: 5 ticks processed
+[2026-02-02 16:45:05.099] [INFO] OHLC: Processed 55 bars
+[2026-02-02 16:45:05.101] [INFO] Analysis complete: 9 enabled, 2 disabled, 9 signals checked
+[2026-02-02 16:45:05.101] [INFO] Processed 3 tick updates - Symbols: XAUUSD GER40 SPY.US 
+[2026-02-02 16:45:05.101] [INFO] Tick data received: 3 ticks processed
+[2026-02-02 16:45:06.094] [INFO] OHLC: Processed 55 bars
+[2026-02-02 16:45:06.095] [INFO] Robot: $Yen Asia (101) [Normal]
+[2026-02-02 16:45:06.095] [INFO]   Symbol/TF: USDJPY PERIOD_H1
+[2026-02-02 16:45:06.095] [INFO]   Candle Time: 2026-02-02 16:00:00 [16:00]
+[2026-02-02 16:45:06.095] [INFO]   Target: 2:00 | All Day: false
+[2026-02-02 16:45:06.095] [INFO]   ⏭ Candle time mismatch - skipping
