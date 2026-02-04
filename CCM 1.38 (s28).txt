@@ -1,0 +1,438 @@
+//+------------------------------------------------------------------+
+//|                                                    CCM (S28).mq5 |
+//|                                                                  |
+//| Version 1.38: Removed all SMA/EMA logic.                         |
+//| - Only exports Candle data and Bollinger Band data.              |
+//| - (Retains v1.36 fixes: 4-candle, OPEN/CLOSE data)               |
+//|                                                                  |
+//| FIXES INCLUDED: Added BB Basis (Middle Band) data export         |
+//| to resolve S28's "Incomplete Data" error.                        |
+//+------------------------------------------------------------------+
+#property copyright "Kostandinos Soteriou"
+#property version    "1.38"
+#property strict
+
+//--- Custom Timeframe Enum (Restricted List)
+enum E_RESTRICTED_TIMEFRAMES
+{
+    M1  = PERIOD_M1,
+    M2  = PERIOD_M2,
+    M3  = PERIOD_M3,
+    M5  = PERIOD_M5,
+    M10 = PERIOD_M10,
+    M15 = PERIOD_M15,
+    M30 = PERIOD_M30,
+    H1  = PERIOD_H1,
+    H3  = PERIOD_H3,
+    H4  = PERIOD_H4,
+    D1  = PERIOD_D1
+};
+//--- Consolidated Enum for unit type (Used for both Input and Logic)
+enum E_X1_UNIT_TYPE
+{
+    NonYenPips = 1, // Non-Yen pips
+    YenPips    = 2, // Yen pips
+    Cents      = 3, // Cents
+    Points     = 4  // Points
+};
+//--- Enum for Timer Interval (CPU Monitor)
+enum ENUM_TIMER_INTERVAL
+{
+    Aggressive = 1,   // 1s: Hyper-vigilant (high CPU)
+    Balanced   = 5,   // 5s: Efficient for multi-chart
+    Relaxed    = 30   // 30s: Low CPU for stable runs
+};
+// --- Enum for BB Period (was ENUM_MA_PERIOD) ---
+enum ENUM_BB_PERIOD
+{
+    P_5 = 5,
+    P_8 = 8,
+    P_10 = 10,
+    P_14 = 14,
+    P_21 = 21,
+    P_50 = 50,
+    P_200 = 200
+};
+//--- Input Parameters
+input ulong Inp_MagicNumber      = 1001;               // Unique identifier
+input E_RESTRICTED_TIMEFRAMES Inp_Timeframe  = M1;
+// Timeframe
+input E_X1_UNIT_TYPE Inp_X1Type_Dropdown = Cents;            // Unit Type
+
+// --- NEW: Bollinger Band Inputs ---
+input ENUM_BB_PERIOD Inp_BB_Period = P_14;
+// Bollinger Band Period
+input double         Inp_BB_Deviation = 2.0;
+// Bollinger Band Deviation
+// ---
+input string Inp_SymbolSuffix    = "";
+// Broker suffix/prefix to strip
+input bool   Inp_EnableVerboseLogging = false;           // Enable detailed disconnect logs
+input ENUM_TIMER_INTERVAL Inp_TimerInterval = Balanced;
+// CPU Monitor: Timer Interval (seconds)
+
+//--- Global Variables for State Tracking
+datetime m_last_checked_bar_time = 0;
+// Tracks the time of the last candle whose data was checked.
+static datetime g_last_staleness_log_time = 0;
+// NEW: Tracks the last time a staleness warning was logged.
+int g_bb_handle = INVALID_HANDLE;
+// Handle for the BB indicator
+
+// --- Global Constants for array sizing ---
+#define CANDLE_LOOKBACK 4 // (For X3 support)
+
+// Static array to hold candle data 
+// (0:Time, 1:High, 2:Low, 3:Height, 4:Open, 5:Close, 6:BB_Basis, 7:BB_Upper, 8:BB_Lower)
+static double m_candle_buffer[CANDLE_LOOKBACK][9]; // <<< MODIFIED: Size 9
+
+// GV Keys for the individual fields
+static string g_gv_time_keys[CANDLE_LOOKBACK];
+static string g_gv_open_keys[CANDLE_LOOKBACK];   
+static string g_gv_high_keys[CANDLE_LOOKBACK];
+static string g_gv_low_keys[CANDLE_LOOKBACK];
+static string g_gv_close_keys[CANDLE_LOOKBACK];
+static string g_gv_height_keys[CANDLE_LOOKBACK];
+static string g_gv_bb_basis_keys[CANDLE_LOOKBACK]; // <<< NEW
+static string g_gv_bb_upper_keys[CANDLE_LOOKBACK];
+static string g_gv_bb_lower_keys[CANDLE_LOOKBACK];
+
+//--- FUNCTION PROTOTYPES ---
+string TimeframeEnumToString(ENUM_TIMEFRAMES tf);
+bool SymbolIsJPY();
+double GetPipSize();
+string GetNormalizedSymbol();
+double CalculateCandleHeight(double high, double low, E_X1_UNIT_TYPE unit_type);
+string GetUnitNotation(E_X1_UNIT_TYPE unit_type);
+void ProcessClosedCandleData();
+
+
+//+------------------------------------------------------------------+
+//| UTILITY: Timeframe Enum to String                                |
+//+------------------------------------------------------------------+
+string TimeframeEnumToString(ENUM_TIMEFRAMES tf)
+{
+    switch (tf)
+    {
+        case PERIOD_M1:  return "M1";
+        case PERIOD_M2:  return "M2";
+        case PERIOD_M3:  return "M3";
+        case PERIOD_M5:  return "M5";
+        case PERIOD_M10: return "M10";
+        case PERIOD_M15: return "M15";
+        case PERIOD_M30: return "M30";
+        case PERIOD_H1:  return "H1";
+        case PERIOD_H3:  return "H3";
+        case PERIOD_H4:  return "H4";
+        case PERIOD_D1:  return "D1";
+        default:         return "UNKNOWN";
+    }
+}
+
+//+------------------------------------------------------------------+
+//| UTILITY: Detect if Symbol ends with "JPY"                        |
+//+------------------------------------------------------------------+
+bool SymbolIsJPY()
+{
+    string symbol = _Symbol;
+    return StringSubstr(symbol, StringLen(symbol) - 3, 3) == "JPY";
+}
+
+//+------------------------------------------------------------------+
+//| UTILITY: Get Pip Size for Symbol                                 |
+//+------------------------------------------------------------------+
+double GetPipSize()
+{
+    if (_Point == 0) return 0.0;
+    int digits = (int)SymbolInfoInteger(_Symbol, SYMBOL_DIGITS);
+    return _Point * ((digits % 2 == 1) ? 10 : 100);
+}
+
+//+------------------------------------------------------------------+
+//| UTILITY: Get Normalized Symbol Name for GV Keys                  |
+//+------------------------------------------------------------------+
+string GetNormalizedSymbol()
+{
+    string symbol = _Symbol;
+    StringReplace(symbol, "/", "");
+    if (Inp_SymbolSuffix != "")
+    {
+        int suffix_len = StringLen(Inp_SymbolSuffix);
+        if (suffix_len > 0)
+        {
+            if (StringLen(symbol) >= suffix_len && StringSubstr(symbol, StringLen(symbol) - suffix_len) == Inp_SymbolSuffix)
+            {
+                symbol = StringSubstr(symbol, 0, StringLen(symbol) - suffix_len);
+            }
+            else if (StringLen(symbol) >= suffix_len && StringSubstr(symbol, 0, suffix_len) == Inp_SymbolSuffix)
+            {
+                symbol = StringSubstr(symbol, suffix_len);
+            }
+        }
+    }
+    StringToUpper(symbol);
+    // Ensure consistency
+    return symbol;
+}
+
+//+------------------------------------------------------------------+
+//| UTILITY: Calculates Candle Height in specified unit              |
+//+------------------------------------------------------------------+
+double CalculateCandleHeight(double high, double low, E_X1_UNIT_TYPE unit_type)
+{
+    double price_diff = high - low;
+    switch (unit_type)
+    {
+        case Points:     return price_diff / _Point;
+        case NonYenPips:
+        case YenPips:
+        {
+            double pip_size = GetPipSize();
+            return (pip_size > 0) ? price_diff / pip_size : 0.0;
+        }
+        case Cents:
+        {
+            double pip_size = GetPipSize();
+            return (pip_size > 0) ? (price_diff / pip_size) * 100.0 : 0.0;
+        }
+    }
+    return 0.0;
+}
+
+//+------------------------------------------------------------------+
+//| UTILITY: Returns the string notation for the unit                |
+//+------------------------------------------------------------------+
+string GetUnitNotation(E_X1_UNIT_TYPE unit_type)
+{
+    switch (unit_type)
+    {
+        case NonYenPips: return "Non-Yen pips";
+        case YenPips:    return "Yen pips";
+        case Cents:      return "Cents";
+        case Points:     return "Points";
+        default:         return "Units";
+    }
+}
+
+//+------------------------------------------------------------------+
+//| Initialization Function (Corrected)                              |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+    ENUM_TIMEFRAMES selected_tf = (ENUM_TIMEFRAMES)Inp_Timeframe;
+    if (selected_tf != Period())
+    {
+        PrintFormat("CRITICAL ERROR: Input Timeframe (%s) does not match Chart Timeframe (%s).",
+                    TimeframeEnumToString(selected_tf), TimeframeEnumToString(Period()));
+        return(INIT_FAILED);
+    }
+
+    string norm_symbol = GetNormalizedSymbol();
+    string tf_str = TimeframeEnumToString(selected_tf);
+    string gv_prefix = "CCM_" + norm_symbol + "_" + tf_str + "_";
+    
+    // --- GV Key Setup and Initialization ---
+    for (int i = 0; i < CANDLE_LOOKBACK; i++) {
+        g_gv_time_keys[i] = gv_prefix + "TIME_" + IntegerToString(i);
+        g_gv_open_keys[i] = gv_prefix + "OPEN_" + IntegerToString(i);   
+        g_gv_high_keys[i] = gv_prefix + "HIGH_" + IntegerToString(i);
+        g_gv_low_keys[i] = gv_prefix + "LOW_" + IntegerToString(i);
+        g_gv_close_keys[i] = gv_prefix + "CLOSE_" + IntegerToString(i);
+        g_gv_height_keys[i] = gv_prefix + "HEIGHT_" + IntegerToString(i);
+        
+        // --- NEW: Add and Initialize BB Basis Key ---
+        g_gv_bb_basis_keys[i] = gv_prefix + "BB_BASIS_" + IntegerToString(i);
+        // --------------------------------------------
+        g_gv_bb_upper_keys[i] = gv_prefix + "BB_UPPER_" + IntegerToString(i);
+        g_gv_bb_lower_keys[i] = gv_prefix + "BB_LOWER_" + IntegerToString(i);
+        
+        // --- Initialize Global Variables to Zero ---
+        GlobalVariableSet(g_gv_time_keys[i], 0.0);
+        GlobalVariableSet(g_gv_open_keys[i], 0.0);
+        GlobalVariableSet(g_gv_high_keys[i], 0.0);
+        GlobalVariableSet(g_gv_low_keys[i], 0.0);
+        GlobalVariableSet(g_gv_close_keys[i], 0.0);
+        GlobalVariableSet(g_gv_height_keys[i], 0.0);
+        
+        GlobalVariableSet(g_gv_bb_basis_keys[i], 0.0); // <<< FIXED
+        GlobalVariableSet(g_gv_bb_upper_keys[i], 0.0);
+        GlobalVariableSet(g_gv_bb_lower_keys[i], 0.0);
+    }
+    
+    EventSetTimer((int)Inp_TimerInterval);
+    ArrayInitialize(m_candle_buffer, 0.0);
+
+    MqlRates rates[];
+    if(CopyRates(_Symbol, selected_tf, 1, 1, rates) > 0)
+    {
+        m_last_checked_bar_time = rates[0].time;
+    }
+
+    GlobalVariableSet(gv_prefix + "LAST_UPDATE", 0.0);
+    GlobalVariableSet(gv_prefix + "STATUS", 0.0);
+    GlobalVariableSet(gv_prefix + "COMMIT_ID", 0.0);
+    
+    // --- Initialize BB Handle (CORRECTED) ---
+    // The iBands function uses SMA by default. 
+    g_bb_handle = iBands(_Symbol, selected_tf, (int)Inp_BB_Period, 0, Inp_BB_Deviation, PRICE_CLOSE);
+    if(g_bb_handle == INVALID_HANDLE)
+    {
+        PrintFormat("CRITICAL ERROR: Failed to create iBands handle for BB(%d, %.1f). Error %d",
+            (int)Inp_BB_Period, Inp_BB_Deviation, GetLastError());
+        return(INIT_FAILED);
+    }
+
+    // --- Corrected Log Message ---
+    PrintFormat("CCM v1.38 Initialised. Timeframe: %s. BB: SMA(%d, %.1f). Polling: %ds.", 
+        tf_str, 
+        (int)Inp_BB_Period, Inp_BB_Deviation,
+        (int)Inp_TimerInterval);
+    return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//| Deinitialization Function (Corrected)                            |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+    EventKillTimer();
+    // --- Release Handles ---
+    if(g_bb_handle != INVALID_HANDLE)
+        IndicatorRelease(g_bb_handle);
+}
+
+//+------------------------------------------------------------------+
+//| OnTimer Function (Main Loop with Staleness Check)                |
+//+------------------------------------------------------------------+
+void OnTimer()
+{
+    // --- NEW: STALENESS MONITOR ---
+    ENUM_TIMEFRAMES selected_tf = (ENUM_TIMEFRAMES)Inp_Timeframe;
+    long period_seconds = PeriodSeconds(selected_tf);
+    
+    if (period_seconds > 0 && m_last_checked_bar_time != 0)
+    {
+        datetime current_time = TimeCurrent();
+        long time_since_last_bar = current_time - m_last_checked_bar_time;
+
+        // Trigger if no new candle for more than 3 periods
+        if (time_since_last_bar > period_seconds * 3)
+        {
+            // Throttle the warning to prevent log spam (once every 10 minutes).
+            if (current_time - g_last_staleness_log_time >= 600) // 600 seconds = 10 minutes
+            {
+                PrintFormat("STALENESS WARNING: No new %s candle has been detected for over %d minutes. The broker data feed may be stalled.",
+                            TimeframeEnumToString(selected_tf), (int)(time_since_last_bar / 60));
+                g_last_staleness_log_time = current_time;
+            }
+        }
+    }
+    // --- END STALENESS MONITOR ---
+
+    ProcessClosedCandleData();
+}
+
+//+------------------------------------------------------------------+
+//| OnTradeTransaction Function (Placeholder)                        |
+//+------------------------------------------------------------------+
+void OnTradeTransaction(const MqlTradeTransaction&, const MqlTradeRequest&, const MqlTradeResult&) {}
+
+//+------------------------------------------------------------------+
+//| CORE DATA COLLECTION FUNCTION (Corrected for BB Basis)           |
+//+------------------------------------------------------------------+
+void ProcessClosedCandleData()
+{
+    ENUM_TIMEFRAMES selected_tf = (ENUM_TIMEFRAMES)Inp_Timeframe;
+    MqlRates rates[];
+    if (CopyRates(_Symbol, selected_tf, 1, 1, rates) > 0)
+    {
+        datetime current_closed_time = rates[0].time;
+        if (current_closed_time > m_last_checked_bar_time)
+        {
+            double open = rates[0].open;
+            double high = rates[0].high;
+            double low = rates[0].low;
+            double close = rates[0].close;   
+            double candle_height_unit = CalculateCandleHeight(high, low, Inp_X1Type_Dropdown);
+            
+            // --- NEW: Get BB Data ---
+            double bb_mid_buffer[CANDLE_LOOKBACK]; // Buffer 0 (Basis)
+            double bb_up_buffer[CANDLE_LOOKBACK];  // Buffer 1 (Upper)
+            double bb_low_buffer[CANDLE_LOOKBACK]; // Buffer 2 (Lower)
+            ArraySetAsSeries(bb_mid_buffer, true);
+            ArraySetAsSeries(bb_up_buffer, true);
+            ArraySetAsSeries(bb_low_buffer, true);
+            if(CopyBuffer(g_bb_handle, 0, 1, CANDLE_LOOKBACK, bb_mid_buffer) != CANDLE_LOOKBACK || // <-- Now copies Middle Band
+               CopyBuffer(g_bb_handle, 1, 1, CANDLE_LOOKBACK, bb_up_buffer) != CANDLE_LOOKBACK ||
+               CopyBuffer(g_bb_handle, 2, 1, CANDLE_LOOKBACK, bb_low_buffer) != CANDLE_LOOKBACK)
+            {
+                // --- Corrected Log Message ---
+                PrintFormat("CCM:Failed to copy iBands buffers for BB(%d, %.1f). Error %d. Skipping cycle.",
+                    (int)Inp_BB_Period, Inp_BB_Deviation, GetLastError());
+                return;
+            }
+            // --- END NEW ---
+            
+            // Shift buffer array down by one position (Array size is now 9)
+            for (int i = 0; i < CANDLE_LOOKBACK - 1; i++)
+            {
+                m_candle_buffer[i][0] = m_candle_buffer[i+1][0]; // Time
+                m_candle_buffer[i][1] = m_candle_buffer[i+1][1]; // High
+                m_candle_buffer[i][2] = m_candle_buffer[i+1][2]; // Low
+                m_candle_buffer[i][3] = m_candle_buffer[i+1][3]; // Height
+                m_candle_buffer[i][4] = m_candle_buffer[i+1][4]; // Open
+                m_candle_buffer[i][5] = m_candle_buffer[i+1][5]; // Close
+                
+                // --- MODIFIED: Shift all 3 BB data points up ---
+                m_candle_buffer[i][6] = m_candle_buffer[i+1][6]; // BB Basis
+                m_candle_buffer[i][7] = m_candle_buffer[i+1][7]; // BB Upper
+                m_candle_buffer[i][8] = m_candle_buffer[i+1][8]; // BB Lower
+            }
+            
+            // Insert the newest candle data at the end of the buffer
+            int new_index = CANDLE_LOOKBACK - 1;
+            m_candle_buffer[new_index][0] = (double)current_closed_time;
+            m_candle_buffer[new_index][1] = high;
+            m_candle_buffer[new_index][2] = low;
+            m_candle_buffer[new_index][3] = candle_height_unit;
+            m_candle_buffer[new_index][4] = open;
+            m_candle_buffer[new_index][5] = close;
+            
+            // --- NEW: Insert all 3 BB data points ---
+            m_candle_buffer[new_index][6] = bb_mid_buffer[0]; // BB Basis
+            m_candle_buffer[new_index][7] = bb_up_buffer[0];  // BB Upper
+            m_candle_buffer[new_index][8] = bb_low_buffer[0]; // BB Lower
+
+            // --- GLOBAL VARIABLE EXPORT ---
+            // 1. Write full buffer to GVs
+            for (int i = 0; i < CANDLE_LOOKBACK; i++) {
+                GlobalVariableSet(g_gv_time_keys[i], m_candle_buffer[i][0]);
+                GlobalVariableSet(g_gv_open_keys[i], m_candle_buffer[i][4]);  
+                GlobalVariableSet(g_gv_high_keys[i], m_candle_buffer[i][1]);
+                GlobalVariableSet(g_gv_low_keys[i], m_candle_buffer[i][2]);
+                GlobalVariableSet(g_gv_close_keys[i], m_candle_buffer[i][5]); 
+                GlobalVariableSet(g_gv_height_keys[i], m_candle_buffer[i][3]);
+                
+                // --- NEW: Export BB Basis ---
+                GlobalVariableSet(g_gv_bb_basis_keys[i], m_candle_buffer[i][6]);
+                // ---------------------------
+                GlobalVariableSet(g_gv_bb_upper_keys[i], m_candle_buffer[i][7]);
+                GlobalVariableSet(g_gv_bb_lower_keys[i], m_candle_buffer[i][8]);
+            }
+            
+            string norm_symbol = GetNormalizedSymbol();
+            string tf_str = TimeframeEnumToString(selected_tf);
+            
+            // 2. Set the COMMIT FLAG (Handshake)
+            string commit_key = "CCM_" + norm_symbol + "_" + tf_str + "_COMMIT_ID";
+            GlobalVariableSet(commit_key, (double)current_closed_time);
+            
+            // 3. Export HEARTBEAT (STATUS)
+            string gv_prefix = "CCM_" + norm_symbol + "_" + tf_str + "_";
+            GlobalVariableSet(gv_prefix + "LAST_UPDATE", (double)TimeCurrent());
+            GlobalVariableSet(gv_prefix + "STATUS", (double)TimeCurrent());
+            
+            m_last_checked_bar_time = current_closed_time;
+        }
+    }
+}
