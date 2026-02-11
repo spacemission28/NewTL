@@ -1,0 +1,214 @@
+[2026-02-11 10:00:01.042] [INFO] OHLC: Processed 55 bars
+[2026-02-11 10:00:01.042] [INFO]   ✓ NEW CANDLE DETECTED: 2026-02-11 10:00:00 (Magic: 104)
+[2026-02-11 10:00:01.042] [INFO]   Candle Key: 104_1770804000 (Magic + CloseTime)
+[2026-02-11 10:00:01.042] [INFO]   Candle Details:
+[2026-02-11 10:00:01.042] [INFO]     Open Time:  2026-02-11 09:30:00
+[2026-02-11 10:00:01.042] [INFO]     Close Time: 2026-02-11 10:00:00
+[2026-02-11 10:00:01.043] [INFO]     Open:  24991.70000
+[2026-02-11 10:00:01.043] [INFO]     High:  24994.00000
+[2026-02-11 10:00:01.043] [INFO]     Low:   24965.10000
+[2026-02-11 10:00:01.043] [INFO]     Close: 24974.90000
+[2026-02-11 10:00:01.043] [INFO]   Bar Height: 28.90000 | Min: 15.00000
+[2026-02-11 10:00:01.043] [INFO]   ★ SIGNAL DETECTED! Normal: Bar height exceeds minimum
+[2026-02-11 10:00:01.043] [INFO]   → Preparing trade command...
+[2026-02-11 10:00:01.043] [INFO]       ═══ GENERATING TRADE COMMANDS (14 ORDERS: 7 BUY + 7 SELL) ═══
+[2026-02-11 10:00:01.043] [INFO]         Robot: Dax Europe
+[2026-02-11 10:00:01.043] [INFO]         Magic: 104
+[2026-02-11 10:00:01.043] [INFO]         Symbol: GER40 M30
+[2026-02-11 10:00:01.044] [INFO]         Bar: H:24994.0 L:24965.1 Height:28.90000
+[2026-02-11 10:00:01.044] [INFO]         Candle Open Time: 2026-02-11 09:30
+[2026-02-11 10:00:01.044] [INFO]         Candle Close Time: 2026-02-11 10:00
+[2026-02-11 10:00:01.044] [INFO]         Current Bid: 24974.90000
+[2026-02-11 10:00:01.044] [INFO]         ✓ Account balance is fresh: $49997.44 AUD (updated 3.7 sec ago)
+[2026-02-11 10:00:01.044] [INFO]         → Calling analyzeSignalAndGenerateCommands...
+[2026-02-11 10:00:01.044] [INFO]         → Robot Config: GER40 | Disable Leapfrog: true
+[2026-02-11 10:00:01.044] [INFO]         → Commission Enabled: false | Type: No_Commissions | Value: 0.0
+[2026-02-11 10:00:01.045] [INFO]         → TP1: 138.0% Vol:50% | TP2: 285.0% Vol:50%
+[2026-02-11 10:00:01.045] [INFO]         → Account Currency: AUD
+[2026-02-11 10:00:01.045] [INFO]         → Available Conversion Rates: [SPY.US, .USSPY, JPYUSD, AUDEUR, JPYAUD, AUDUSD, USDJPY, USDAUD, USDXAU, AUDJPY, XAUUSD, EURAUD]
+[2026-02-11 10:00:01.045] [INFO]         [ENTRY] analyzeSignalAndGenerateCommands called for GER40
+[2026-02-11 10:00:01.046] [INFO]         [VALIDATION] Starting signal validation...
+[2026-02-11 10:00:01.046] [INFO]         [DURATION CHECK] Actual: 1800s | Expected: 1800s | Valid: true
+[2026-02-11 10:00:01.046] [INFO]         [TIMES] Open: 2026-02-11 09:30 | Close: 2026-02-11 10:00
+[2026-02-11 10:00:01.046] [INFO]         [VALIDATION] Signal candle validation PASSED
+[2026-02-11 10:00:01.046] [INFO]         Leapfrog Status: DISABLED (checkbox checked)
+[2026-02-11 10:00:01.046] [INFO]         BUY Entry: 24997.75700 | SELL Entry: 24961.34300
+[2026-02-11 10:00:01.046] [INFO]         → Leapfrog disabled - generating ALL orders regardless of price
+[2026-02-11 10:00:01.048] [INFO]         → About to generate BUY side orders...
+[2026-02-11 10:00:01.048] [INFO]         [SL DEBUG] Raw SL Distance: 36.41400000000431
+[2026-02-11 10:00:01.048] [INFO]         [SL DEBUG] Pip Size: 1.0
+[2026-02-11 10:00:01.048] [INFO]         [SL DEBUG] SL in Pips: 36.41400000000431
+[2026-02-11 10:00:01.048] [INFO]         [CALC] Account Balance: $49997.44
+[2026-02-11 10:00:01.048] [INFO]         [CALC] Total Risk Amount: $124.99
+[2026-02-11 10:00:01.048] [INFO]         [CALC] Contract Size for GER40: 1.0
+[2026-02-11 10:00:01.048] [INFO]         [CALC] Current Price: 24974.9
+[2026-02-11 10:00:01.048] [INFO]         [CALC] Risk per Lot (Quote Currency): 36.41400000000431 (SL Distance: 36.41400000000431 * Contract: 1.0)
+[2026-02-11 10:00:01.048] [INFO]         [CALC] About to convert 36.41400000000431 from quote to account currency
+[2026-02-11 10:00:01.048] [INFO]         [CALC] Conversion rates available: [SPY.US, .USSPY, JPYUSD, AUDEUR, JPYAUD, AUDUSD, USDJPY, USDAUD, USDXAU, AUDJPY, XAUUSD, EURAUD]
+[2026-02-11 10:00:01.048] [INFO]         [CONVERT] Extracted quote currency: EUR from symbol: GER40
+[2026-02-11 10:00:01.048] [INFO]         [CONVERT] Amount to convert: 36.41400000000431 EUR to AUD
+[2026-02-11 10:00:01.048] [INFO]         [CONVERT] Looking for conversion pair: EURAUD
+[2026-02-11 10:00:01.048] [INFO]         [CONVERT] Found EURAUD = 1.6767 | Result: 36.41400000000431 * 1.6767 = 61.055353800007225
+[2026-02-11 10:00:01.048] [INFO]         [CALC] Risk per Lot (Account Currency AUD): 61.055353800007225
+[2026-02-11 10:00:01.048] [INFO]         [CALC] TP1 Volume: 50% | Risk: $62.50 | Raw Lot: 1.0236 | Normalized: 1.00
+[2026-02-11 10:00:01.048] [INFO]         [CALC] TP2 Volume: 50% | Risk: $62.50 | Raw Lot: 1.0236 | Normalized: 1.00
+[2026-02-11 10:00:01.049] [INFO]         [LOT SIZE DEBUG] Symbol: GER40
+[2026-02-11 10:00:01.049] [INFO]         [LOT SIZE DEBUG] Account Balance: 49997.44
+[2026-02-11 10:00:01.049] [INFO]         [LOT SIZE DEBUG] Stop Loss Distance: 36.41400000000431
+[2026-02-11 10:00:01.049] [INFO]         [LOT SIZE DEBUG] RPT %: 0.25 | RPT Fixed: 0.0
+[2026-02-11 10:00:01.049] [INFO]         [LOT SIZE DEBUG] Calculated Lot Sizes: [1.00, 1.00, 0.00, 0.00, 0.00, 0.00, 0.00]
+[2026-02-11 10:00:01.049] [INFO]         → BUY side returned 2 commands
+[2026-02-11 10:00:01.049] [INFO]         → About to generate SELL side orders...
+[2026-02-11 10:00:01.049] [INFO]         [SL DEBUG] Raw SL Distance: 36.41400000000431
+[2026-02-11 10:00:01.049] [INFO]         [SL DEBUG] Pip Size: 1.0
+[2026-02-11 10:00:01.049] [INFO]         [SL DEBUG] SL in Pips: 36.41400000000431
+[2026-02-11 10:00:01.049] [INFO]         [CALC] Account Balance: $49997.44
+[2026-02-11 10:00:01.049] [INFO]         [CALC] Total Risk Amount: $124.99
+[2026-02-11 10:00:01.049] [INFO]         [CALC] Contract Size for GER40: 1.0
+[2026-02-11 10:00:01.049] [INFO]         [CALC] Current Price: 24974.9
+[2026-02-11 10:00:01.049] [INFO]         [CALC] Risk per Lot (Quote Currency): 36.41400000000431 (SL Distance: 36.41400000000431 * Contract: 1.0)
+[2026-02-11 10:00:01.049] [INFO]         [CALC] About to convert 36.41400000000431 from quote to account currency
+[2026-02-11 10:00:01.049] [INFO]         [CALC] Conversion rates available: [SPY.US, .USSPY, JPYUSD, AUDEUR, JPYAUD, AUDUSD, USDJPY, USDAUD, USDXAU, AUDJPY, XAUUSD, EURAUD]
+[2026-02-11 10:00:01.049] [INFO]         [CONVERT] Extracted quote currency: EUR from symbol: GER40
+[2026-02-11 10:00:01.049] [INFO]         [CONVERT] Amount to convert: 36.41400000000431 EUR to AUD
+[2026-02-11 10:00:01.049] [INFO]         [CONVERT] Looking for conversion pair: EURAUD
+[2026-02-11 10:00:01.049] [INFO]         [CONVERT] Found EURAUD = 1.6767 | Result: 36.41400000000431 * 1.6767 = 61.055353800007225
+[2026-02-11 10:00:01.049] [INFO]         [CALC] Risk per Lot (Account Currency AUD): 61.055353800007225
+[2026-02-11 10:00:01.049] [INFO]         [CALC] TP1 Volume: 50% | Risk: $62.50 | Raw Lot: 1.0236 | Normalized: 1.00
+[2026-02-11 10:00:01.049] [INFO]         [CALC] TP2 Volume: 50% | Risk: $62.50 | Raw Lot: 1.0236 | Normalized: 1.00
+[2026-02-11 10:00:01.049] [INFO]         [LOT SIZE DEBUG] Symbol: GER40
+[2026-02-11 10:00:01.049] [INFO]         [LOT SIZE DEBUG] Account Balance: 49997.44
+[2026-02-11 10:00:01.049] [INFO]         [LOT SIZE DEBUG] Stop Loss Distance: 36.41400000000431
+[2026-02-11 10:00:01.049] [INFO]         [LOT SIZE DEBUG] RPT %: 0.25 | RPT Fixed: 0.0
+[2026-02-11 10:00:01.049] [INFO]         [LOT SIZE DEBUG] Calculated Lot Sizes: [1.00, 1.00, 0.00, 0.00, 0.00, 0.00, 0.00]
+[2026-02-11 10:00:01.049] [INFO]         → SELL side returned 2 commands
+[2026-02-11 10:00:01.049] [INFO]         → Total commands generated: 4
+[2026-02-11 10:00:01.049] [INFO] OCO Manager: Registering order group - Magic: 104, BUY: true, SELL: true, OCO Wait: false
+[2026-02-11 10:00:01.049] [INFO] OCO Manager: Registered order group for magic 104 (Total active groups: 6)
+[2026-02-11 10:00:01.049] [INFO] Registered OCO group with OcoManager: Magic=104, Symbol=GER40, Orders=4
+[2026-02-11 10:00:01.050] [INFO]         → analyzeSignalAndGenerateCommands completed. Commands returned: 4
+[2026-02-11 10:00:01.050] [INFO]         ✓ Generated 4 trade commands
+[2026-02-11 10:00:01.050] [INFO] Added command to pending: 58ef776b-d73d-4f6b-8137-4845d88850d9 (Action: PLACE_ORDER, Magic: 104)
+[2026-02-11 10:00:01.050] [INFO] Added command to pending: 943cab97-3923-4a3e-afb4-e53aebb6f0a6 (Action: PLACE_ORDER, Magic: 104)
+[2026-02-11 10:00:01.050] [INFO] Added command to pending: 27d8c7fd-0edd-4593-a4df-a6223c41ccca (Action: PLACE_ORDER, Magic: 104)
+[2026-02-11 10:00:01.050] [INFO] Added command to pending: e355ea44-67f1-4dfe-a6e3-fe61dc4eec65 (Action: PLACE_ORDER, Magic: 104)
+[2026-02-11 10:00:01.050] [INFO]         DEBUG: About to register OCO group for magic 104
+[2026-02-11 10:00:01.050] [INFO] OCO Manager: Registering order group - Magic: 104, BUY: true, SELL: true, OCO Wait: false
+[2026-02-11 10:00:01.050] [INFO] OCO Manager: Registered order group for magic 104 (Total active groups: 6)
+[2026-02-11 10:00:01.050] [INFO] ★★★ OCO POLLER: Registered magic 104 for GER40 (Total groups: 6)
+[2026-02-11 10:00:01.050] [INFO]         DEBUG: OCO group registration completed (both OcoManager and SimpleOcoPoller)
+[2026-02-11 10:00:01.050] [INFO] OCO BACKSTOP: Scheduled 5-second final check for magic 104
+[2026-02-11 10:00:01.050] [INFO]         DEBUG: Scheduled 20-second imbalance check for magic 104
+[2026-02-11 10:00:01.050] [INFO] Smart TS DISABLED for Magic 104
+[2026-02-11 10:00:01.050] [INFO] Smart TS: Registered levels for Magic 104 (BuyTP1: 25033.88200, SellTP1: 24925.21800)
+[2026-02-11 10:00:01.050] [INFO]         DEBUG: Smart TS DISABLED for magic 104
+[2026-02-11 10:00:01.050] [INFO]         Summary: 2 BUY orders, 2 SELL orders
+[2026-02-11 10:00:01.052] [INFO]         Status: QUEUED → awaiting MT5 poll
+[2026-02-11 10:00:01.052] [INFO]       ═══ COMMAND GENERATION COMPLETE ═══
+[2026-02-11 10:00:01.052] [INFO] Trade commands generated: 4 orders (2 BUY, 2 SELL) for robot Dax Europe
+[2026-02-11 10:00:01.052] [INFO]   ✓ NEW CANDLE DETECTED: 2026-02-11 10:00:00 (Magic: 105)
+[2026-02-11 10:00:01.052] [INFO]   Candle Key: 105_1770804000 (Magic + CloseTime)
+[2026-02-11 10:00:01.052] [INFO]   Candle Details:
+[2026-02-11 10:00:01.052] [INFO]     Open Time:  2026-02-11 09:45:00
+[2026-02-11 10:00:01.052] [INFO]     Close Time: 2026-02-11 10:00:00
+[2026-02-11 10:00:01.052] [INFO]     Open:  24990.20000
+[2026-02-11 10:00:01.052] [INFO]     High:  24994.00000
+[2026-02-11 10:00:01.052] [INFO]     Low:   24965.10000
+[2026-02-11 10:00:01.052] [INFO]     Close: 24974.90000
+[2026-02-11 10:00:01.052] [INFO]   Bar Height: 28.90000 | Min: 15.00000
+[2026-02-11 10:00:01.052] [INFO]   ★ SIGNAL DETECTED! Normal: Bar height exceeds minimum
+[2026-02-11 10:00:01.052] [INFO]   → Preparing trade command...
+[2026-02-11 10:00:01.052] [INFO]       ═══ GENERATING TRADE COMMANDS (14 ORDERS: 7 BUY + 7 SELL) ═══
+[2026-02-11 10:00:01.052] [INFO]         Robot: Dax Europe b
+[2026-02-11 10:00:01.052] [INFO]         Magic: 105
+[2026-02-11 10:00:01.052] [INFO]         Symbol: GER40 M15
+[2026-02-11 10:00:01.052] [INFO]         Bar: H:24994.0 L:24965.1 Height:28.90000
+[2026-02-11 10:00:01.052] [INFO]         Candle Open Time: 2026-02-11 09:45
+[2026-02-11 10:00:01.052] [INFO]         Candle Close Time: 2026-02-11 10:00
+[2026-02-11 10:00:01.052] [INFO]         Current Bid: 24974.90000
+[2026-02-11 10:00:01.052] [INFO]         ✓ Account balance is fresh: $49997.44 AUD (updated 3.7 sec ago)
+[2026-02-11 10:00:01.052] [INFO]         → Calling analyzeSignalAndGenerateCommands...
+[2026-02-11 10:00:01.052] [INFO]         → Robot Config: GER40 | Disable Leapfrog: true
+[2026-02-11 10:00:01.052] [INFO]         → Commission Enabled: false | Type: No_Commissions | Value: 0.0
+[2026-02-11 10:00:01.052] [INFO]         → TP1: 138.0% Vol:50% | TP2: 285.0% Vol:50%
+[2026-02-11 10:00:01.052] [INFO]         → Account Currency: AUD
+[2026-02-11 10:00:01.052] [INFO]         → Available Conversion Rates: [SPY.US, .USSPY, JPYUSD, AUDEUR, JPYAUD, AUDUSD, USDJPY, USDAUD, USDXAU, AUDJPY, XAUUSD, EURAUD]
+[2026-02-11 10:00:01.053] [INFO]         [ENTRY] analyzeSignalAndGenerateCommands called for GER40
+[2026-02-11 10:00:01.053] [INFO]         [VALIDATION] Starting signal validation...
+[2026-02-11 10:00:01.053] [INFO]         [DURATION CHECK] Actual: 900s | Expected: 900s | Valid: true
+[2026-02-11 10:00:01.053] [INFO]         [TIMES] Open: 2026-02-11 09:45 | Close: 2026-02-11 10:00
+[2026-02-11 10:00:01.055] [INFO]         [VALIDATION] Signal candle validation PASSED
+[2026-02-11 10:00:01.055] [INFO]         Leapfrog Status: DISABLED (checkbox checked)
+[2026-02-11 10:00:01.055] [INFO]         BUY Entry: 24998.33500 | SELL Entry: 24960.76500
+[2026-02-11 10:00:01.055] [INFO]         → Leapfrog disabled - generating ALL orders regardless of price
+[2026-02-11 10:00:01.055] [INFO]         → About to generate BUY side orders...
+[2026-02-11 10:00:01.055] [INFO]         [SL DEBUG] Raw SL Distance: 37.56999999999971
+[2026-02-11 10:00:01.055] [INFO]         [SL DEBUG] Pip Size: 1.0
+[2026-02-11 10:00:01.055] [INFO]         [SL DEBUG] SL in Pips: 37.56999999999971
+[2026-02-11 10:00:01.055] [INFO]         [CALC] Account Balance: $49997.44
+[2026-02-11 10:00:01.055] [INFO]         [CALC] Total Risk Amount: $124.99
+[2026-02-11 10:00:01.055] [INFO]         [CALC] Contract Size for GER40: 1.0
+[2026-02-11 10:00:01.055] [INFO]         [CALC] Current Price: 24974.9
+[2026-02-11 10:00:01.055] [INFO]         [CALC] Risk per Lot (Quote Currency): 37.56999999999971 (SL Distance: 37.56999999999971 * Contract: 1.0)
+[2026-02-11 10:00:01.055] [INFO]         [CALC] About to convert 37.56999999999971 from quote to account currency
+[2026-02-11 10:00:01.055] [INFO]         [CALC] Conversion rates available: [SPY.US, .USSPY, JPYUSD, AUDEUR, JPYAUD, AUDUSD, USDJPY, USDAUD, USDXAU, AUDJPY, XAUUSD, EURAUD]
+[2026-02-11 10:00:01.056] [INFO]         [CONVERT] Extracted quote currency: EUR from symbol: GER40
+[2026-02-11 10:00:01.056] [INFO]         [CONVERT] Amount to convert: 37.56999999999971 EUR to AUD
+[2026-02-11 10:00:01.056] [INFO]         [CONVERT] Looking for conversion pair: EURAUD
+[2026-02-11 10:00:01.056] [INFO]         [CONVERT] Found EURAUD = 1.6767 | Result: 37.56999999999971 * 1.6767 = 62.99361899999951
+[2026-02-11 10:00:01.056] [INFO]         [CALC] Risk per Lot (Account Currency AUD): 62.99361899999951
+[2026-02-11 10:00:01.056] [INFO]         [CALC] TP1 Volume: 50% | Risk: $62.50 | Raw Lot: 0.9921 | Normalized: 1.00
+[2026-02-11 10:00:01.056] [INFO]         [CALC] TP2 Volume: 50% | Risk: $62.50 | Raw Lot: 0.9921 | Normalized: 1.00
+[2026-02-11 10:00:01.056] [INFO]         [LOT SIZE DEBUG] Symbol: GER40
+[2026-02-11 10:00:01.056] [INFO]         [LOT SIZE DEBUG] Account Balance: 49997.44
+[2026-02-11 10:00:01.056] [INFO]         [LOT SIZE DEBUG] Stop Loss Distance: 37.56999999999971
+[2026-02-11 10:00:01.056] [INFO]         [LOT SIZE DEBUG] RPT %: 0.25 | RPT Fixed: 0.0
+[2026-02-11 10:00:01.056] [INFO]         [LOT SIZE DEBUG] Calculated Lot Sizes: [1.00, 1.00, 0.00, 0.00, 0.00, 0.00, 0.00]
+[2026-02-11 10:00:01.056] [INFO]         → BUY side returned 2 commands
+[2026-02-11 10:00:01.056] [INFO]         → About to generate SELL side orders...
+[2026-02-11 10:00:01.056] [INFO]         [SL DEBUG] Raw SL Distance: 37.56999999999971
+[2026-02-11 10:00:01.056] [INFO]         [SL DEBUG] Pip Size: 1.0
+[2026-02-11 10:00:01.056] [INFO]         [SL DEBUG] SL in Pips: 37.56999999999971
+[2026-02-11 10:00:01.056] [INFO]         [CALC] Account Balance: $49997.44
+[2026-02-11 10:00:01.056] [INFO]         [CALC] Total Risk Amount: $124.99
+[2026-02-11 10:00:01.056] [INFO]         [CALC] Contract Size for GER40: 1.0
+[2026-02-11 10:00:01.056] [INFO]         [CALC] Current Price: 24974.9
+[2026-02-11 10:00:01.056] [INFO]         [CALC] Risk per Lot (Quote Currency): 37.56999999999971 (SL Distance: 37.56999999999971 * Contract: 1.0)
+[2026-02-11 10:00:01.056] [INFO]         [CALC] About to convert 37.56999999999971 from quote to account currency
+[2026-02-11 10:00:01.056] [INFO]         [CALC] Conversion rates available: [SPY.US, .USSPY, JPYUSD, AUDEUR, JPYAUD, AUDUSD, USDJPY, USDAUD, USDXAU, AUDJPY, XAUUSD, EURAUD]
+[2026-02-11 10:00:01.056] [INFO]         [CONVERT] Extracted quote currency: EUR from symbol: GER40
+[2026-02-11 10:00:01.056] [INFO]         [CONVERT] Amount to convert: 37.56999999999971 EUR to AUD
+[2026-02-11 10:00:01.056] [INFO]         [CONVERT] Looking for conversion pair: EURAUD
+[2026-02-11 10:00:01.056] [INFO]         [CONVERT] Found EURAUD = 1.6767 | Result: 37.56999999999971 * 1.6767 = 62.99361899999951
+[2026-02-11 10:00:01.056] [INFO]         [CALC] Risk per Lot (Account Currency AUD): 62.99361899999951
+[2026-02-11 10:00:01.056] [INFO]         [CALC] TP1 Volume: 50% | Risk: $62.50 | Raw Lot: 0.9921 | Normalized: 1.00
+[2026-02-11 10:00:01.056] [INFO]         [CALC] TP2 Volume: 50% | Risk: $62.50 | Raw Lot: 0.9921 | Normalized: 1.00
+[2026-02-11 10:00:01.056] [INFO]         [LOT SIZE DEBUG] Symbol: GER40
+[2026-02-11 10:00:01.056] [INFO]         [LOT SIZE DEBUG] Account Balance: 49997.44
+[2026-02-11 10:00:01.056] [INFO]         [LOT SIZE DEBUG] Stop Loss Distance: 37.56999999999971
+[2026-02-11 10:00:01.056] [INFO]         [LOT SIZE DEBUG] RPT %: 0.25 | RPT Fixed: 0.0
+[2026-02-11 10:00:01.056] [INFO]         [LOT SIZE DEBUG] Calculated Lot Sizes: [1.00, 1.00, 0.00, 0.00, 0.00, 0.00, 0.00]
+[2026-02-11 10:00:01.056] [INFO]         → SELL side returned 2 commands
+[2026-02-11 10:00:01.056] [INFO]         → Total commands generated: 4
+[2026-02-11 10:00:01.057] [INFO] OCO Manager: Registering order group - Magic: 105, BUY: true, SELL: true, OCO Wait: false
+[2026-02-11 10:00:01.057] [INFO] OCO Manager: Registered order group for magic 105 (Total active groups: 7)
+[2026-02-11 10:00:01.057] [INFO] Registered OCO group with OcoManager: Magic=105, Symbol=GER40, Orders=4
+[2026-02-11 10:00:01.057] [INFO]         → analyzeSignalAndGenerateCommands completed. Commands returned: 4
+[2026-02-11 10:00:01.057] [INFO]         ✓ Generated 4 trade commands
+[2026-02-11 10:00:01.057] [INFO] Added command to pending: 7006e2e0-b66e-45ee-904e-a56ced3a3aa3 (Action: PLACE_ORDER, Magic: 105)
+[2026-02-11 10:00:01.057] [INFO] Added command to pending: 335125f6-5b51-4a36-9483-82301d063750 (Action: PLACE_ORDER, Magic: 105)
+[2026-02-11 10:00:01.057] [INFO] Added command to pending: 01005c47-9e72-415d-bdbf-66b7cfa010a4 (Action: PLACE_ORDER, Magic: 105)
+[2026-02-11 10:00:01.057] [INFO] Added command to pending: fe483b15-7f4f-4cc4-91cd-fa79838a6f38 (Action: PLACE_ORDER, Magic: 105)
+[2026-02-11 10:00:01.057] [INFO]         DEBUG: About to register OCO group for magic 105
+[2026-02-11 10:00:01.057] [INFO] OCO Manager: Registering order group - Magic: 105, BUY: true, SELL: true, OCO Wait: false
+[2026-02-11 10:00:01.057] [INFO] OCO Manager: Registered order group for magic 105 (Total active groups: 7)
+[2026-02-11 10:00:01.057] [INFO] ★★★ OCO POLLER: Registered magic 105 for GER40 (Total groups: 7)
+[2026-02-11 10:00:01.057] [INFO]         DEBUG: OCO group registration completed (both OcoManager and SimpleOcoPoller)
+[2026-02-11 10:00:01.057] [INFO] OCO BACKSTOP: Scheduled 5-second final check for magic 105
+[2026-02-11 10:00:01.057] [INFO]         DEBUG: Scheduled 20-second imbalance check for magic 105
+[2026-02-11 10:00:01.057] [INFO] Smart TS DISABLED for Magic 105
+[2026-02-11 10:00:01.057] [INFO] Smart TS: Registered levels for Magic 105 (BuyTP1: 25033.88200, SellTP1: 24925.21800)
+[2026-02-11 10:00:01.058] [INFO]         DEBUG: Smart TS DISABLED for magic 105
+[2026-02-11 10:00:01.058] [INFO]         Summary: 2 BUY orders, 2 SELL orders
+[2026-02-11 10:00:01.058] [INFO]         Status: QUEUED → awaiting MT5 poll
+[2026-02-11 10:00:01.058] [INFO]       ═══ COMMAND GENERATION COMPLETE ═══
