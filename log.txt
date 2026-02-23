@@ -2,25 +2,25 @@
 Translated Report (Full Report Below)
 -------------------------------------
 
-Process:               Python [29555]
+Process:               Python [32280]
 Path:                  /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python
 Identifier:            com.apple.python3
 Version:               3.9.6 (3.9.6)
 Build Info:            python3-141000000500005~1429
 Code Type:             ARM-64 (Native)
-Parent Process:        Exited process [29523]
-Responsible:           Terminal [29515]
+Parent Process:        zsh [32254]
+Responsible:           Terminal [32239]
 User ID:               501
 
-Date/Time:             2026-02-23 18:34:23.7157 +1300
+Date/Time:             2026-02-23 18:49:57.9783 +1300
 OS Version:            macOS 15.7.4 (24G517)
 Report Version:        12
 Anonymous UUID:        71ADDCA8-7FE4-53C7-C7BF-913E72E9E9AE
 
 Sleep/Wake UUID:       AB547E86-CBBE-4FC8-8970-4754BC2FFC7D
 
-Time Awake Since Boot: 60000 seconds
-Time Since Wake:       4094 seconds
+Time Awake Since Boot: 61000 seconds
+Time Since Wake:       5028 seconds
 
 System Integrity Protection: enabled
 
@@ -30,7 +30,7 @@ Exception Type:        EXC_CRASH (SIGABRT)
 Exception Codes:       0x0000000000000000, 0x0000000000000000
 
 Termination Reason:    Namespace SIGNAL, Code 6 Abort trap: 6
-Terminating Process:   Python [29555]
+Terminating Process:   Python [32280]
 
 Application Specific Information:
 abort() called
@@ -44,37 +44,37 @@ Thread 0 Crashed::  Dispatch queue: com.apple.main-thread
 4   Tcl                           	       0x1eccff060 Tcl_Panic + 32
 5   Tk                            	       0x1ece8f6c0 TkpInit + 452
 6   Tk                            	       0x1ece0ea50 0x1ecddf000 + 195152
-7   _tkinter.cpython-39-darwin.so 	       0x1011fc7a8 0x1011f4000 + 34728
-8   _tkinter.cpython-39-darwin.so 	       0x1011f63d0 0x1011f4000 + 9168
-9   _tkinter.cpython-39-darwin.so 	       0x1011f5cdc 0x1011f4000 + 7388
-10  Python3                       	       0x101644cec 0x1015c0000 + 543980
-11  Python3                       	       0x1016d63dc 0x1015c0000 + 1139676
-12  Python3                       	       0x1016d1cb0 _PyEval_EvalFrameDefault + 8728
-13  Python3                       	       0x1016d7134 0x1015c0000 + 1143092
-14  Python3                       	       0x101601bd8 _PyFunction_Vectorcall + 228
-15  Python3                       	       0x101601198 _PyObject_FastCallDictTstate + 268
-16  Python3                       	       0x1016020c8 _PyObject_Call_Prepend + 152
-17  Python3                       	       0x101667de0 0x1015c0000 + 687584
-18  Python3                       	       0x10165f014 0x1015c0000 + 651284
-19  Python3                       	       0x10160136c _PyObject_MakeTpCall + 356
-20  Python3                       	       0x1016d643c 0x1015c0000 + 1139772
-21  Python3                       	       0x1016d1cb0 _PyEval_EvalFrameDefault + 8728
-22  Python3                       	       0x101601d6c 0x1015c0000 + 269676
-23  Python3                       	       0x101601198 _PyObject_FastCallDictTstate + 268
-24  Python3                       	       0x1016020c8 _PyObject_Call_Prepend + 152
-25  Python3                       	       0x101667de0 0x1015c0000 + 687584
-26  Python3                       	       0x10165f014 0x1015c0000 + 651284
-27  Python3                       	       0x10160136c _PyObject_MakeTpCall + 356
-28  Python3                       	       0x1016d643c 0x1015c0000 + 1139772
-29  Python3                       	       0x1016d256c _PyEval_EvalFrameDefault + 10964
-30  Python3                       	       0x1016d7134 0x1015c0000 + 1143092
-31  Python3                       	       0x1016cf9d0 PyEval_EvalCode + 80
-32  Python3                       	       0x101713118 0x1015c0000 + 1388824
-33  Python3                       	       0x101713308 0x1015c0000 + 1389320
-34  Python3                       	       0x101711ad0 PyRun_SimpleFileExFlags + 812
-35  Python3                       	       0x10172ed0c Py_RunMain + 1448
-36  Python3                       	       0x10172f0c0 0x1015c0000 + 1503424
-37  Python3                       	       0x10172f160 Py_BytesMain + 40
+7   _tkinter.cpython-39-darwin.so 	       0x104e707a8 0x104e68000 + 34728
+8   _tkinter.cpython-39-darwin.so 	       0x104e6a3d0 0x104e68000 + 9168
+9   _tkinter.cpython-39-darwin.so 	       0x104e69cdc 0x104e68000 + 7388
+10  Python3                       	       0x10511ccec 0x105098000 + 543980
+11  Python3                       	       0x1051ae3dc 0x105098000 + 1139676
+12  Python3                       	       0x1051a9cb0 _PyEval_EvalFrameDefault + 8728
+13  Python3                       	       0x1051af134 0x105098000 + 1143092
+14  Python3                       	       0x1050d9bd8 _PyFunction_Vectorcall + 228
+15  Python3                       	       0x1050d9198 _PyObject_FastCallDictTstate + 268
+16  Python3                       	       0x1050da0c8 _PyObject_Call_Prepend + 152
+17  Python3                       	       0x10513fde0 0x105098000 + 687584
+18  Python3                       	       0x105137014 0x105098000 + 651284
+19  Python3                       	       0x1050d936c _PyObject_MakeTpCall + 356
+20  Python3                       	       0x1051ae43c 0x105098000 + 1139772
+21  Python3                       	       0x1051a9cb0 _PyEval_EvalFrameDefault + 8728
+22  Python3                       	       0x1050d9d6c 0x105098000 + 269676
+23  Python3                       	       0x1050d9198 _PyObject_FastCallDictTstate + 268
+24  Python3                       	       0x1050da0c8 _PyObject_Call_Prepend + 152
+25  Python3                       	       0x10513fde0 0x105098000 + 687584
+26  Python3                       	       0x105137014 0x105098000 + 651284
+27  Python3                       	       0x1050d936c _PyObject_MakeTpCall + 356
+28  Python3                       	       0x1051ae43c 0x105098000 + 1139772
+29  Python3                       	       0x1051aa56c _PyEval_EvalFrameDefault + 10964
+30  Python3                       	       0x1051af134 0x105098000 + 1143092
+31  Python3                       	       0x1051a79d0 PyEval_EvalCode + 80
+32  Python3                       	       0x1051eb118 0x105098000 + 1388824
+33  Python3                       	       0x1051eb308 0x105098000 + 1389320
+34  Python3                       	       0x1051e9ad0 PyRun_SimpleFileExFlags + 812
+35  Python3                       	       0x105206d0c Py_RunMain + 1448
+36  Python3                       	       0x1052070c0 0x105098000 + 1503424
+37  Python3                       	       0x105207160 Py_BytesMain + 40
 38  dyld                          	       0x18509eb98 start + 6076
 
 Thread 1:
@@ -86,44 +86,50 @@ Thread 2:
 Thread 3:
 0   libsystem_pthread.dylib       	       0x18543ab6c start_wqthread + 0
 
+Thread 4:
+0   libsystem_pthread.dylib       	       0x18543ab6c start_wqthread + 0
+
+Thread 5:
+0   libsystem_pthread.dylib       	       0x18543ab6c start_wqthread + 0
+
 
 Thread 0 crashed with ARM Thread State (64-bit):
     x0: 0x0000000000000000   x1: 0x0000000000000000   x2: 0x0000000000000000   x3: 0x0000000000000000
-    x4: 0x0000000000000000   x5: 0x000000016f109250   x6: 0x0000000000000021   x7: 0x0000000000000600
-    x8: 0x06845e2aaa462640   x9: 0x06845e2b597b8400  x10: 0x0000000000000002  x11: 0x0000010000000000
+    x4: 0x0000000000000000   x5: 0x000000016b47d220   x6: 0x0000000000000021   x7: 0x0000000000000c00
+    x8: 0x2d99109575e439a5   x9: 0x2d99109486d99be5  x10: 0x0000000000000002  x11: 0x0000010000000000
    x12: 0x00000000fffffffd  x13: 0x0000000000000000  x14: 0x0000000000000000  x15: 0x0000000000000000
    x16: 0x0000000000000148  x17: 0x00000001f4431548  x18: 0x0000000000000000  x19: 0x0000000000000006
-   x20: 0x0000000000000103  x21: 0x00000001f33da320  x22: 0x00006000024f0763  x23: 0x00000001f3158ec0
+   x20: 0x0000000000000103  x21: 0x00000001f33da320  x22: 0x000060000158c383  x23: 0x00000001f3158ec0
    x24: 0x00000001f3158000  x25: 0x00000001f3157000  x26: 0x00000001f3157000  x27: 0x00000001f3157000
-   x28: 0x00000001f3157000   fp: 0x000000016f109200   lr: 0x000000018543f848
-    sp: 0x000000016f1091e0   pc: 0x0000000185406388 cpsr: 0x40001000
+   x28: 0x00000001f3157000   fp: 0x000000016b47d1d0   lr: 0x000000018543f848
+    sp: 0x000000016b47d1b0   pc: 0x0000000185406388 cpsr: 0x40001000
    far: 0x0000000000000000  esr: 0x56000080  Address size fault
 
 Binary Images:
-       0x100cf4000 -        0x100cf7fff com.apple.python3 (3.9.6) <b30273ae-4473-35ac-847a-8472ec1befdf> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python
-       0x1015c0000 -        0x101823fff com.apple.python3 (3.9.6) <4d9bf7cf-b241-345e-9f8f-a402f42696a5> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Python3
-       0x100f84000 -        0x100f8bfff _heapq.cpython-39-darwin.so (*) <753d9517-05dd-325f-b9b7-b882e0a1b3e2> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_heapq.cpython-39-darwin.so
-       0x100f5c000 -        0x100f63fff _json.cpython-39-darwin.so (*) <28a75bba-25d7-33e6-a718-59df168f595d> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_json.cpython-39-darwin.so
-       0x1010e4000 -        0x1010effff math.cpython-39-darwin.so (*) <4bdd49c1-4350-3f3b-9734-bb0a5899a0b3> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/math.cpython-39-darwin.so
-       0x1010b0000 -        0x1010c3fff _datetime.cpython-39-darwin.so (*) <d675516f-5787-3461-8b51-062c0b73548b> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_datetime.cpython-39-darwin.so
-       0x1011f4000 -        0x1011fffff _tkinter.cpython-39-darwin.so (*) <f7ecb261-b628-36c0-8053-1c3318acaefd> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_tkinter.cpython-39-darwin.so
-       0x101390000 -        0x101397fff _struct.cpython-39-darwin.so (*) <317084d1-dff9-3978-8a22-7f37740fdc75> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_struct.cpython-39-darwin.so
-       0x1013a8000 -        0x1013affff binascii.cpython-39-darwin.so (*) <5e42dea7-7301-3e72-b14a-a25d46cd7e2f> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/binascii.cpython-39-darwin.so
-       0x1013c0000 -        0x1013c3fff _bisect.cpython-39-darwin.so (*) <4a5692ca-8173-3fb1-9d20-bb8879372890> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_bisect.cpython-39-darwin.so
-       0x1013d4000 -        0x1013dbfff _hashlib.cpython-39-darwin.so (*) <e5fa964c-78b0-3631-b58d-a0baf04c7c2b> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_hashlib.cpython-39-darwin.so
-       0x1013ec000 -        0x1013f7fff _blake2.cpython-39-darwin.so (*) <904973eb-2ed2-36dc-bccb-2bca5385d7ab> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_blake2.cpython-39-darwin.so
-       0x1011c0000 -        0x1011cffff _sha3.cpython-39-darwin.so (*) <1b353274-8a17-3bfc-8c32-1825651d3f21> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_sha3.cpython-39-darwin.so
-       0x1011e0000 -        0x1011e3fff _random.cpython-39-darwin.so (*) <ff8f4149-1e53-3e0b-9e70-86d637fe5e85> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_random.cpython-39-darwin.so
-       0x101434000 -        0x10143bfff _sha512.cpython-39-darwin.so (*) <7024d762-a62d-3912-81f8-8f1b1511fc49> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_sha512.cpython-39-darwin.so
-       0x101408000 -        0x101417fff _socket.cpython-39-darwin.so (*) <441facdd-1839-3f0c-9fb3-33b442ae600a> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_socket.cpython-39-darwin.so
-       0x101478000 -        0x10147ffff select.cpython-39-darwin.so (*) <491a5b2d-0295-3c7b-b99e-4d3492429b01> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/select.cpython-39-darwin.so
-       0x10144c000 -        0x101457fff array.cpython-39-darwin.so (*) <579878a6-fe00-332b-b446-483649673de4> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/array.cpython-39-darwin.so
-       0x10156c000 -        0x101583fff _ssl.cpython-39-darwin.so (*) <286d55fa-7adc-3195-a6c3-c7e5b7783ef8> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_ssl.cpython-39-darwin.so
-       0x101550000 -        0x101557fff zlib.cpython-39-darwin.so (*) <6947418a-cdd7-3a1f-8312-76b3f1a1430d> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/zlib.cpython-39-darwin.so
-       0x1018ec000 -        0x1018effff _bz2.cpython-39-darwin.so (*) <16016bd4-d001-31f5-8184-24b7d62d1faf> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_bz2.cpython-39-darwin.so
-       0x10159c000 -        0x1015a3fff _lzma.cpython-39-darwin.so (*) <63f905f4-7ff2-3cd8-abe5-7528a43bd7b1> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_lzma.cpython-39-darwin.so
-       0x101924000 -        0x101927fff grp.cpython-39-darwin.so (*) <060a42f7-d1c1-3089-8c8f-6dea8e67d66e> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/grp.cpython-39-darwin.so
-       0x101938000 -        0x10193bfff _scproxy.cpython-39-darwin.so (*) <174f2e1a-8585-3b3f-b329-a95c6d9b0369> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_scproxy.cpython-39-darwin.so
+       0x104980000 -        0x104983fff com.apple.python3 (3.9.6) <b30273ae-4473-35ac-847a-8472ec1befdf> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python
+       0x105098000 -        0x1052fbfff com.apple.python3 (3.9.6) <4d9bf7cf-b241-345e-9f8f-a402f42696a5> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Python3
+       0x104a68000 -        0x104a6ffff _heapq.cpython-39-darwin.so (*) <753d9517-05dd-325f-b9b7-b882e0a1b3e2> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_heapq.cpython-39-darwin.so
+       0x104cf4000 -        0x104cfbfff _json.cpython-39-darwin.so (*) <28a75bba-25d7-33e6-a718-59df168f595d> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_json.cpython-39-darwin.so
+       0x104cc8000 -        0x104cd3fff math.cpython-39-darwin.so (*) <4bdd49c1-4350-3f3b-9734-bb0a5899a0b3> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/math.cpython-39-darwin.so
+       0x104d90000 -        0x104da3fff _datetime.cpython-39-darwin.so (*) <d675516f-5787-3461-8b51-062c0b73548b> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_datetime.cpython-39-darwin.so
+       0x104e68000 -        0x104e73fff _tkinter.cpython-39-darwin.so (*) <f7ecb261-b628-36c0-8053-1c3318acaefd> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_tkinter.cpython-39-darwin.so
+       0x104f04000 -        0x104f0bfff _struct.cpython-39-darwin.so (*) <317084d1-dff9-3978-8a22-7f37740fdc75> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_struct.cpython-39-darwin.so
+       0x104f1c000 -        0x104f23fff binascii.cpython-39-darwin.so (*) <5e42dea7-7301-3e72-b14a-a25d46cd7e2f> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/binascii.cpython-39-darwin.so
+       0x104f34000 -        0x104f37fff _bisect.cpython-39-darwin.so (*) <4a5692ca-8173-3fb1-9d20-bb8879372890> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_bisect.cpython-39-darwin.so
+       0x104f48000 -        0x104f4ffff _hashlib.cpython-39-darwin.so (*) <e5fa964c-78b0-3631-b58d-a0baf04c7c2b> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_hashlib.cpython-39-darwin.so
+       0x104f60000 -        0x104f6bfff _blake2.cpython-39-darwin.so (*) <904973eb-2ed2-36dc-bccb-2bca5385d7ab> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_blake2.cpython-39-darwin.so
+       0x104e34000 -        0x104e43fff _sha3.cpython-39-darwin.so (*) <1b353274-8a17-3bfc-8c32-1825651d3f21> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_sha3.cpython-39-darwin.so
+       0x104e54000 -        0x104e57fff _random.cpython-39-darwin.so (*) <ff8f4149-1e53-3e0b-9e70-86d637fe5e85> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_random.cpython-39-darwin.so
+       0x104fe8000 -        0x104feffff _sha512.cpython-39-darwin.so (*) <7024d762-a62d-3912-81f8-8f1b1511fc49> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_sha512.cpython-39-darwin.so
+       0x104fbc000 -        0x104fcbfff _socket.cpython-39-darwin.so (*) <441facdd-1839-3f0c-9fb3-33b442ae600a> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_socket.cpython-39-darwin.so
+       0x10506c000 -        0x105073fff select.cpython-39-darwin.so (*) <491a5b2d-0295-3c7b-b99e-4d3492429b01> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/select.cpython-39-darwin.so
+       0x105040000 -        0x10504bfff array.cpython-39-darwin.so (*) <579878a6-fe00-332b-b446-483649673de4> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/array.cpython-39-darwin.so
+       0x105460000 -        0x105477fff _ssl.cpython-39-darwin.so (*) <286d55fa-7adc-3195-a6c3-c7e5b7783ef8> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_ssl.cpython-39-darwin.so
+       0x105444000 -        0x10544bfff zlib.cpython-39-darwin.so (*) <6947418a-cdd7-3a1f-8312-76b3f1a1430d> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/zlib.cpython-39-darwin.so
+       0x105084000 -        0x105087fff _bz2.cpython-39-darwin.so (*) <16016bd4-d001-31f5-8184-24b7d62d1faf> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_bz2.cpython-39-darwin.so
+       0x1054fc000 -        0x105503fff _lzma.cpython-39-darwin.so (*) <63f905f4-7ff2-3cd8-abe5-7528a43bd7b1> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_lzma.cpython-39-darwin.so
+       0x105514000 -        0x105517fff grp.cpython-39-darwin.so (*) <060a42f7-d1c1-3089-8c8f-6dea8e67d66e> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/grp.cpython-39-darwin.so
+       0x105568000 -        0x10556bfff _scproxy.cpython-39-darwin.so (*) <174f2e1a-8585-3b3f-b329-a95c6d9b0369> /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload/_scproxy.cpython-39-darwin.so
        0x1853fd000 -        0x1854385f3 libsystem_kernel.dylib (*) <85034943-c8b6-3c69-8b4b-039cd25ef16d> /usr/lib/system/libsystem_kernel.dylib
        0x185439000 -        0x185445a77 libsystem_pthread.dylib (*) <c0519bf8-8fc4-3222-a4a7-d98af817277c> /usr/lib/system/libsystem_pthread.dylib
        0x1852d0000 -        0x1853511f7 libsystem_c.dylib (*) <e098cb59-2c56-395c-ade1-6ef590e61199> /usr/lib/system/libsystem_c.dylib
@@ -148,7 +154,7 @@ External Modification Summary:
 
 VM Region Summary:
 ReadOnly portion of Libraries: Total=913.4M resident=0K(0%) swapped_out_or_unallocated=913.4M(100%)
-Writable regions: Total=1.1G written=434K(0%) resident=434K(0%) swapped_out=0K(0%) unallocated=1.1G(100%)
+Writable regions: Total=969.6M written=434K(0%) resident=434K(0%) swapped_out=0K(0%) unallocated=969.2M(100%)
 
                                 VIRTUAL   REGION 
 REGION TYPE                        SIZE    COUNT (non-coalesced) 
@@ -156,13 +162,13 @@ REGION TYPE                        SIZE    COUNT (non-coalesced)
 Activity Tracing                   256K        1 
 ColorSync                          416K       23 
 CoreGraphics                        16K        1 
-CoreServices                       128K        1 
+CoreServices                       208K        1 
 Kernel Alloc Once                   32K        1 
-MALLOC                             1.0G       36 
+MALLOC                           944.4M       35 
 MALLOC guard page                  288K       18 
-STACK GUARD                         64K        4 
-Stack                             17.6M        4 
-VM_ALLOCATE                       5920K       25 
+STACK GUARD                         96K        6 
+Stack                             18.7M        6 
+VM_ALLOCATE                       5664K       24 
 __AUTH                            1169K      213 
 __AUTH_CONST                      24.7M      366 
 __DATA                            5553K      371 
@@ -175,11 +181,11 @@ __OBJC_RW                         2397K        1
 __TEXT                           295.8M      408 
 __TPRO_CONST                       128K        2 
 dyld private memory                160K        2 
-mapped file                       61.0M        9 
+mapped file                       60.5M        9 
 page table in kernel               434K        1 
-shared memory                      864K       12 
+shared memory                      864K       13 
 ===========                     =======  ======= 
-TOTAL                              2.1G     2025 
+TOTAL                              2.0G     2028 
 
 
 
@@ -187,9 +193,9 @@ TOTAL                              2.1G     2025
 Full Report
 -----------
 
-{"app_name":"Python","timestamp":"2026-02-23 18:34:25.00 +1300","app_version":"3.9.6","slice_uuid":"b30273ae-4473-35ac-847a-8472ec1befdf","build_version":"3.9.6","platform":1,"bundleID":"com.apple.python3","share_with_app_devs":0,"is_first_party":0,"bug_type":"309","os_version":"macOS 15.7.4 (24G517)","roots_installed":0,"name":"Python","incident_id":"28FFBFAE-7438-4681-9D7F-409031FCEBD7"}
+{"app_name":"Python","timestamp":"2026-02-23 18:49:59.00 +1300","app_version":"3.9.6","slice_uuid":"b30273ae-4473-35ac-847a-8472ec1befdf","build_version":"3.9.6","platform":1,"bundleID":"com.apple.python3","share_with_app_devs":0,"is_first_party":0,"bug_type":"309","os_version":"macOS 15.7.4 (24G517)","roots_installed":0,"name":"Python","incident_id":"CEC59BCA-7C3F-4EC8-B452-C7516DF8FB76"}
 {
-  "uptime" : 60000,
+  "uptime" : 61000,
   "procRole" : "Background",
   "version" : 2,
   "userID" : 501,
@@ -201,28 +207,28 @@ Full Report
     "build" : "24G517",
     "releaseType" : "User"
   },
-  "captureTime" : "2026-02-23 18:34:23.7157 +1300",
+  "captureTime" : "2026-02-23 18:49:57.9783 +1300",
   "codeSigningMonitor" : 1,
-  "incident" : "28FFBFAE-7438-4681-9D7F-409031FCEBD7",
-  "pid" : 29555,
+  "incident" : "CEC59BCA-7C3F-4EC8-B452-C7516DF8FB76",
+  "pid" : 32280,
   "translated" : false,
   "cpuType" : "ARM-64",
   "roots_installed" : 0,
   "bug_type" : "309",
-  "procLaunch" : "2026-02-23 18:34:23.4272 +1300",
-  "procStartAbsTime" : 1462878603120,
-  "procExitAbsTime" : 1462885124849,
+  "procLaunch" : "2026-02-23 18:49:57.7938 +1300",
+  "procStartAbsTime" : 1485303569132,
+  "procExitAbsTime" : 1485307855399,
   "procName" : "Python",
   "procPath" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/Resources\/Python.app\/Contents\/MacOS\/Python",
   "bundleInfo" : {"CFBundleShortVersionString":"3.9.6","CFBundleVersion":"3.9.6","CFBundleIdentifier":"com.apple.python3"},
   "buildInfo" : {"ProjectName":"python3","SourceVersion":"141000000500005","BuildVersion":"1429"},
   "storeInfo" : {"deviceIdentifierForVendor":"186327B7-30DA-5350-A49D-0B645A4C02D3","thirdParty":true},
-  "parentProc" : "Exited process",
-  "parentPid" : 29523,
+  "parentProc" : "zsh",
+  "parentPid" : 32254,
   "coalitionName" : "com.apple.Terminal",
   "crashReporterKey" : "71ADDCA8-7FE4-53C7-C7BF-913E72E9E9AE",
   "appleIntelligenceStatus" : {"state":"available"},
-  "responsiblePid" : 29515,
+  "responsiblePid" : 32239,
   "responsibleProc" : "Terminal",
   "codeSigningID" : "com.apple.python3",
   "codeSigningTeamID" : "",
@@ -232,20 +238,20 @@ Full Report
   "codeSigningAuxiliaryInfo" : 0,
   "instructionByteStream" : {"beforePC":"fyMD1f17v6n9AwCRm+D\/l78DAJH9e8Go\/w9f1sADX9YQKYDSARAA1A==","atPC":"AwEAVH8jA9X9e7+p\/QMAkZDg\/5e\/AwCR\/XvBqP8PX9bAA1\/WcAqA0g=="},
   "bootSessionUUID" : "1894B9CA-FD14-481F-BA50-A5C7D0B0AE22",
-  "wakeTime" : 4094,
+  "wakeTime" : 5028,
   "sleepWakeUUID" : "AB547E86-CBBE-4FC8-8970-4754BC2FFC7D",
   "sip" : "enabled",
   "exception" : {"codes":"0x0000000000000000, 0x0000000000000000","rawCodes":[0,0],"type":"EXC_CRASH","signal":"SIGABRT"},
-  "termination" : {"flags":0,"code":6,"namespace":"SIGNAL","indicator":"Abort trap: 6","byProc":"Python","byPid":29555},
+  "termination" : {"flags":0,"code":6,"namespace":"SIGNAL","indicator":"Abort trap: 6","byProc":"Python","byPid":32280},
   "asi" : {"libsystem_c.dylib":["abort() called"]},
   "extMods" : {"caller":{"thread_create":0,"thread_set_state":0,"task_for_pid":0},"system":{"thread_create":0,"thread_set_state":0,"task_for_pid":0},"targeted":{"thread_create":0,"thread_set_state":0,"task_for_pid":0},"warnings":0},
   "faultingThread" : 0,
-  "threads" : [{"triggered":true,"id":768795,"threadState":{"x":[{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":6158324304},{"value":33},{"value":1536},{"value":469603798491735616},{"value":469603801431245824},{"value":2},{"value":1099511627776},{"value":4294967293},{"value":0},{"value":0},{"value":0},{"value":328},{"value":8393004360},{"value":0},{"value":6},{"value":259},{"value":8375870240,"symbolLocation":224,"symbol":"_main_thread"},{"value":105553155000163},{"value":8373243584,"symbolLocation":72,"symbol":"tkIntXlibStubsPtr"},{"value":8373239808},{"value":8373235712,"symbolLocation":52968,"symbol":"pswhitelist"},{"value":8373235712,"symbolLocation":52968,"symbol":"pswhitelist"},{"value":8373235712,"symbolLocation":52968,"symbol":"pswhitelist"},{"value":8373235712,"symbolLocation":52968,"symbol":"pswhitelist"}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6530791496},"cpsr":{"value":1073745920},"fp":{"value":6158324224},"sp":{"value":6158324192},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6530556808,"matchesCrashFrame":1},"far":{"value":0}},"queue":"com.apple.main-thread","frames":[{"imageOffset":37768,"symbol":"__pthread_kill","symbolLocation":8,"imageIndex":24},{"imageOffset":26696,"symbol":"pthread_kill","symbolLocation":296,"imageIndex":25},{"imageOffset":494052,"symbol":"abort","symbolLocation":124,"imageIndex":26},{"imageOffset":516160,"symbol":"Tcl_PanicVA","symbolLocation":232,"imageIndex":27},{"imageOffset":516192,"symbol":"Tcl_Panic","symbolLocation":32,"imageIndex":27},{"imageOffset":722624,"symbol":"TkpInit","symbolLocation":452,"imageIndex":28},{"imageOffset":195152,"imageIndex":28},{"imageOffset":34728,"imageIndex":6},{"imageOffset":9168,"imageIndex":6},{"imageOffset":7388,"imageIndex":6},{"imageOffset":543980,"imageIndex":1},{"imageOffset":1139676,"imageIndex":1},{"imageOffset":1121456,"symbol":"_PyEval_EvalFrameDefault","symbolLocation":8728,"imageIndex":1},{"imageOffset":1143092,"imageIndex":1},{"imageOffset":269272,"symbol":"_PyFunction_Vectorcall","symbolLocation":228,"imageIndex":1},{"imageOffset":266648,"symbol":"_PyObject_FastCallDictTstate","symbolLocation":268,"imageIndex":1},{"imageOffset":270536,"symbol":"_PyObject_Call_Prepend","symbolLocation":152,"imageIndex":1},{"imageOffset":687584,"imageIndex":1},{"imageOffset":651284,"imageIndex":1},{"imageOffset":267116,"symbol":"_PyObject_MakeTpCall","symbolLocation":356,"imageIndex":1},{"imageOffset":1139772,"imageIndex":1},{"imageOffset":1121456,"symbol":"_PyEval_EvalFrameDefault","symbolLocation":8728,"imageIndex":1},{"imageOffset":269676,"imageIndex":1},{"imageOffset":266648,"symbol":"_PyObject_FastCallDictTstate","symbolLocation":268,"imageIndex":1},{"imageOffset":270536,"symbol":"_PyObject_Call_Prepend","symbolLocation":152,"imageIndex":1},{"imageOffset":687584,"imageIndex":1},{"imageOffset":651284,"imageIndex":1},{"imageOffset":267116,"symbol":"_PyObject_MakeTpCall","symbolLocation":356,"imageIndex":1},{"imageOffset":1139772,"imageIndex":1},{"imageOffset":1123692,"symbol":"_PyEval_EvalFrameDefault","symbolLocation":10964,"imageIndex":1},{"imageOffset":1143092,"imageIndex":1},{"imageOffset":1112528,"symbol":"PyEval_EvalCode","symbolLocation":80,"imageIndex":1},{"imageOffset":1388824,"imageIndex":1},{"imageOffset":1389320,"imageIndex":1},{"imageOffset":1383120,"symbol":"PyRun_SimpleFileExFlags","symbolLocation":812,"imageIndex":1},{"imageOffset":1502476,"symbol":"Py_RunMain","symbolLocation":1448,"imageIndex":1},{"imageOffset":1503424,"imageIndex":1},{"imageOffset":1503584,"symbol":"Py_BytesMain","symbolLocation":40,"imageIndex":1},{"imageOffset":27544,"symbol":"start","symbolLocation":6076,"imageIndex":29}]},{"id":768797,"frames":[{"imageOffset":7020,"symbol":"start_wqthread","symbolLocation":0,"imageIndex":25}],"threadState":{"x":[{"value":6158888960},{"value":8707},{"value":6158352384},{"value":0},{"value":409604},{"value":18446744073709551615},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":0},"cpsr":{"value":4096},"fp":{"value":0},"sp":{"value":6158888960},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6530771820},"far":{"value":0}}},{"id":768798,"frames":[{"imageOffset":7020,"symbol":"start_wqthread","symbolLocation":0,"imageIndex":25}],"threadState":{"x":[{"value":6159462400},{"value":10755},{"value":6158925824},{"value":0},{"value":409604},{"value":18446744073709551615},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":0},"cpsr":{"value":4096},"fp":{"value":0},"sp":{"value":6159462400},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6530771820},"far":{"value":0}}},{"id":768799,"frames":[{"imageOffset":7020,"symbol":"start_wqthread","symbolLocation":0,"imageIndex":25}],"threadState":{"x":[{"value":6160035840},{"value":19203},{"value":6159499264},{"value":0},{"value":409602},{"value":18446744073709551615},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":0},"cpsr":{"value":4096},"fp":{"value":0},"sp":{"value":6160035840},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6530771820},"far":{"value":0}}}],
+  "threads" : [{"triggered":true,"id":786502,"threadState":{"x":[{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":6094836256},{"value":33},{"value":3072},{"value":3285675637257550245},{"value":3285675633247099877},{"value":2},{"value":1099511627776},{"value":4294967293},{"value":0},{"value":0},{"value":0},{"value":328},{"value":8393004360},{"value":0},{"value":6},{"value":259},{"value":8375870240,"symbolLocation":224,"symbol":"_main_thread"},{"value":105553138860931},{"value":8373243584,"symbolLocation":72,"symbol":"tkIntXlibStubsPtr"},{"value":8373239808},{"value":8373235712,"symbolLocation":52968,"symbol":"pswhitelist"},{"value":8373235712,"symbolLocation":52968,"symbol":"pswhitelist"},{"value":8373235712,"symbolLocation":52968,"symbol":"pswhitelist"},{"value":8373235712,"symbolLocation":52968,"symbol":"pswhitelist"}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6530791496},"cpsr":{"value":1073745920},"fp":{"value":6094836176},"sp":{"value":6094836144},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6530556808,"matchesCrashFrame":1},"far":{"value":0}},"queue":"com.apple.main-thread","frames":[{"imageOffset":37768,"symbol":"__pthread_kill","symbolLocation":8,"imageIndex":24},{"imageOffset":26696,"symbol":"pthread_kill","symbolLocation":296,"imageIndex":25},{"imageOffset":494052,"symbol":"abort","symbolLocation":124,"imageIndex":26},{"imageOffset":516160,"symbol":"Tcl_PanicVA","symbolLocation":232,"imageIndex":27},{"imageOffset":516192,"symbol":"Tcl_Panic","symbolLocation":32,"imageIndex":27},{"imageOffset":722624,"symbol":"TkpInit","symbolLocation":452,"imageIndex":28},{"imageOffset":195152,"imageIndex":28},{"imageOffset":34728,"imageIndex":6},{"imageOffset":9168,"imageIndex":6},{"imageOffset":7388,"imageIndex":6},{"imageOffset":543980,"imageIndex":1},{"imageOffset":1139676,"imageIndex":1},{"imageOffset":1121456,"symbol":"_PyEval_EvalFrameDefault","symbolLocation":8728,"imageIndex":1},{"imageOffset":1143092,"imageIndex":1},{"imageOffset":269272,"symbol":"_PyFunction_Vectorcall","symbolLocation":228,"imageIndex":1},{"imageOffset":266648,"symbol":"_PyObject_FastCallDictTstate","symbolLocation":268,"imageIndex":1},{"imageOffset":270536,"symbol":"_PyObject_Call_Prepend","symbolLocation":152,"imageIndex":1},{"imageOffset":687584,"imageIndex":1},{"imageOffset":651284,"imageIndex":1},{"imageOffset":267116,"symbol":"_PyObject_MakeTpCall","symbolLocation":356,"imageIndex":1},{"imageOffset":1139772,"imageIndex":1},{"imageOffset":1121456,"symbol":"_PyEval_EvalFrameDefault","symbolLocation":8728,"imageIndex":1},{"imageOffset":269676,"imageIndex":1},{"imageOffset":266648,"symbol":"_PyObject_FastCallDictTstate","symbolLocation":268,"imageIndex":1},{"imageOffset":270536,"symbol":"_PyObject_Call_Prepend","symbolLocation":152,"imageIndex":1},{"imageOffset":687584,"imageIndex":1},{"imageOffset":651284,"imageIndex":1},{"imageOffset":267116,"symbol":"_PyObject_MakeTpCall","symbolLocation":356,"imageIndex":1},{"imageOffset":1139772,"imageIndex":1},{"imageOffset":1123692,"symbol":"_PyEval_EvalFrameDefault","symbolLocation":10964,"imageIndex":1},{"imageOffset":1143092,"imageIndex":1},{"imageOffset":1112528,"symbol":"PyEval_EvalCode","symbolLocation":80,"imageIndex":1},{"imageOffset":1388824,"imageIndex":1},{"imageOffset":1389320,"imageIndex":1},{"imageOffset":1383120,"symbol":"PyRun_SimpleFileExFlags","symbolLocation":812,"imageIndex":1},{"imageOffset":1502476,"symbol":"Py_RunMain","symbolLocation":1448,"imageIndex":1},{"imageOffset":1503424,"imageIndex":1},{"imageOffset":1503584,"symbol":"Py_BytesMain","symbolLocation":40,"imageIndex":1},{"imageOffset":27544,"symbol":"start","symbolLocation":6076,"imageIndex":29}]},{"id":786504,"frames":[{"imageOffset":7020,"symbol":"start_wqthread","symbolLocation":0,"imageIndex":25}],"threadState":{"x":[{"value":6095400960},{"value":9987},{"value":6094864384},{"value":0},{"value":409604},{"value":18446744073709551615},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":0},"cpsr":{"value":4096},"fp":{"value":0},"sp":{"value":6095400960},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6530771820},"far":{"value":0}}},{"id":786505,"frames":[{"imageOffset":7020,"symbol":"start_wqthread","symbolLocation":0,"imageIndex":25}],"threadState":{"x":[{"value":6095974400},{"value":8963},{"value":6095437824},{"value":0},{"value":409604},{"value":18446744073709551615},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":0},"cpsr":{"value":4096},"fp":{"value":0},"sp":{"value":6095974400},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6530771820},"far":{"value":0}}},{"id":786506,"frames":[{"imageOffset":7020,"symbol":"start_wqthread","symbolLocation":0,"imageIndex":25}],"threadState":{"x":[{"value":6096547840},{"value":19459},{"value":6096011264},{"value":0},{"value":409603},{"value":18446744073709551615},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":0},"cpsr":{"value":4096},"fp":{"value":0},"sp":{"value":6096547840},"esr":{"value":1442840704,"description":" Address size fault"},"pc":{"value":6530771820},"far":{"value":0}}},{"id":786507,"frames":[{"imageOffset":7020,"symbol":"start_wqthread","symbolLocation":0,"imageIndex":25}],"threadState":{"x":[{"value":6097121280},{"value":0},{"value":6096584704},{"value":0},{"value":278532},{"value":18446744073709551615},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":0},"cpsr":{"value":4096},"fp":{"value":0},"sp":{"value":6097121280},"esr":{"value":0,"description":" Address size fault"},"pc":{"value":6530771820},"far":{"value":0}}},{"id":786508,"frames":[{"imageOffset":7020,"symbol":"start_wqthread","symbolLocation":0,"imageIndex":25}],"threadState":{"x":[{"value":6097694720},{"value":0},{"value":6097158144},{"value":0},{"value":278532},{"value":18446744073709551615},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":0},"cpsr":{"value":4096},"fp":{"value":0},"sp":{"value":6097694720},"esr":{"value":0,"description":" Address size fault"},"pc":{"value":6530771820},"far":{"value":0}}}],
   "usedImages" : [
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4308549632,
+    "base" : 4372037632,
     "CFBundleShortVersionString" : "3.9.6",
     "CFBundleIdentifier" : "com.apple.python3",
     "size" : 16384,
@@ -257,7 +263,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4317773824,
+    "base" : 4379475968,
     "CFBundleShortVersionString" : "3.9.6",
     "CFBundleIdentifier" : "com.apple.python3",
     "size" : 2506752,
@@ -269,7 +275,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4311236608,
+    "base" : 4372987904,
     "size" : 32768,
     "uuid" : "753d9517-05dd-325f-b9b7-b882e0a1b3e2",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/_heapq.cpython-39-darwin.so",
@@ -278,7 +284,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4311072768,
+    "base" : 4375658496,
     "size" : 32768,
     "uuid" : "28a75bba-25d7-33e6-a718-59df168f595d",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/_json.cpython-39-darwin.so",
@@ -287,7 +293,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4312678400,
+    "base" : 4375478272,
     "size" : 49152,
     "uuid" : "4bdd49c1-4350-3f3b-9734-bb0a5899a0b3",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/math.cpython-39-darwin.so",
@@ -296,7 +302,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4312465408,
+    "base" : 4376297472,
     "size" : 81920,
     "uuid" : "d675516f-5787-3461-8b51-062c0b73548b",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/_datetime.cpython-39-darwin.so",
@@ -305,7 +311,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4313792512,
+    "base" : 4377182208,
     "size" : 49152,
     "uuid" : "f7ecb261-b628-36c0-8053-1c3318acaefd",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/_tkinter.cpython-39-darwin.so",
@@ -314,7 +320,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4315480064,
+    "base" : 4377821184,
     "size" : 32768,
     "uuid" : "317084d1-dff9-3978-8a22-7f37740fdc75",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/_struct.cpython-39-darwin.so",
@@ -323,7 +329,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4315578368,
+    "base" : 4377919488,
     "size" : 32768,
     "uuid" : "5e42dea7-7301-3e72-b14a-a25d46cd7e2f",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/binascii.cpython-39-darwin.so",
@@ -332,7 +338,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4315676672,
+    "base" : 4378017792,
     "size" : 16384,
     "uuid" : "4a5692ca-8173-3fb1-9d20-bb8879372890",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/_bisect.cpython-39-darwin.so",
@@ -341,7 +347,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4315758592,
+    "base" : 4378099712,
     "size" : 32768,
     "uuid" : "e5fa964c-78b0-3631-b58d-a0baf04c7c2b",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/_hashlib.cpython-39-darwin.so",
@@ -350,7 +356,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4315856896,
+    "base" : 4378198016,
     "size" : 49152,
     "uuid" : "904973eb-2ed2-36dc-bccb-2bca5385d7ab",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/_blake2.cpython-39-darwin.so",
@@ -359,7 +365,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4313579520,
+    "base" : 4376969216,
     "size" : 65536,
     "uuid" : "1b353274-8a17-3bfc-8c32-1825651d3f21",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/_sha3.cpython-39-darwin.so",
@@ -368,7 +374,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4313710592,
+    "base" : 4377100288,
     "size" : 16384,
     "uuid" : "ff8f4149-1e53-3e0b-9e70-86d637fe5e85",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/_random.cpython-39-darwin.so",
@@ -377,7 +383,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4316151808,
+    "base" : 4378755072,
     "size" : 32768,
     "uuid" : "7024d762-a62d-3912-81f8-8f1b1511fc49",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/_sha512.cpython-39-darwin.so",
@@ -386,7 +392,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4315971584,
+    "base" : 4378574848,
     "size" : 65536,
     "uuid" : "441facdd-1839-3f0c-9fb3-33b442ae600a",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/_socket.cpython-39-darwin.so",
@@ -395,7 +401,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4316430336,
+    "base" : 4379295744,
     "size" : 32768,
     "uuid" : "491a5b2d-0295-3c7b-b99e-4d3492429b01",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/select.cpython-39-darwin.so",
@@ -404,7 +410,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4316250112,
+    "base" : 4379115520,
     "size" : 49152,
     "uuid" : "579878a6-fe00-332b-b446-483649673de4",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/array.cpython-39-darwin.so",
@@ -413,7 +419,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4317429760,
+    "base" : 4383440896,
     "size" : 98304,
     "uuid" : "286d55fa-7adc-3195-a6c3-c7e5b7783ef8",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/_ssl.cpython-39-darwin.so",
@@ -422,7 +428,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4317315072,
+    "base" : 4383326208,
     "size" : 32768,
     "uuid" : "6947418a-cdd7-3a1f-8312-76b3f1a1430d",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/zlib.cpython-39-darwin.so",
@@ -431,7 +437,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4321099776,
+    "base" : 4379394048,
     "size" : 16384,
     "uuid" : "16016bd4-d001-31f5-8184-24b7d62d1faf",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/_bz2.cpython-39-darwin.so",
@@ -440,7 +446,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4317626368,
+    "base" : 4384079872,
     "size" : 32768,
     "uuid" : "63f905f4-7ff2-3cd8-abe5-7528a43bd7b1",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/_lzma.cpython-39-darwin.so",
@@ -449,7 +455,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4321329152,
+    "base" : 4384178176,
     "size" : 16384,
     "uuid" : "060a42f7-d1c1-3089-8c8f-6dea8e67d66e",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/grp.cpython-39-darwin.so",
@@ -458,7 +464,7 @@ Full Report
   {
     "source" : "P",
     "arch" : "arm64",
-    "base" : 4321411072,
+    "base" : 4384522240,
     "size" : 16384,
     "uuid" : "174f2e1a-8585-3b3f-b329-a95c6d9b0369",
     "path" : "\/Library\/Developer\/CommandLineTools\/Library\/Frameworks\/Python3.framework\/Versions\/3.9\/lib\/python3.9\/lib-dynload\/_scproxy.cpython-39-darwin.so",
@@ -536,7 +542,7 @@ Full Report
   "size" : 5039783936,
   "uuid" : "06500f56-f17f-34b5-bbbb-ca9b1caea316"
 },
-  "vmSummary" : "ReadOnly portion of Libraries: Total=913.4M resident=0K(0%) swapped_out_or_unallocated=913.4M(100%)\nWritable regions: Total=1.1G written=434K(0%) resident=434K(0%) swapped_out=0K(0%) unallocated=1.1G(100%)\n\n                                VIRTUAL   REGION \nREGION TYPE                        SIZE    COUNT (non-coalesced) \n===========                     =======  ======= \nActivity Tracing                   256K        1 \nColorSync                          416K       23 \nCoreGraphics                        16K        1 \nCoreServices                       128K        1 \nKernel Alloc Once                   32K        1 \nMALLOC                             1.0G       36 \nMALLOC guard page                  288K       18 \nSTACK GUARD                         64K        4 \nStack                             17.6M        4 \nVM_ALLOCATE                       5920K       25 \n__AUTH                            1169K      213 \n__AUTH_CONST                      24.7M      366 \n__DATA                            5553K      371 \n__DATA_CONST                      16.2M      393 \n__DATA_DIRTY                       689K      106 \n__FONT_DATA                        2352        1 \n__LINKEDIT                       617.6M       25 \n__OBJC_RO                         61.4M        1 \n__OBJC_RW                         2397K        1 \n__TEXT                           295.8M      408 \n__TPRO_CONST                       128K        2 \ndyld private memory                160K        2 \nmapped file                       61.0M        9 \npage table in kernel               434K        1 \nshared memory                      864K       12 \n===========                     =======  ======= \nTOTAL                              2.1G     2025 \n",
+  "vmSummary" : "ReadOnly portion of Libraries: Total=913.4M resident=0K(0%) swapped_out_or_unallocated=913.4M(100%)\nWritable regions: Total=969.6M written=434K(0%) resident=434K(0%) swapped_out=0K(0%) unallocated=969.2M(100%)\n\n                                VIRTUAL   REGION \nREGION TYPE                        SIZE    COUNT (non-coalesced) \n===========                     =======  ======= \nActivity Tracing                   256K        1 \nColorSync                          416K       23 \nCoreGraphics                        16K        1 \nCoreServices                       208K        1 \nKernel Alloc Once                   32K        1 \nMALLOC                           944.4M       35 \nMALLOC guard page                  288K       18 \nSTACK GUARD                         96K        6 \nStack                             18.7M        6 \nVM_ALLOCATE                       5664K       24 \n__AUTH                            1169K      213 \n__AUTH_CONST                      24.7M      366 \n__DATA                            5553K      371 \n__DATA_CONST                      16.2M      393 \n__DATA_DIRTY                       689K      106 \n__FONT_DATA                        2352        1 \n__LINKEDIT                       617.6M       25 \n__OBJC_RO                         61.4M        1 \n__OBJC_RW                         2397K        1 \n__TEXT                           295.8M      408 \n__TPRO_CONST                       128K        2 \ndyld private memory                160K        2 \nmapped file                       60.5M        9 \npage table in kernel               434K        1 \nshared memory                      864K       13 \n===========                     =======  ======= \nTOTAL                              2.0G     2028 \n",
   "legacyInfo" : {
   "threadTriggered" : {
     "queue" : "com.apple.main-thread"
@@ -566,16 +572,3 @@ Full Report
 }
 }
 
-Model: MacBookAir10,1, BootROM 13822.81.10, proc 8:4:4 processors, 8 GB, SMC 
-Graphics: Apple M1, Apple M1, Built-In
-Display: Color LCD, 2560 x 1600 Retina, Main, MirrorOff, Online
-Memory Module: LPDDR4, Hynix
-AirPort: spairport_wireless_card_type_wifi (0x14E4, 0x4378), wl0: Dec  7 2024 04:41:25 version 18.90.5.0.7.8.177 FWID 01-02f4dc53
-IO80211_driverkit-1485.13 "IO80211_driverkit-1485.13" Jan 30 2026 21:54:12
-AirPort: 
-Bluetooth: Version (null), 0 services, 0 devices, 0 incoming serial ports
-Network Service: Wi-Fi, AirPort, en0
-USB Device: USB31Bus
-USB Device: USB31Bus
-Thunderbolt Bus: MacBook Air, Apple Inc.
-Thunderbolt Bus: MacBook Air, Apple Inc.
