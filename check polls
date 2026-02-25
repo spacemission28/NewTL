@@ -1,0 +1,185 @@
+#!/usr/bin/env python3
+"""
+Continuous Market Token Monitor
+Checks for current 15-minute BTC market every 5 minutes
+Writes token IDs to ~/Desktop/current_market.json
+"""
+import os
+import re
+import json
+import subprocess
+import time
+from datetime import datetime, timezone
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# Cross-platform Desktop path (works on Windows, macOS, Linux)
+OUTPUT_FILE = os.path.join(os.path.expanduser("~"), "Desktop", "current_market.json")
+CHECK_INTERVAL = 30  # 30 seconds
+
+def run_command(cmd):
+    result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+    return result.stdout
+
+def get_market_for_period(period_start):
+    slug = f"btc-updown-15m-{period_start}"
+    url = f"https://polymarket.com/event/{slug}"
+
+    status_code = run_command(f'curl -s -o /dev/null -w "%{{http_code}}" "{url}"')
+    if status_code.strip() != "200":
+        return None
+
+    html = run_command(f'curl -s "{url}"')
+    match = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', html, re.DOTALL)
+    if not match:
+        return None
+
+    try:
+        data = json.loads(match.group(1))
+
+        def find_tokens(obj, depth=0):
+            if depth > 15:
+                return None
+            if isinstance(obj, dict):
+                if 'clobTokenIds' in obj and 'question' in obj:
+                    return {
+                        'question': obj['question'],
+                        'token_ids': obj['clobTokenIds'],
+                        'outcomes': obj.get('outcomes', []),
+                        'slug': obj.get('slug')
+                    }
+                for val in obj.values():
+                    result = find_tokens(val, depth+1)
+                    if result:
+                        return result
+            elif isinstance(obj, list):
+                for item in obj:
+                    result = find_tokens(item, depth+1)
+                    if result:
+                        return result
+            return None
+
+        market = find_tokens(data)
+        if market and len(market['token_ids']) >= 2:
+            # Match outcomes to token IDs correctly
+            up_token = None
+            down_token = None
+
+            outcomes = market.get('outcomes', [])
+            token_ids = market['token_ids']
+
+            # Try to match by outcome names
+            for i, outcome in enumerate(outcomes):
+                if i < len(token_ids):
+                    if 'UP' in str(outcome).upper() or 'HIGHER' in str(outcome).upper():
+                        up_token = token_ids[i]
+                    elif 'DOWN' in str(outcome).upper() or 'LOWER' in str(outcome).upper():
+                        down_token = token_ids[i]
+
+            # Fallback to index order if matching failed
+            if not up_token or not down_token:
+                up_token = token_ids[0]
+                down_token = token_ids[1]
+
+            return {
+                'slug': slug,
+                'period_start': period_start,
+                'period_end': period_start + 900,
+                'up_token': up_token,
+                'down_token': down_token,
+                'question': market['question'],
+                'updated_at': int(time.time())
+            }
+    except Exception as e:
+        pass
+
+    return None
+
+def get_current_market():
+    now = datetime.now(timezone.utc)
+    current_timestamp = now.timestamp()
+    current_period = int(current_timestamp // 900) * 900
+    return get_market_for_period(current_period)
+
+def get_upcoming_markets(count=4):
+    now = datetime.now(timezone.utc)
+    current_timestamp = now.timestamp()
+    current_period = int(current_timestamp // 900) * 900
+
+    markets = []
+    for i in range(count):
+        period_start = current_period + ((i + 1) * 900)  # Start from NEXT period
+        market = get_market_for_period(period_start)
+        if market:
+            markets.append(market)
+
+    return markets
+
+def write_market_data(current, upcoming):
+    data = {
+        'current': current,
+        'upcoming': upcoming,
+        'last_update': int(time.time()),
+        'last_update_utc': datetime.now(timezone.utc).isoformat()
+    }
+
+    temp_file = OUTPUT_FILE + ".tmp"
+    with open(temp_file, 'w') as f:
+        json.dump(data, f, indent=2)
+    os.rename(temp_file, OUTPUT_FILE)
+
+print("=" * 80)
+print("MARKET TOKENS SERVICE")
+print("=" * 80)
+print(f"📝 Writing to: {OUTPUT_FILE}")
+print(f"🔄 Update interval: {CHECK_INTERVAL} seconds ({CHECK_INTERVAL/60:.0f} minutes)")
+print("=" * 80)
+print()
+
+iteration = 0
+
+while True:
+    try:
+        iteration += 1
+        now = datetime.now(timezone.utc)
+
+        print(f"\n[{now.strftime('%H:%M:%S')}] Check #{iteration}")
+        print("-" * 80)
+
+        print("🔍 Fetching current market...", end=" ")
+        current = get_current_market()
+
+        if current:
+            print("✅")
+            print(f"   Question: {current['question']}")
+            print(f"   Slug: {current['slug']}")
+            print(f"   Period: {datetime.fromtimestamp(current['period_start'], tz=timezone.utc).strftime('%H:%M')} - "
+                  f"{datetime.fromtimestamp(current['period_end'], tz=timezone.utc).strftime('%H:%M')} UTC")
+            print(f"   UP Token: {current['up_token'][:30]}...")
+            print(f"   DOWN Token: {current['down_token'][:30]}...")
+        else:
+            print("❌")
+            print("   No current market found (may be created soon)")
+
+        print("\n🔮 Fetching upcoming markets...", end=" ")
+        upcoming = get_upcoming_markets(4)
+        print(f"✅ ({len(upcoming)} markets)")
+
+        print(f"\n💾 Writing to {OUTPUT_FILE}...", end=" ")
+        write_market_data(current, upcoming)
+        print("✅")
+
+        next_update = datetime.now(timezone.utc).timestamp() + CHECK_INTERVAL
+        next_update_dt = datetime.fromtimestamp(next_update, tz=timezone.utc)
+        print(f"\n⏰ Next update at: {next_update_dt.strftime('%H:%M:%S')} UTC")
+
+        time.sleep(CHECK_INTERVAL)
+
+    except KeyboardInterrupt:
+        print("\n\n👋 Shutting down...")
+        break
+    except Exception as e:
+        print(f"\n❌ Error: {e}")
+        print(f"   Retrying in 30 seconds...")
+        time.sleep(30)
