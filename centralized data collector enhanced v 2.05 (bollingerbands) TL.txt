@@ -1,11 +1,11 @@
 //+------------------------------------------------------------------+
 //|                    Centralized_Data_Collector_Optimized.mq5      |
-//|                    Copyright 2025, Trade Logic v2.05             |
+//|                    Copyright 2025, Trade Logic v2.03             |
 //|                                                                  |
-//|  Version 2.05: EMERGENCY_CLOSE_ALL IMPLEMENTATION                |
+//|  Version 2.03: EMERGENCY_CLOSE_ALL IMPLEMENTATION                |
 //|                - Added EMERGENCY_CLOSE_ALL action for EOD cleanup|
 //|                - Closes all open positions for specified magic   |
-//|                - Fixes SPY.US EOD closeout failure issue         |
+//|                - Fixes XAUUSD EOD closeout failure issue         |
 //|  Version 2.02: JSON FIELD NAME FIX                               |
 //|                - Fixed bb_basis -> bb_middle for Java parsing    |
 //|  Version 2.01: CRITICAL BB HANDLE LOOKUP FIX                     |
@@ -19,8 +19,8 @@
 //|                - Pre-allocated JSON strings (80% faster)         |
 //|                - Eliminated duplicate BB calculations            |
 //+------------------------------------------------------------------+
-#property copyright "Copyright 2025, Trade Logic v2.05"
-#property version   "2.05"
+#property copyright "Copyright 2025, Trade Logic v2.03"
+#property version   "2.03"
 #property strict
 
 #include <Trade\Trade.mqh>
@@ -168,17 +168,17 @@ string ParseJsonField(string& json_response, string key)
 //|                      INPUTS & GLOBAL VARS                        |
 //+------------------------------------------------------------------+
 
-input string SymbolsToMonitor = "EURUSD,USDJPY,XAUUSD,GER40,SPY.US";
-input string JavaBaseURL      = "http://127.0.0.1:8080";
-input string JavaDataURL      = "http://127.0.0.1:8080/tickrecorder";
-input string JavaTickURL      = "http://127.0.0.1:8080/tickdata";
-input string JavaTradeURL     = "http://127.0.0.1:8080/getcommand";
-input string JavaFeedbackURL  = "http://127.0.0.1:8080/executionfeedback";
-input string JavaHistoryURL   = "http://127.0.0.1:8080/tradehistory";
-input string JavaBBURL        = "http://127.0.0.1:8080/bollingerbands";
+input string SymbolsToMonitor = "XAUUSD";
+input string JavaBaseURL      = "http://127.0.0.1:8081";
+input string JavaDataURL      = "http://127.0.0.1:8081/tickrecorder";
+input string JavaTickURL      = "http://127.0.0.1:8081/tickdata";
+input string JavaTradeURL     = "http://127.0.0.1:8081/getcommand";
+input string JavaFeedbackURL  = "http://127.0.0.1:8081/executionfeedback";
+input string JavaHistoryURL   = "http://127.0.0.1:8081/tradehistory";
+input string JavaBBURL        = "http://127.0.0.1:8081/bollingerbands";
 input int    BB_Period        = 14;
 input double BB_Deviations    = 2.000;
-input long   BridgeMagic      = 1001;
+input long   BridgeMagic      = 1002;
 input bool   Inp_ResetPollingOnStart = true;
 
 datetime g_last_sent_time = 0;
@@ -338,6 +338,13 @@ void OnTradeTransaction(const MqlTradeTransaction& trans, const MqlTradeRequest&
                 }
 
                 string order_type = GetOrderTypeByTicket(ticket);
+                // Fallback: derive direction from deal when ticket not in g_pending_commands
+                if(order_type == "")
+                {
+                    long deal_type = HistoryDealGetInteger(trans.deal, DEAL_TYPE);
+                    if(deal_type == DEAL_TYPE_BUY) order_type = "BUY";
+                    else if(deal_type == DEAL_TYPE_SELL) order_type = "SELL";
+                }
                 PrintFormat("Order FILLED: Ticket %llu (Type: %s). Sending fill confirmation for command_id '%s'.", ticket, order_type, command_id);
                 SendExecutionFeedback(
                     command_id,
@@ -689,7 +696,7 @@ void ExecuteCsvCommand(string command)
     string comment_str    = StringTrim(parts[8]);
     string command_id_str = StringTrim(parts[9]);
 
-    if(action_str != "MOVE_ALL_SL_TO_BREAKEVEN" && action_str != "EMERGENCY_CLOSE_ALL" && !SymbolSelect(symbol_str, true))
+    if(!SymbolSelect(symbol_str, true))
     {
         Print("Trade Failed: Invalid Symbol ", symbol_str);
         SendExecutionFeedback(command_id_str, magic_str, 10003, "FAILED", 0, 0, 0, 0, "Invalid symbol: " + symbol_str);
@@ -807,46 +814,6 @@ void ExecuteCsvCommand(string command)
         string message = "Closed " + IntegerToString(closed_count) + " positions, failed " + IntegerToString(failed_count);
 
         Print("EMERGENCY_CLOSE_ALL completed: ", message);
-        SendExecutionFeedback(command_id_str, magic_str, retcode, status, 0, 0, 0, 0, message);
-    }
-    else if(action_str == "MOVE_ALL_SL_TO_BREAKEVEN")
-    {
-        Print("MOVE_ALL_SL_TO_BREAKEVEN: Moving all positions for magic ", magic_long, " to SL=", sl_price);
-
-        int modified_count = 0;
-        int failed_count = 0;
-
-        for(int i = PositionsTotal() - 1; i >= 0; i--)
-        {
-            ulong ticket = PositionGetTicket(i);
-            if(ticket > 0)
-            {
-                if(PositionSelectByTicket(ticket))
-                {
-                    long position_magic = PositionGetInteger(POSITION_MAGIC);
-                    if(position_magic == magic_long)
-                    {
-                        double current_tp = PositionGetDouble(POSITION_TP);
-                        if(trade.PositionModify(ticket, sl_price, current_tp))
-                        {
-                            modified_count++;
-                            Print("MOVE_ALL_SL_TO_BREAKEVEN: Modified position ", ticket, " SL=", sl_price);
-                        }
-                        else
-                        {
-                            failed_count++;
-                            Print("MOVE_ALL_SL_TO_BREAKEVEN: Failed to modify position ", ticket, " Error: ", trade.ResultRetcode());
-                        }
-                    }
-                }
-            }
-        }
-
-        string status = (failed_count == 0) ? "SUCCESS" : "PARTIAL";
-        int retcode = (failed_count == 0) ? 0 : 1;
-        string message = "Modified " + IntegerToString(modified_count) + " positions to breakeven, failed " + IntegerToString(failed_count);
-
-        Print("MOVE_ALL_SL_TO_BREAKEVEN completed: ", message);
         SendExecutionFeedback(command_id_str, magic_str, retcode, status, 0, 0, 0, 0, message);
     }
     else
