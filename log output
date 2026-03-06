@@ -1,0 +1,48 @@
+[2026-03-06 11:45:01.062] [11:45:01] [INFO]   ✓ NEW CANDLE DETECTED: XAUUSD M15 (Magic: 25)
+[2026-03-06 11:45:01.062] [11:45:01] [INFO]     Symbol/TF: XAUUSD M15
+[2026-03-06 11:45:01.062] [11:45:01] [INFO]     Candle Time: 2026-03-06 11:45 (Open: 2026-03-06 11:30)
+[2026-03-06 11:45:01.062] [11:45:01] [INFO]     O/H/L/C: 5098.88000/5103.84000/5087.46000/5096.31000
+[2026-03-06 11:45:01.063] [11:45:01] [INFO]   🔍 DETECTING: Candles=2, X2Strict=false X2Relaxed=true X3Strict=false X3Relaxed=false
+[2026-03-06 11:45:01.068] [11:45:01] [INFO]   ★ X2 RELAXED STRUCTURE VALIDATED: BUY
+[2026-03-06 11:45:01.071] [11:45:01] [INFO]   → BreachDetector: Registered BUY setup for XAUUSD @ 5106.13320 (Magic: 25)
+[2026-03-06 11:45:01.071] [11:45:01] [INFO]   ★ SIGNAL DETECTED! X2_RELAXED_BUY @ 5106.13320 (BUY)
+[2026-03-06 11:45:01.071] [11:45:01] [INFO]       ═══ PLACING PENDING ORDERS ═══
+[2026-03-06 11:45:01.071] [11:45:01] [INFO]         Robot: Gld Bounce M15
+[2026-03-06 11:45:01.071] [11:45:01] [INFO]         Magic: 25
+[2026-03-06 11:45:01.072] [11:45:01] [INFO]         Symbol: XAUUSD M15
+[2026-03-06 11:45:01.072] [11:45:01] [INFO]         Pattern: X2_RELAXED_BUY | Direction: BUY
+[2026-03-06 11:45:01.073] [11:45:01] [INFO]         Reference Candle: H:5103.84000 L:5087.46000 Height:16.38000
+[2026-03-06 11:45:01.073] [11:45:01] [INFO]         Candle Open: 2026-03-06 11:30 | Close: 2026-03-06 11:45
+[2026-03-06 11:45:01.073] [11:45:01] [INFO]         Breach Level: 5106.13320
+[2026-03-06 11:45:01.073] [11:45:01] [INFO]         Current Bid: 5096.35000
+[2026-03-06 11:45:01.075] [11:45:01] [INFO]         Robot Config: DisableLeapfrog=true | Commission=false 
+[2026-03-06 11:45:01.089] [11:45:01] [INFO]         TP1: 48.0% Vol:10% | TP2: 138.0% Vol:90% | TP3: 0.0% Vol:0%
+[2026-03-06 11:45:01.090] [11:45:01] [INFO]         Account: $49200.84 AUD (updated 2.7s ago)
+[2026-03-06 11:45:01.110] [11:45:01] [INFO]         Summary: 1 BUY orders, 0 SELL orders
+[2026-03-06 11:45:01.110] [11:45:01] [INFO]         Status: QUEUED → awaiting MT5 poll
+[2026-03-06 11:45:01.110] [11:45:01] [INFO]       ═══ PLACEMENT COMPLETE ═══
+[2026-03-06 11:45:01.111] [11:45:01] [INFO]     ✓ Placed 1 pending BUY orders for magic 25
+[2026-03-06 11:45:01.113] [11:45:01] [INFO]   ✓ NEW CANDLE DETECTED: XAUUSD M15 (Magic: 2)
+[2026-03-06 11:45:01.113] [11:45:01] [INFO]     Symbol/TF: XAUUSD M15
+[2026-03-06 11:45:01.113] [11:45:01] [INFO]     Candle Time: 2026-03-06 11:45 (Open: 2026-03-06 11:30)
+[2026-03-06 11:45:01.113] [11:45:01] [INFO]     O/H/L/C: 5098.88000/5103.84000/5087.46000/5096.31000
+[2026-03-06 11:45:01.113] [11:45:01] [INFO]   🔍 DETECTING: Candles=2, X2Strict=false X2Relaxed=true X3Strict=false X3Relaxed=false
+[2026-03-06 11:45:01.114] [11:45:01] [INFO]   ★ X2 RELAXED STRUCTURE VALIDATED: BUY
+[2026-03-06 11:45:01.114] [11:45:01] [INFO]   → BreachDetector: Registered BUY setup for XAUUSD @ 5106.13320 (Magic: 2)
+[2026-03-06 11:45:01.114] [11:45:01] [INFO]   ★ SIGNAL DETECTED! X2_RELAXED_BUY @ 5106.13320 (BUY)
+[2026-03-06 11:45:01.114] [11:45:01] [INFO]       ═══ PLACING PENDING ORDERS ═══
+[2026-03-06 11:45:01.114] [11:45:01] [INFO]         Robot: 
+[2026-03-06 11:45:01.114] [11:45:01] [INFO]         Magic: 2
+[2026-03-06 11:45:01.114] [11:45:01] [INFO]         Symbol: XAUUSD M15
+[2026-03-06 11:45:01.114] [11:45:01] [INFO]         Pattern: X2_RELAXED_BUY | Direction: BUY
+[2026-03-06 11:45:01.115] [11:45:01] [INFO]         Reference Candle: H:5103.84000 L:5087.46000 Height:16.38000
+[2026-03-06 11:45:01.115] [11:45:01] [INFO]         Candle Open: 2026-03-06 11:30 | Close: 2026-03-06 11:45
+[2026-03-06 11:45:01.115] [11:45:01] [INFO]         Breach Level: 5106.13320
+[2026-03-06 11:45:01.115] [11:45:01] [INFO]         Current Bid: 5096.35000
+[2026-03-06 11:45:01.115] [11:45:01] [INFO]         Robot Config: DisableLeapfrog=true | Commission=false 
+[2026-03-06 11:45:01.115] [11:45:01] [INFO]         TP1: 48.0% Vol:0% | TP2: 138.0% Vol:100% | TP3: 0.0% Vol:0%
+[2026-03-06 11:45:01.115] [11:45:01] [INFO]         Account: $49200.84 AUD (updated 2.8s ago)
+[2026-03-06 11:45:01.117] [11:45:01] [INFO]         Summary: 1 BUY orders, 0 SELL orders
+[2026-03-06 11:45:01.117] [11:45:01] [INFO]         Status: QUEUED → awaiting MT5 poll
+[2026-03-06 11:45:01.117] [11:45:01] [INFO]       ═══ PLACEMENT COMPLETE ═══
+[2026-03-06 11:45:01.118] [11:45:01] [INFO]     ✓ Placed 1 pending BUY orders for magic 2
