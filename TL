@@ -1,0 +1,1327 @@
+//+------------------------------------------------------------------+
+//|                                            TradeLogic_Client.mq5 |
+//|                                                                  |
+//| Version 1.51: (Upgraded with Blueprint Fixes)                    |
+//| - Fixed critical lot sizing and commission bugs.                 |
+//| - Fixed "Amnesia" (state desync) flaw in OCO logic.              |
+//| - Fixed CTrade magic number permission flaw.                     |
+//+------------------------------------------------------------------+
+#property copyright "Kostandinos Soteriou"
+#property version    "1.51" 
+#property strict
+
+#include <Trade\Trade.mqh>
+#include <Trade\AccountInfo.mqh>
+#include <Trade\PositionInfo.mqh>
+#include <Arrays\ArrayLong.mqh>
+#include <Arrays\ArrayObj.mqh>
+
+// --- CRITICAL CONSTANT FOR ARRAY SIZING ---
+const int TOTAL_TPS = 7;
+// --- Global Constants for array sizing ---
+#define CANDLE_LOOKBACK 3 // MUST MATCH CCM's CANDLE_LOOKBACK
+
+// --- Structure to hold parsed candle data ---
+struct S_CCM_CANDLE
+{
+    datetime Time;
+    double   High;
+    double   Low;
+    double   Height; // Height in units
+};
+
+// --- Data structure for managing each trade's state ---
+class CTradeGroup : public CObject
+{
+public:
+    long        magic_number;
+    CArrayLong  buy_stop_tickets;
+    CArrayLong  sell_stop_tickets;
+    CArrayLong  open_position_tickets;
+    bool        oco_complete;
+    CTradeGroup() { oco_complete = false; }
+};
+
+// --- NEW: Class to hold OCO verification requests ---
+class S_OcoVerificationRequest : public CObject
+{
+public:
+    long     magic_number;
+    datetime check_after_time; // The time when the check should be performed
+};
+
+// --- Add a new global variable to manage the queue ---
+CArrayObj g_verification_queue;
+// Add this with your other global variables
+
+// --- MACRO/PROTOTYPE DEFINITIONS ---
+#define INIT_FAILED -1
+
+//--- ENUMS ---
+enum ENUM_AUTO_TRADING { On, Off };
+enum ENUM_CUSTOM_TIMEFRAME
+{
+    TF_M1=1, TF_M2=2, TF_M3=3, TF_M5=5, TF_M10=10, TF_M15=15,
+    TF_M30=30, TF_H1=60, TF_H3=180, TF_H4=240, TF_D1=1440
+};
+enum ENUM_HOUR { H_0, H_1, H_2, H_3, H_4, H_5, H_6, H_7, H_8, H_9, H_10, H_11, H_12, H_13, H_14, H_15, H_16, H_17, H_18, H_19, H_20, H_21, H_22, H_23 };
+enum ENUM_MINUTE { M_0, M_1, M_2, M_3, M_4, M_5, M_6, M_7, M_8, M_9, M_10, M_11, M_12, M_13, M_14, M_15, M_16, M_17, M_18, M_19, M_20, M_21, M_22, M_23, M_24, M_25, M_26, M_27, M_28, M_29, M_30, M_31, M_32, M_33, M_34, M_35, M_36, M_37, M_38, M_39, M_40, M_41, M_42, M_43, M_44, M_45, M_46, M_47, M_48, M_49, M_50, M_51, M_52, M_53, M_54, M_55, M_56, M_57, M_58, M_59 };
+enum ENUM_X1_TYPE
+{
+    NonYenPips = 1, // Non-Yen pips
+    YenPips    = 2, // Yen pips
+    Cents      = 3, // Cents
+    Points     = 4  // Points
+};
+enum ENUM_END_DAY { ED_Yes, ED_No };
+enum ENUM_COMMISSION { Commission_Yes, Commission_No };
+enum ENUM_COMMISSION_TYPE { FX_per_Lot, ETF_Stock };
+enum ENUM_TIMER_INTERVAL
+{
+    Aggressive = 1,   // 1s: Hyper-vigilant (high CPU)
+    Balanced   = 5,   // 5s: Efficient for multi-chart
+    Relaxed    = 30   // 30s: Low CPU for stable runs
+};
+enum ENUM_LEAPFROG_PROTECTION { LFP_ON, LFP_OFF };
+
+//--- INPUT PARAMETERS ---
+input ENUM_AUTO_TRADING Inp_AutoTrading    = On;               // 1. Auto Trading
+input bool Inp_ResetGlobalVars             = false;            // 2. Reset Global Variables on Init
+input ENUM_TIMER_INTERVAL Inp_TimerInterval = Aggressive;        // 3. CPU Monitor: Timer Interval (seconds)
+input ulong Inp_BaseMagicNumber            = 1001;             // 4. Base Magic Number
+input ENUM_CUSTOM_TIMEFRAME Inp_Timeframe  = TF_M1;            // 5. Timeframe
+input ENUM_HOUR   Inp_CloseHour            = H_12;             // 6. Close Hour
+input ENUM_MINUTE Inp_CloseMinute          = M_30;             // 7. Close Minute
+input ENUM_END_DAY Inp_EndDay              = ED_Yes;             // 8. End Day? (Re-enabled)
+input ENUM_HOUR   Inp_EndHour              = H_0;              // 9. End Hour
+input ENUM_MINUTE Inp_EndMinute            = M_0;              // 10. End Minute
+input ENUM_X1_TYPE X1Type                  = Cents;            // 11. Unit Type (Must match CCM)
+input int MinX1Height                      = 7;                // 12. Min X1 Height
+input double Inp_TriggerPercent_Half       = 13.0;             // 13. Trig %
+input double Inp_StopLossPercent_Half      = 13.0;             // 14. Stop Loss %
+input double RPTPercent                    = 0.3;              // RPT %
+input double RPTFixedAmount                = 0.0;              // RPT Fixed Amt (overrides RPT %)
+input ENUM_COMMISSION Commissions           = Commission_No;    // Commissions ?
+input ENUM_COMMISSION_TYPE CommissionType  = FX_per_Lot;       // Commissions Type
+input int CommissionsValue                 = 7;                // Commissions Value (Per Lot, if FX/CFD)
+input double Inp_StockCommissionCost       = 0.02;             // Commission Cost per Share (e.g., 0.02 for 2c)
+input double TP1_Distance                  = 100.0;            // TP 1 %
+input double TP1_Volume                    = 14.0;             // TP 1 Volume %
+input double TP2_Distance                  = 110.0;            // TP 2 %
+input double TP2_Volume                    = 14.0;             // TP 2 Volume %
+input double TP3_Distance                  = 125.0;            // TP 3 %
+input double TP3_Volume                    = 14.0;             // TP 3 Volume %
+input double TP4_Distance                  = 150.0;            // TP 4 %
+input double TP4_Volume                    = 14.0;             // TP 4 Volume %
+input double TP5_Distance                  = 200.0;            // TP 5 %
+input double TP5_Volume                    = 14.0;             // TP 5 Volume %
+input double TP6_Distance                  = 250.0;            // TP 6 %
+input double TP6_Volume                    = 14.0;             // TP 6 Volume %
+input double TP7_Distance                  = 300.0;            // TP 7 %
+input double TP7_Volume                    = 16.0;             // TP 7 Volume %
+input string Inp_SymbolSuffix              = "";               // Broker suffix/prefix to strip
+input ENUM_LEAPFROG_PROTECTION Inp_LeapfrogProtection = LFP_ON; // Leapfrog Protection?
+
+//--- GLOBAL/STATIC VARIABLES ---
+static datetime g_last_gv_processed_time = 0;
+static datetime g_last_poll_time = 0;
+static datetime g_last_bar_time = 0;
+static string   g_gv_prefix = "";
+static string   g_gv_commit_key = "";               // NEW: Key for the handshake commit flag
+static datetime g_last_staleness_log_time = 0;      // NEW: Tracks the last time a staleness warning was logged.
+static datetime g_last_eod_check = 0;
+CArrayObj       g_trade_groups;                     // Stores CTradeGroup objects
+long            g_next_magic_id = 0;                // Tracks next magic number
+double          g_conversion_rate = 0.0;
+datetime        g_last_conversion_rate_time = 0;
+CTrade          trade;
+CAccountInfo    account;
+CPositionInfo   position;
+static string   g_gv_time_keys[CANDLE_LOOKBACK];
+static string   g_gv_high_keys[CANDLE_LOOKBACK];
+static string   g_gv_low_keys[CANDLE_LOOKBACK];
+static string   g_gv_height_keys[CANDLE_LOOKBACK];
+
+// --- Helper Functions for Global Variable Names ---
+string GVarLastCandleTimeName() { return StringFormat("TL_%d_LastCandleTime", Inp_BaseMagicNumber); }
+string GVarSavedTradeStateName() { return StringFormat("TL_%d_TradeState.txt", Inp_BaseMagicNumber); }
+
+// --- FUNCTION PROTOTYPES ---
+string TimeframeToString(ENUM_CUSTOM_TIMEFRAME tf_enum);
+string GetNormalizedSymbol();
+void ProcessGVPolling();
+bool ValidateGV();
+double GetPipSize();
+ENUM_TIMEFRAMES GetNativeTimeframe(ENUM_CUSTOM_TIMEFRAME tf_enum);
+void PerformEODCleanup();
+void PerformTIFCleanup();
+bool DeleteAllTickets(CArrayLong& tickets_array, string side, long magic_number); // <<< MODIFIED
+void PlaceOcoOrders(double signal_high, double signal_low, datetime signal_close_time);
+void PlaceOrdersForSide(long magic_number, ENUM_ORDER_TYPE orderType, double signal_high, double signal_low, double risk_amount_acct_curr);
+double CalculateLotSize(double risk_amount_acct_curr, double sl_price, double entry_price, double sl_buffer);
+double GetConversionRate(string from_currency, string to_currency);
+CTradeGroup* GetTradeGroup(long magic, bool create_if_not_exists = false);
+void HandleOCO(long magic_number);
+bool TryOrderDelete(ulong ticket);
+string SerializeOpenTrades();
+bool SaveTradeStateToFile(string filename, string trade_state);
+void RebuildInternalState();
+double NormalizePrice(double price);
+bool CheckLeapfrog(double entry_price, ENUM_ORDER_TYPE orderType, datetime signal_time);
+string ClientStringUpper(string value);
+bool VerifyAndCleanOcoImbalance(long magic_number); // <<< MODIFIED
+
+//+------------------------------------------------------------------+
+//| Expert initialization function (OnInit)                          |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+    if(!TerminalInfoInteger(TERMINAL_CONNECTED))
+    {
+        Print("Client OnInit failed: No terminal connection.");
+        return(INIT_FAILED);
+    }
+
+    double total_tp_volume = TP1_Volume + TP2_Volume + TP3_Volume + TP4_Volume + TP5_Volume + TP6_Volume + TP7_Volume;
+    if(MathAbs(total_tp_volume - 100.0) > 0.01)
+    {
+        PrintFormat("CRITICAL ERROR: TP volumes sum to %.2f%%. They must sum to 100.0%%.", total_tp_volume);
+        return(INIT_FAILED);
+    }
+
+    // GV Key Setup: ALIGNED WITH CCM's KEY GENERATION LOGIC
+    string norm_symbol = GetNormalizedSymbol();
+    string tf_str = TimeframeToString(Inp_Timeframe);
+    g_gv_prefix = "CCM_" + norm_symbol + "_" + tf_str + "_";
+    g_gv_commit_key = g_gv_prefix + "COMMIT_ID";
+    
+    for (int i = 0; i < CANDLE_LOOKBACK; i++) {
+        g_gv_time_keys[i] = g_gv_prefix + "TIME_" + IntegerToString(i);
+        g_gv_high_keys[i] = g_gv_prefix + "HIGH_" + IntegerToString(i);
+        g_gv_low_keys[i] = g_gv_prefix + "LOW_" + IntegerToString(i);
+        g_gv_height_keys[i] = g_gv_prefix + "HEIGHT_" + IntegerToString(i);
+    }
+
+    // --- ROBUST CONVERSION RATE INIT (from TradeLogic 1.51) ---
+    string quote_currency = SymbolInfoString(_Symbol, SYMBOL_CURRENCY_MARGIN);
+    string acct_currency = AccountInfoString(ACCOUNT_CURRENCY);
+    
+    const int max_init_attempts = 100;
+    bool init_rate_success = false;
+    
+    for(int i = 1; i <= max_init_attempts; i++)
+    {
+        g_conversion_rate = GetConversionRate(quote_currency, acct_currency);
+        if(g_conversion_rate > 0)
+        {
+            Print("Successfully obtained FX rate for use in calculating trade risk");
+            init_rate_success = true;
+            break; // Success, exit the loop
+        }
+
+        // Check if this is the final attempt
+        if(i == max_init_attempts)
+        {
+            PrintFormat("Failed to get an FX conversion rate after %d attempts. Lot sizing will fail.", max_init_attempts);
+            return(INIT_FAILED); // Final failure
+        }
+
+        // Log progress every 10 attempts (at 10, 20, ... 90)
+        if(i % 10 == 0)
+        {
+            Print("Failed to get an FX conversion rate upon Initialisation. Will keep trying another 10 seconds");
+        }
+        
+        Sleep(1000); // Wait 1 second before retrying
+    }
+
+    g_last_conversion_rate_time = TimeCurrent(); // Set the time for the OnTimer logic
+    
+    // We only reach this line if the loop succeeded
+    PrintFormat("Initial conversion rate from %s to %s set: %.5f", quote_currency, acct_currency, g_conversion_rate);
+    // --- END MODIFIED BLOCK ---
+
+    g_next_magic_id = Inp_BaseMagicNumber;
+    
+    if(!Inp_ResetGlobalVars)
+    {
+        // Initialize last processed time from the correct GV
+        if(GlobalVariableCheck(GVarLastCandleTimeName()))
+            g_last_gv_processed_time = (datetime)GlobalVariableGet(GVarLastCandleTimeName());
+        else if(GlobalVariableCheck(g_gv_commit_key)) // Fallback to live key
+            g_last_gv_processed_time = (datetime)GlobalVariableGet(g_gv_commit_key);
+        else
+            g_last_gv_processed_time = 0;
+    }
+    else
+    {
+         g_last_gv_processed_time = 0;
+         GlobalVariableDel(GVarLastCandleTimeName());
+    }
+
+    RebuildInternalState();
+
+    EventSetTimer((int)Inp_TimerInterval);
+    PrintFormat("TradeLogic Client Initialised. Polling Commit Key: '%s', Base Magic: %d", g_gv_commit_key, Inp_BaseMagicNumber);
+
+    return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//| Deinitialization Function                                        |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+    GlobalVariableSet(GVarLastCandleTimeName(), g_last_gv_processed_time);
+    
+    string saved_state_name = GVarSavedTradeStateName();
+    string trade_state = SerializeOpenTrades();
+    if (StringLen(trade_state) > 0) {
+        SaveTradeStateToFile(saved_state_name, trade_state);
+    }
+    
+    for(int i = 0; i < g_trade_groups.Total(); i++)
+    {
+        CTradeGroup *group = g_trade_groups.At(i);
+        if(group != NULL) delete group;
+    }
+    g_trade_groups.Clear();
+    
+    // Clear verification queue
+    for(int i = 0; i < g_verification_queue.Total(); i++)
+    {
+        S_OcoVerificationRequest *request = g_verification_queue.At(i);
+        if(request != NULL) delete request;
+    }
+    g_verification_queue.Clear();
+    
+    EventKillTimer();
+    Print("TradeLogic Client deinitialized. Reason: ", reason);
+}
+
+
+//+------------------------------------------------------------------+
+//| OnTimer Function (CORRECTED)                                     |
+//+------------------------------------------------------------------+
+void OnTimer()
+{
+    datetime currentTime = TimeCurrent();
+
+    // --- NEW: ROBUST PRE-SIGNAL CONVERSION RATE REFRESH ---
+    // 1. Calculate the target signal close time based on inputs
+    ENUM_TIMEFRAMES tf_period = GetNativeTimeframe(Inp_Timeframe);
+    datetime day_start = currentTime - (currentTime % 86400);
+    datetime target_signal_open_time = day_start + (Inp_CloseHour * 3600) + (Inp_CloseMinute * 60) - PeriodSeconds(tf_period);
+    datetime target_signal_close_time = target_signal_open_time + PeriodSeconds(tf_period);
+
+    // 2. Define the 5-second refresh window *before* the close
+    datetime refresh_start_time = target_signal_close_time - 5;
+    
+    // 3. Check if we are inside the window AND haven't refreshed yet for this specific window
+    if (currentTime >= refresh_start_time && currentTime < target_signal_close_time && g_last_conversion_rate_time < refresh_start_time)
+    {
+        string quote_currency = SymbolInfoString(_Symbol, SYMBOL_CURRENCY_MARGIN);
+        string acct_currency = AccountInfoString(ACCOUNT_CURRENCY);
+        double new_rate = 0.0;
+        const int max_timer_attempts = 90;
+        bool timer_rate_success = false;
+        
+        for(int i = 1; i <= max_timer_attempts; i++)
+        {
+            new_rate = GetConversionRate(quote_currency, acct_currency);
+            if(new_rate > 0)
+            {
+                g_conversion_rate = new_rate; // Update the global with the fresh rate
+                Print("Successfully obtained FRESH FX rate for use in calculating trade risk");
+                timer_rate_success = true;
+                break; // Success, exit retry loop
+            }
+            
+            Sleep(100); // Wait 100ms before retrying
+        }
+        
+        // After the loop, check if all attempts failed
+        if(!timer_rate_success)
+        {
+            Print("Failed to get an FX conversion rate for the robot. X1 candle is aborted");
+            // Set rate to 0.0 to force CalculateLotSize to return 0,
+            // which skips the trade.
+            g_conversion_rate = 0.0; 
+        }
+
+        g_last_conversion_rate_time = currentTime; // "Set the flag" to prevent re-refreshing in this window
+    }
+    // --- END PRE-SIGNAL REFRESH ---
+
+
+    // --- STALENESS MONITOR ---
+    string status_key = g_gv_prefix + "STATUS";
+    if (GlobalVariableCheck(status_key))
+    {
+        datetime status_time = (datetime)GlobalVariableGet(status_key);
+        if (status_time > 0)
+        {
+            long time_since_last_status = currentTime - status_time;
+            long period_seconds = PeriodSeconds(GetNativeTimeframe(Inp_Timeframe));
+
+            if (period_seconds > 0 && time_since_last_status > period_seconds * 3)
+            {
+                if (currentTime - g_last_staleness_log_time >= 600)
+                {
+                    PrintFormat("STALENESS WARNING: The CCM data feed for %s appears to be stalled. Last heartbeat was over %d minutes ago.",
+                                _Symbol, (int)(time_since_last_status / 60));
+                    g_last_staleness_log_time = currentTime;
+                }
+            }
+        }
+    }
+    // --- END STALENESS MONITOR ---
+
+    ProcessGVPolling();
+    
+    // --- THIS IS THE FIX ---
+    // Process the OCO verification queue
+    for(int i = g_verification_queue.Total() - 1; i >= 0; i--)
+    {
+        S_OcoVerificationRequest *request = (S_OcoVerificationRequest*)g_verification_queue.At(i);
+        if(request != NULL && currentTime >= request.check_after_time)
+        {
+            // Check the return value. Only delete if true (cleanup is finished).
+            if(VerifyAndCleanOcoImbalance(request.magic_number))
+            {
+                // Cleanup was successful or not needed. Job is "DONE".
+                delete request;
+                g_verification_queue.Delete(i);
+            }
+            else
+            {
+                // Cleanup failed (e.g., delete error).
+                // Reschedule the check for 10 seconds from now.
+                PrintFormat("Magic %d: OCO verification FAILED (e.g., delete failed). Retrying in 10s.", request.magic_number);
+                request.check_after_time = currentTime + 10; 
+            }
+        }
+    }
+    // --- END FIX ---
+
+
+    // Heartbeat for this EA
+    static datetime lastHeartbeat = 0;
+    if (currentTime - lastHeartbeat >= 300)
+    {
+        string heartbeatKey = StringFormat("TL_%d_Heartbeat", Inp_BaseMagicNumber);
+        double heartbeatValue = (double)currentTime;
+        GlobalVariableSet(heartbeatKey, heartbeatValue);
+        lastHeartbeat = currentTime;
+    }
+}
+
+//+------------------------------------------------------------------+
+//| Expert tick function (OnTick)                                    |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+    if (Inp_EndDay == ED_Yes)
+    {
+        datetime currentTime = TimeCurrent();
+        datetime day_start = currentTime - (currentTime % 86400);
+        datetime eod_time = day_start + (Inp_EndHour * 3600) + (Inp_EndMinute * 60);
+        
+        // Check EOD cleanup only 1 minute before end time
+        if (currentTime >= eod_time - 60 && currentTime < eod_time)
+        {
+            if(TimeCurrent() - g_last_eod_check > 60) // Prevent multiple runs in the same minute
+            {
+                 MqlDateTime structTime;
+                 TimeToStruct(day_start, structTime);
+                 if (structTime.day_of_week != 0 && structTime.day_of_week != 6) // Exclude Sat/Sun
+                 {
+                     PerformEODCleanup();
+                     g_last_eod_check = TimeCurrent();
+                 }
+            }
+        }
+    }
+}
+
+//+------------------------------------------------------------------+
+//| Trade Transaction Handler for OCO Logic                          |
+//+------------------------------------------------------------------+
+void OnTradeTransaction(const MqlTradeTransaction& trans,
+                        const MqlTradeRequest& request,
+                        const MqlTradeResult& result)
+{
+    if(trans.type == TRADE_TRANSACTION_DEAL_ADD)
+    {
+        if(HistoryDealSelect(trans.deal) && HistoryDealGetInteger(trans.deal, DEAL_ENTRY) == DEAL_ENTRY_IN)
+        {
+            long magic = HistoryDealGetInteger(trans.deal, DEAL_MAGIC);
+            CTradeGroup *group = GetTradeGroup(magic);
+            if(group != NULL && !group.oco_complete)
+            {
+                HandleOCO(magic);
+            }
+        }
+    }
+}
+
+
+//+------------------------------------------------------------------+
+//| CORE: GV Polling and Signal Processing (Handshake Version)       |
+//+------------------------------------------------------------------+
+void ProcessGVPolling()
+{
+    // --- NEW HANDSHAKE POLLING LOGIC ---
+
+    // 1. Check for the commit key and get its value (the timestamp of the last committed candle).
+    if (!GlobalVariableCheck(g_gv_commit_key)) return; // If commit key doesn't exist, CCM is not ready.
+
+    datetime commit_time = (datetime)GlobalVariableGet(g_gv_commit_key);
+    
+    // 2. CRITICAL CHECK: Only proceed if this commit timestamp is NEWER than the last one we processed.
+    if (commit_time <= g_last_gv_processed_time) return;
+
+    // --- Signal Confirmed: Now it's safe to read the full data package ---
+
+    // 3. Optional but good practice: Validate that the core GVs still exist.
+    if (!ValidateGV())
+    {
+        Print("COMMIT_ID found, but core GVs are missing. Waiting for CCM to sync.");
+        return; // A safety check
+    }
+
+    S_CCM_CANDLE latest_candle;
+    int latest_candle_index = CANDLE_LOOKBACK - 1; // Index 2
+
+    // 4. Read the full data package with confidence.
+    latest_candle.Time   = (datetime)GlobalVariableGet(g_gv_time_keys[latest_candle_index]);
+    latest_candle.High   = (double)GlobalVariableGet(g_gv_high_keys[latest_candle_index]);
+    latest_candle.Low    = (double)GlobalVariableGet(g_gv_low_keys[latest_candle_index]);
+    latest_candle.Height = (double)GlobalVariableGet(g_gv_height_keys[latest_candle_index]);
+    
+    // Sanity check: Ensure the time from the buffer matches the commit time.
+    if(latest_candle.Time != commit_time)
+    {
+        PrintFormat("GV Mismatch Warning: COMMIT_ID time (%s) does not match TIME_%d time (%s). Data may be inconsistent.",
+                    TimeToString(commit_time), latest_candle_index, TimeToString(latest_candle.Time));
+        // We still update the processed time to avoid a loop, but we don't trade.
+        g_last_gv_processed_time = commit_time;
+        return;
+    }
+
+    // --- SIGNAL LOGIC (Targeting CloseHour/Minute) ---
+    ENUM_TIMEFRAMES tf_period = GetNativeTimeframe(Inp_Timeframe);
+    datetime day_start = TimeCurrent() - (TimeCurrent() % 86400);
+    datetime target_timestamp = day_start + (Inp_CloseHour * 3600) + (Inp_CloseMinute * 60) - PeriodSeconds(tf_period);
+    datetime target_start_time = target_timestamp;
+    datetime target_end_time   = target_start_time + PeriodSeconds(tf_period);
+    
+    // Check if the NEW GV signal's open time falls WITHIN the target window
+    if (latest_candle.Time >= target_start_time && latest_candle.Time < target_end_time)
+    {
+        // 1. MinX1Height filter remains here
+        if(latest_candle.Height < MinX1Height)
+        {
+            PrintFormat("SIGNAL SKIPPED: MinX1Height (%d) filter failed. Height: %.2f",
+                        MinX1Height, latest_candle.Height);
+            g_last_gv_processed_time = commit_time; // IMPORTANT: Update with commit_time
+            return;
+        }
+
+        // 2. Check for existing trades
+        bool trade_group_exists = false;
+        for(int i = 0; i < g_trade_groups.Total(); i++)
+        {
+            CTradeGroup *group = g_trade_groups.At(i);
+            if(group != NULL && !group.oco_complete &&
+               (group.buy_stop_tickets.Total() > 0 || group.sell_stop_tickets.Total() > 0 || group.open_position_tickets.Total() > 0))
+            {
+                PrintFormat("SIGNAL MATCH FOUND, BUT SKIPPING: Uncompleted trade group (Magic %d) exists. Will try next cycle.", group.magic_number);
+                trade_group_exists = true;
+                break;
+            }
+        }
+
+        // 3. Place orders
+        if (!trade_group_exists)
+        {
+            datetime close_time = latest_candle.Time + PeriodSeconds(tf_period);
+            PrintFormat("GV SIGNAL MATCH: Target close time %s found! High=%.5f, Low=%.5f, Height=%.2f.",
+                        TimeToString(close_time, TIME_DATE|TIME_MINUTES), latest_candle.High, latest_candle.Low, latest_candle.Height);
+            if (Inp_AutoTrading == On)
+            {
+                PlaceOcoOrders(latest_candle.High, latest_candle.Low, close_time);
+            }
+        }
+    }
+    else if (latest_candle.Time > target_timestamp)
+    {
+         PrintFormat("INFO: New signal found at %s. Target time %s was missed.",
+               TimeToString(latest_candle.Time), TimeToString(target_timestamp));
+    }
+
+    // IMPORTANT: Update the last processed time to prevent reprocessing this signal
+    g_last_gv_processed_time = commit_time;
+    GlobalVariableSet(GVarLastCandleTimeName(), g_last_gv_processed_time); // Also save to GV
+}
+
+//+------------------------------------------------------------------+
+//| CORE FUNCTION: Places OCO bracket orders                         |
+//+------------------------------------------------------------------+
+void PlaceOcoOrders(double signal_high, double signal_low, datetime signal_close_time)
+{
+    // 1. Calculate Risk
+    double risk_amount_acct_curr = (RPTFixedAmount > 0) ?
+                                   RPTFixedAmount : account.Balance() * (RPTPercent / 100.0);
+    if(risk_amount_acct_curr <= 0)
+    {
+        Print("PlaceOcoOrders: Calculated total risk amount is zero or negative. Aborting.");
+        return;
+    }
+    
+    // --- CONVERSION RATE CHECK ---
+    // The g_conversion_rate is now set by OnInit and refreshed by OnTimer.
+    // We just check if it's valid.
+    if(g_conversion_rate <= 0.0)
+    {
+        Print("PlaceOcoOrders: g_conversion_rate is zero. Aborting. Check OnInit logic.");
+        return;
+    }
+    // --- END CHECK ---
+
+    // 2. Generate Magic Number and Group
+    long magic_number = g_next_magic_id++;
+    CTradeGroup *group = GetTradeGroup(magic_number, true);
+    trade.SetExpertMagicNumber(magic_number);
+
+    // 3. Place Buy Side
+    double entry_buffer_buy = (signal_high - signal_low) * (Inp_TriggerPercent_Half / 100.0);
+    double entry_price_buy = NormalizePrice(signal_high + entry_buffer_buy);
+    if (!CheckLeapfrog(entry_price_buy, ORDER_TYPE_BUY_STOP, TimeCurrent()))
+    {
+       PlaceOrdersForSide(magic_number, ORDER_TYPE_BUY_STOP, signal_high, signal_low, risk_amount_acct_curr);
+    }
+
+    // 4. Place Sell Side
+    double entry_buffer_sell = (signal_high - signal_low) * (Inp_TriggerPercent_Half / 100.0);
+    double entry_price_sell = NormalizePrice(signal_low - entry_buffer_sell);
+    if (!CheckLeapfrog(entry_price_sell, ORDER_TYPE_SELL_STOP, TimeCurrent()))
+    {
+       PlaceOrdersForSide(magic_number, ORDER_TYPE_SELL_STOP, signal_high, signal_low, risk_amount_acct_curr);
+    }
+    
+    // 5. Schedule Verification (NEW LOGIC, CORRECT PLACEMENT)
+    S_OcoVerificationRequest *request = new S_OcoVerificationRequest();
+    if(request != NULL) // Always check if new succeeded
+    {
+        request.magic_number = magic_number;
+        // NEW: Schedule the check 30 seconds AFTER the signal candle's close time
+        request.check_after_time = signal_close_time + 30;
+        g_verification_queue.Add(request);
+        PrintFormat("Magic %d: OCO verification scheduled for %s (30s after signal close)", magic_number, TimeToString(request.check_after_time, TIME_SECONDS));
+    }
+}
+
+//+------------------------------------------------------------------+
+//| // CORE FUNCTION: Places orders for one side (buy or sell) of OCO   |
+//+------------------------------------------------------------------+
+void PlaceOrdersForSide(long magic_number, ENUM_ORDER_TYPE orderType, double signal_high, double signal_low, double risk_amount_acct_curr)
+{
+    const int total_orders = TOTAL_TPS;
+    double candle_height = signal_high - signal_low;
+    
+    if(MathAbs(candle_height) < _Point) return;
+
+    double entry_pct_input = (orderType == ORDER_TYPE_BUY_STOP) ? Inp_TriggerPercent_Half : Inp_TriggerPercent_Half;
+    double sl_pct_input = Inp_StopLossPercent_Half;
+    
+    double entry_buffer = candle_height * (entry_pct_input / 100.0);
+    double sl_buffer = candle_height * (sl_pct_input / 100.0);
+    double entry_price = (orderType == ORDER_TYPE_BUY_STOP) ? NormalizePrice(signal_high + entry_buffer) : NormalizePrice(signal_low - entry_buffer);
+    double sl_price = (orderType == ORDER_TYPE_BUY_STOP) ? NormalizePrice(signal_low - sl_buffer) : NormalizePrice(signal_high + sl_buffer);
+
+    double current_bid = SymbolInfoDouble(_Symbol, SYMBOL_BID);
+    double current_ask = SymbolInfoDouble(_Symbol, SYMBOL_ASK);
+    if(orderType == ORDER_TYPE_BUY_STOP && entry_price <= current_ask)
+    {
+        PrintFormat("Invalid BUY STOP entry price %.5f (below or equal to ask %.5f). Skipping.", entry_price, current_ask);
+        return;
+    }
+    if(orderType == ORDER_TYPE_SELL_STOP && entry_price >= current_bid)
+    {
+        PrintFormat("Invalid SELL STOP entry price %.5f (above or equal to bid %.5f). Skipping.", entry_price, current_bid);
+        return;
+    }
+    
+    double tp_distances[] = {TP1_Distance, TP2_Distance, TP3_Distance, TP4_Distance, TP5_Distance, TP6_Distance, TP7_Distance};
+    double tp_volumes[] = {TP1_Volume/100.0, TP2_Volume/100.0, TP3_Volume/100.0, TP4_Volume/100.0, TP5_Volume/100.0, TP6_Volume/100.0, TP7_Volume/100.0};
+    
+    CTradeGroup *group = GetTradeGroup(magic_number);
+    if(group == NULL) return;
+    CArrayLong *tickets_array = (orderType == ORDER_TYPE_BUY_STOP) ? &group.buy_stop_tickets : &group.sell_stop_tickets;
+    
+    for(int i = 0; i < total_orders; i++)
+    {
+        if(tp_volumes[i] <= 0) continue;
+        double riskForThisOrder = risk_amount_acct_curr * tp_volumes[i];
+        double lot_size = CalculateLotSize(riskForThisOrder, sl_price, entry_price, sl_buffer);
+        
+        if(lot_size < SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_MIN))
+        {
+            PrintFormat("LOT SIZE WARNING (%s TP%d, Magic %d): Calculated lot (%.2f) too small. Skipped.", (orderType == ORDER_TYPE_BUY_STOP ? "BUY" : "SELL"), i+1, magic_number, lot_size);
+            continue;
+        }
+
+        double tp_distance_price = candle_height * (tp_distances[i] / 100.0);
+        double tp_price = (orderType == ORDER_TYPE_BUY_STOP) ? NormalizePrice(signal_high + tp_distance_price) : NormalizePrice(signal_low - tp_distance_price);
+        
+        MqlTradeRequest request; ZeroMemory(request);
+        MqlTradeResult result; ZeroMemory(result);
+        request.action = TRADE_ACTION_PENDING;
+        request.magic = magic_number;
+        request.symbol = _Symbol;
+        request.volume = lot_size;
+        request.price = entry_price;
+        request.sl = sl_price;
+        request.tp = tp_price;
+        request.type = orderType;
+        request.type_filling = (ENUM_ORDER_TYPE_FILLING)SymbolInfoInteger(_Symbol, SYMBOL_FILLING_MODE);
+        request.type_time = ORDER_TIME_GTC;
+        request.comment = StringFormat("TP%d_%.0f_%llu", i+1, tp_distances[i], magic_number);
+        
+        if(trade.OrderSend(request, result))
+        {
+            tickets_array.Add((long)result.order);
+        }
+        else
+        {
+            // --- ENHANCED LOGGING FOR FAILED OrderSend ---
+            uint retcode = trade.ResultRetcode();
+            string reason = "";
+
+            // Use a switch to identify the precise reason
+            switch(retcode)
+            {
+                // --- User's specific requests ---
+                case TRADE_RETCODE_CONNECTION:
+                    reason = "REASON: No connection to the trade server.";
+                    break;
+                case TRADE_RETCODE_INVALID_STOPS:
+                    // This one case (10016) covers all invalid SL or TP issues.
+                    reason = "REASON: Invalid Stop Loss or Take Profit levels (too close, wrong values).";
+                    break;
+                case TRADE_RETCODE_TRADE_DISABLED:
+                    reason = "REASON: Trading is disabled (for this account, symbol, or by the EA).";
+                    break;
+                    
+                // --- Other common critical errors ---
+                case TRADE_RETCODE_INVALID_PRICE:
+                    reason = "REASON: Invalid entry price (e.g., stop order is on the wrong side of the market).";
+                    break;
+                case TRADE_RETCODE_INVALID_VOLUME:
+                    reason = "REASON: Invalid volume (too small, too large, or wrong step). Check lot sizing.";
+                    break;
+                case TRADE_RETCODE_NO_MONEY:
+                    reason = "REASON: Not enough money (insufficient margin for the trade).";
+                    break;
+                case TRADE_RETCODE_MARKET_CLOSED:
+                    reason = "REASON: The market is currently closed.";
+                    break;
+                case TRADE_RETCODE_REQUOTE:
+                    reason = "REASON: Requote. The price has changed, and the order was rejected.";
+                    break;
+
+                // --- Default catch-all ---
+                default:
+                    // Fall back to the broker's comment if the code isn't handled above
+                    reason = StringFormat("REASON: Unhandled error. Broker Comment: %s", trade.ResultComment());
+                    break;
+            }
+            PrintFormat("OrderSend FAILED (Magic %d, TP%d, %s): Error Code %d. %s",
+                        magic_number,
+                        i+1,
+                        (orderType == ORDER_TYPE_BUY_STOP ? "BUY_STOP" : "SELL_STOP"),
+                        retcode,
+                        reason);
+       }
+   }
+}
+
+//+------------------------------------------------------------------+
+//| UTILITY: All remaining utility functions                         |
+//+------------------------------------------------------------------+
+
+bool CheckLeapfrog(double entry_price, ENUM_ORDER_TYPE orderType, datetime signal_time)
+{
+    if (Inp_LeapfrogProtection == LFP_OFF) return false;
+    double current_price = (orderType == ORDER_TYPE_BUY_STOP) ? SymbolInfoDouble(_Symbol, SYMBOL_ASK) : SymbolInfoDouble(_Symbol, SYMBOL_BID);
+    if (orderType == ORDER_TYPE_BUY_STOP && current_price >= entry_price)
+    {
+        Print("Leapfrog detected for BUY STOP: Current ask >= entry. Skipping.");
+        return true;
+    }
+    if (orderType == ORDER_TYPE_SELL_STOP && current_price <= entry_price)
+    {
+        Print("Leapfrog detected for SELL STOP: Current bid <= entry. Skipping.");
+        return true;
+    }
+    return false;
+}
+
+//+------------------------------------------------------------------+
+//| UTILITY: Delete All Tickets (CORRECTED: Cures "Amnesia Flaw")    |
+//| RETURNS: true if all tickets were successfully deleted, false otherwise |
+//+------------------------------------------------------------------+
+bool DeleteAllTickets(CArrayLong& tickets_array, string side, long magic_number)
+{
+    int total_to_delete = tickets_array.Total();
+    int success_count = 0;
+    
+    // Set the magic number for the CTrade object
+    trade.SetExpertMagicNumber(magic_number);
+
+    for (int i = total_to_delete - 1; i >= 0; i--)
+    {
+        ulong ticket = tickets_array.At(i);
+        if (ticket > 0)
+        {
+            if(TryOrderDelete(ticket))
+            {
+                // Deletion was successful, remove it from our list
+                tickets_array.Delete(i);
+                success_count++;
+            }
+            else
+            {
+                // Deletion FAILED.
+                // We *do not* remove it from the list.
+                // The EA will try again on the next tick/check.
+                PrintFormat("Magic %d: Failed to delete %s ticket %llu. Will retry.", magic_number, side, ticket);
+            }
+        }
+        else
+        {
+             tickets_array.Delete(i); // Clean up an invalid 0 ticket
+        }
+    }
+
+    // --- THIS IS THE FIX ---
+    // Only return 'true' if the list is now empty.
+    // If deletions failed, the list will still have tickets, and this will return 'false'.
+    return(tickets_array.Total() == 0);
+}
+
+//+------------------------------------------------------------------+
+//| TryOrderDelete (Corrected to handle "Ghost" tickets)             |
+//+------------------------------------------------------------------+
+bool TryOrderDelete(ulong ticket)
+{
+    // CTrade object's magic number is now set by the *calling function*
+    if(trade.OrderDelete(ticket)) 
+    {
+        return true; // Standard success
+    }
+    
+    // --- THIS IS THE FIX ---
+    uint error = trade.ResultRetcode();
+    
+    // Check for "ghost" ticket errors
+    if(error == TRADE_RETCODE_INVALID) // 10013 ("invalid request" - order is gone)
+    {
+        PrintFormat("TryOrderDelete: Ticket %llu is already gone (Error 10013). Treating as SUCCESS.", ticket);
+        return true; // SUCCESS: The order is gone, which was the goal.
+    }
+    
+    // Handle temporary network/server errors
+    if(error == TRADE_RETCODE_REQUOTE || 
+       error == TRADE_RETCODE_PRICE_CHANGED || 
+       error == TRADE_RETCODE_CONNECTION)
+    {
+        Sleep(500); // Wait and try one more time
+        if(trade.OrderDelete(ticket)) 
+        {
+            return true;
+        }
+    }
+    
+    // Log any other, more serious failure
+    Print("TryOrderDelete: Failed to delete order #", ticket, ". Error: ", trade.ResultRetcode());
+    return false;
+}
+
+string ClientStringUpper(string value)
+{
+    StringToUpper(value);
+    return value;
+}
+
+string TimeframeToString(ENUM_CUSTOM_TIMEFRAME tf_enum)
+{
+    switch ((int)tf_enum)
+    {
+        case 1:    return "M1";
+        case 2:    return "M2";
+        case 3:    return "M3";
+        case 5:    return "M5";
+        case 10:   return "M10";
+        case 15:   return "M15";
+        case 30:   return "M30";
+        case 60:   return "H1";
+        case 180:  return "H3";
+        case 240:  return "H4";
+        case 1440: return "D1";
+        default:   return "UNKNOWN";
+    }
+}
+
+ENUM_TIMEFRAMES GetNativeTimeframe(ENUM_CUSTOM_TIMEFRAME tf_enum)
+{
+    switch ((int)tf_enum)
+    {
+        case 1:    return PERIOD_M1;
+        case 2:    return PERIOD_M2;
+        case 3:    return PERIOD_M3;
+        case 5:    return PERIOD_M5;
+        case 10:   return PERIOD_M10;
+        case 15:   return PERIOD_M15;
+        case 30:   return PERIOD_M30;
+        case 60:   return PERIOD_H1;
+        case 180:  return PERIOD_H3;
+        case 240:  return PERIOD_H4;
+        case 1440: return PERIOD_D1;
+        default:   return PERIOD_CURRENT;
+    }
+}
+
+string GetNormalizedSymbol()
+{
+    string symbol = _Symbol;
+    StringReplace(symbol, "/", "");
+    // Strip user-specified suffix/prefix if provided
+    if (Inp_SymbolSuffix != "")
+    {
+        int suffix_len = StringLen(Inp_SymbolSuffix);
+        if (suffix_len > 0)
+        {
+            // CORRECTED: Check for suffix using StringSubstr
+            if (StringLen(symbol) >= suffix_len && StringSubstr(symbol, StringLen(symbol) - suffix_len, suffix_len) == Inp_SymbolSuffix)
+            {
+                symbol = StringSubstr(symbol, 0, StringLen(symbol) - suffix_len);
+            }
+            // CORRECTED: Check for prefix using StringSubstr
+            else if (StringLen(symbol) >= suffix_len && StringSubstr(symbol, 0, suffix_len) == Inp_SymbolSuffix)
+            {
+                symbol = StringSubstr(symbol, suffix_len);
+            }
+        }
+    }
+    return ClientStringUpper(symbol);
+}
+
+//+------------------------------------------------------------------+
+//| ValidateGV (NEW, from TradeLogic)                                |
+//+------------------------------------------------------------------+
+bool ValidateGV()
+{
+    static datetime g_last_validation_fail_log = 0;
+    string gv_key_status = g_gv_prefix + "STATUS";
+    if (!GlobalVariableCheck(gv_key_status) || GlobalVariableGet(gv_key_status) == 0.0)
+    {
+        if (TimeCurrent() - g_last_validation_fail_log >= 60)
+        {
+            PrintFormat("CCM GV Validation Failed: STATUS key '%s' is missing or zero.", gv_key_status);
+            g_last_validation_fail_log = TimeCurrent();
+        }
+        return false;
+    }
+    for (int i = 0; i < CANDLE_LOOKBACK; i++) {
+        if (!GlobalVariableCheck(g_gv_time_keys[i]) || !GlobalVariableCheck(g_gv_high_keys[i]) ||
+            !GlobalVariableCheck(g_gv_low_keys[i]) || !GlobalVariableCheck(g_gv_height_keys[i])) {
+            if (TimeCurrent() - g_last_validation_fail_log >= 60)
+            {
+                PrintFormat("CCM GV Validation Failed: Critical key missing for index %d (e.g., %s).", i, g_gv_time_keys[i]);
+                g_last_validation_fail_log = TimeCurrent();
+            }
+            return false;
+        }
+    }
+    return true;
+}
+
+void PerformTIFCleanup()
+{
+    // No TIF cleanup implemented
+}
+
+//+------------------------------------------------------------------+
+//| PerformEODCleanup (CORRECTED)                                    |
+//+------------------------------------------------------------------+
+void PerformEODCleanup()
+{
+    Print("EOD Cleanup starting...");
+    for (int i = g_trade_groups.Total() - 1; i >= 0; i--)
+    {
+        CTradeGroup *group = g_trade_groups.At(i);
+        if (group != NULL)
+        {
+            // --- THIS IS THE FIX ---
+            // Set the CTrade magic number for this specific group
+            trade.SetExpertMagicNumber(group.magic_number);
+            // --- END FIX ---
+
+            PrintFormat("EOD Cleanup: Processing Magic %d", group.magic_number);
+            
+            // Now it's safe to delete tickets
+            DeleteAllTickets(group.buy_stop_tickets, "EOD_BUY", group.magic_number);
+            DeleteAllTickets(group.sell_stop_tickets, "EOD_SELL", group.magic_number);
+            
+            // And close positions
+            for (int j = PositionsTotal() - 1; j >= 0; j--)
+            {
+                ulong ticket = PositionGetTicket(j);
+                if (PositionSelectByTicket(ticket) && PositionGetInteger(POSITION_MAGIC) == group.magic_number)
+                {
+                    // CTrade object already has the correct magic number set
+                    trade.PositionClose(ticket); 
+                }
+            }
+        }
+    }
+    Print("EOD Cleanup completed.");
+}
+
+double NormalizePrice(double price)
+{
+    double tick_size = SymbolInfoDouble(_Symbol, SYMBOL_TRADE_TICK_SIZE);
+    if(tick_size > 0)
+        return NormalizeDouble(MathRound(price / tick_size) * tick_size, _Digits);
+    return NormalizeDouble(price, _Digits);
+}
+
+CTradeGroup* GetTradeGroup(long magic, bool create_if_not_exists = false)
+{
+    for(int i = 0; i < g_trade_groups.Total(); i++)
+    {
+        CTradeGroup *group = g_trade_groups.At(i);
+        if(group != NULL && group.magic_number == magic)
+            return group;
+    }
+    if(create_if_not_exists)
+    {
+        CTradeGroup *new_group = new CTradeGroup();
+        new_group.magic_number = magic;
+        g_trade_groups.Add(new_group);
+        return new_group;
+    }
+    return NULL;
+}
+
+string SerializeOpenTrades()
+{
+    string state = "";
+    // Serialization logic here...
+    return state;
+}
+
+bool SaveTradeStateToFile(string filename, string trade_state)
+{
+    // File saving logic here...
+    return true;
+}
+
+void RebuildInternalState()
+{
+    g_trade_groups.Clear();
+    
+    // --- PASS 1: Find all pending orders and open positions, build the groups ---
+    for(int i = OrdersTotal() - 1; i >= 0; i--)
+    {
+        ulong ticket = OrderGetTicket(i);
+        if(OrderSelect(ticket) && OrderGetInteger(ORDER_MAGIC) >= Inp_BaseMagicNumber)
+        {
+            long magic = OrderGetInteger(ORDER_MAGIC);
+            CTradeGroup *group = GetTradeGroup(magic, true);
+            if(group == NULL) continue;
+            
+            if(OrderGetInteger(ORDER_TYPE) == ORDER_TYPE_BUY_STOP)
+                group.buy_stop_tickets.Add(ticket);
+            else if(OrderGetInteger(ORDER_TYPE) == ORDER_TYPE_SELL_STOP)
+                group.sell_stop_tickets.Add(ticket);
+                
+            if(magic >= g_next_magic_id)
+                g_next_magic_id = magic + 1;
+        }
+    }
+    
+    for(int i = PositionsTotal() - 1; i >= 0; i--)
+    {
+        ulong ticket = PositionGetTicket(i);
+        if(PositionSelectByTicket(ticket) && PositionGetInteger(POSITION_MAGIC) >= Inp_BaseMagicNumber)
+        {
+            long magic = PositionGetInteger(POSITION_MAGIC);
+            CTradeGroup *group = GetTradeGroup(magic, true);
+            if(group == NULL) continue;
+
+            group.open_position_tickets.Add(ticket);
+            //group.oco_complete = true; // <<< DO NOT set this here
+            
+            if(magic >= g_next_magic_id)
+                g_next_magic_id = magic + 1;
+        }
+    }
+    
+    // --- PASS 2: Now that all groups are built, run OCO logic ---
+    for(int i = 0; i < g_trade_groups.Total(); i++)
+    {
+        CTradeGroup *group = g_trade_groups.At(i);
+        if(group == NULL || group.oco_complete) continue;
+        
+        // --- THIS IS THE FIX ---
+        // Set the CTrade object's magic number *before* any delete operations.
+        trade.SetExpertMagicNumber(group.magic_number);
+        // --- END FIX ---
+        
+        bool has_buy = false;
+        bool has_sell = false;
+        
+        for(int j = 0; j < group.open_position_tickets.Total(); j++)
+        {
+            ulong pos_ticket = group.open_position_tickets.At(j);
+            if(PositionSelectByTicket(pos_ticket))
+            {
+                if(PositionGetInteger(POSITION_TYPE) == POSITION_TYPE_BUY) has_buy = true;
+                else if(PositionGetInteger(POSITION_TYPE) == POSITION_TYPE_SELL) has_sell = true;
+            }
+        }
+
+        if(has_buy)
+        {
+            if(group.sell_stop_tickets.Total() > 0)
+            {
+                Print("RebuildState: Found open BUY pos for Magic %d. Deleting %d orphaned SELL stops.", group.magic_number, group.sell_stop_tickets.Total());
+                if(DeleteAllTickets(group.sell_stop_tickets, "REBUILD_OCO_SELL", group.magic_number))
+                {
+                    group.oco_complete = true; 
+                }
+                // If it fails, oco_complete remains false and we try again
+            }
+            else
+            {
+                group.oco_complete = true; // No sells to delete
+            }
+        }
+        else if(has_sell)
+        {
+            if(group.buy_stop_tickets.Total() > 0)
+            {
+                Print("RebuildState: Found open SELL pos for Magic %d. Deleting %d orphaned BUY stops.", group.magic_number, group.buy_stop_tickets.Total());
+                if(DeleteAllTickets(group.buy_stop_tickets, "REBUILD_OCO_BUY", group.magic_number))
+                {
+                    group.oco_complete = true;
+                }
+            }
+            else
+            {
+                group.oco_complete = true; // No buys to delete
+            }
+        }
+    }
+}
+
+
+//+------------------------------------------------------------------+
+//| Handle OCO logic by polling open positions (CORRECTED)           |
+//+------------------------------------------------------------------+
+void HandleOCO(long magic_number)
+{
+    CTradeGroup *group = GetTradeGroup(magic_number);
+    if(group == NULL || group.oco_complete) return;
+    
+    // --- THIS IS THE FIX ---
+    // Set the CTrade object's magic number *before* any delete operations.
+    trade.SetExpertMagicNumber(magic_number);
+    // --- END FIX ---
+
+    bool has_buy = false, has_sell = false;
+    for(int i = 0; i < PositionsTotal(); i++)
+    {
+        if(PositionSelectByTicket(PositionGetTicket(i)) && PositionGetInteger(POSITION_MAGIC) == magic_number)
+        {
+            if(PositionGetInteger(POSITION_TYPE) == POSITION_TYPE_BUY) has_buy = true;
+            else if(PositionGetInteger(POSITION_TYPE) == POSITION_TYPE_SELL) has_sell = true;
+        }
+    }
+
+    // --- THIS IS THE FIX ---
+    // We now check the return value of DeleteAllTickets.
+    if(has_buy)
+    {
+        // If deletion is successful, mark OCO as complete.
+        if(DeleteAllTickets(group.sell_stop_tickets, "OCO_SELL", magic_number))
+        {
+            group.oco_complete = true; // Mark "DONE"
+        }
+        // If it fails, we do *nothing*. We don't mark it complete,
+        // so this function will run again on the next tick.
+    }
+    else if(has_sell)
+    {
+        // If deletion is successful, mark OCO as complete.
+        if(DeleteAllTickets(group.buy_stop_tickets, "OCO_BUY", magic_number))
+        {
+            group.oco_complete = true; // Mark "DONE"
+        }
+        // If it fails, we do *nothing* and will retry.
+    }
+}
+
+//+------------------------------------------------------------------+
+//| HELPER: Verifies OCO PENDING ORDER balance (CORRECTED)           |
+//| RETURNS: true if cleanup is complete, false if it failed and needs retry |
+//+------------------------------------------------------------------+
+bool VerifyAndCleanOcoImbalance(long magic_number)
+{
+    CTradeGroup *group = GetTradeGroup(magic_number);
+    if(group == NULL) return true; // Group doesn't exist, job is "done"
+    
+    // If OCO is complete, this job is done (HandleOCO took over)
+    if(group.oco_complete) return true; 
+
+    // --- THIS IS THE FIX ---
+    // Set the CTrade object's magic number
+    trade.SetExpertMagicNumber(magic_number);
+    // --- END FIX ---
+
+    int buy_stop_count = group.buy_stop_tickets.Total();
+    int sell_stop_count = group.sell_stop_tickets.Total();
+    
+    // Check for the imbalanced condition
+    bool is_imbalanced = (buy_stop_count > 0 && sell_stop_count == 0) ||
+                         (sell_stop_count > 0 && buy_stop_count == 0);
+
+    if(is_imbalanced)
+    {
+        PrintFormat("CRITICAL OCO IMBALANCE DETECTED (Magic %d): Pending Buys=%d, Sells=%d. Deleting all pending orders for this group.",
+                    magic_number, buy_stop_count, sell_stop_count);
+        
+        // --- THIS IS THE FIX ---
+        // We must delete BOTH sides and check that BOTH are successful.
+        bool buys_deleted = DeleteAllTickets(group.buy_stop_tickets, "OCO_IMBALANCE", magic_number);
+        bool sells_deleted = DeleteAllTickets(group.sell_stop_tickets, "OCO_IMBALANCE", magic_number);
+        
+        // Return 'true' (job done) only if both sides are 0.
+        return (buys_deleted && sells_deleted);
+    }
+    else
+    {
+        PrintFormat("Magic %d: OCO verification passed. Pending Buys=%d, Sells=%d.", magic_number, buy_stop_count, sell_stop_count);
+        return true; // Verification passed, job is "done"
+    }
+}
+
+//+------------------------------------------------------------------+
+//| Calculate Lot Size (FULLY CORRECTED - Fixes Contract Size & Commission) |
+//+------------------------------------------------------------------+
+double CalculateLotSize(double risk_amount_acct_curr, double sl_price, double entry_price, double sl_buffer)
+{
+    // --- FIX 1: GET CONTRACT SIZE ---
+    double contract_size = SymbolInfoDouble(_Symbol, SYMBOL_TRADE_CONTRACT_SIZE);
+    if(contract_size <= 0) 
+    {
+        Print("CalculateLotSize: Failed to get contract size for symbol ", _Symbol);
+        return 0.0;
+    }
+    
+    double sl_distance = MathAbs(entry_price - sl_price);
+    if (sl_distance <= 0) 
+    {
+         Print("CalculateLotSize: Invalid SL distance for ", _Symbol);
+         return 0.0;
+    }
+    
+    // --- FIX 2: USE CONTRACT SIZE in risk calculation ---
+    double risk_per_lot_quote_curr = sl_distance * contract_size;
+    double risk_per_lot_acct_curr = risk_per_lot_quote_curr * g_conversion_rate;
+    
+    if(Commissions == Commission_Yes)
+    {
+        double commission_cost_acct_curr = 0;
+        
+        if (CommissionType == FX_per_Lot)
+        {
+            // --- FIX 3: REMOVE g_conversion_rate from fixed AUD commission ---
+            // Assumes CommissionsValue is ALREADY in the account currency (e.g., 7 AUD)
+            commission_cost_acct_curr = (2.0 * CommissionsValue);
+        }
+        else if(CommissionType == ETF_Stock)
+        {
+            // This logic is correct (converts quote currency cost to account)
+            commission_cost_acct_curr = (2.0 * Inp_StockCommissionCost) * g_conversion_rate;
+        }
+            
+        risk_per_lot_acct_curr += commission_cost_acct_curr;
+    }
+    
+    if(risk_per_lot_acct_curr <= 0) 
+    {
+        Print("CalculateLotSize: Total risk per lot is zero or negative for ", _Symbol);
+        return 0.0;
+    }
+    
+    double lot_size = risk_amount_acct_curr / risk_per_lot_acct_curr;
+    
+    double min_vol = SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_MIN);
+    double max_vol = SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_MAX);
+    double step_vol = SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_STEP);
+    
+    lot_size = MathMax(lot_size, min_vol);
+    lot_size = MathMin(lot_size, max_vol);
+    lot_size = floor(lot_size / step_vol) * step_vol;
+    
+    return NormalizeDouble(lot_size, 2);
+}
+
+//+------------------------------------------------------------------+
+//| Get Currency Conversion Rate (FIXED AND ROBUST)                  |
+//+------------------------------------------------------------------+
+double GetConversionRate(string from_currency, string to_currency)
+{
+    if(from_currency == to_currency) return 1.0;
+
+    // Loop through all symbols in Market Watch to find the pair
+    for(int i = 0; i < SymbolsTotal(false); i++)
+    {
+        string symbol = SymbolName(i, false);
+        string base_curr, quote_curr;
+        
+        // Check if symbol info is available
+        if(SymbolInfoString(symbol, SYMBOL_CURRENCY_BASE, base_curr) && SymbolInfoString(symbol, SYMBOL_CURRENCY_PROFIT, quote_curr))
+        {
+            // Case 1: Found direct pair (e.g., from_currency = USD, to_currency = AUD -> USDAUD)
+            if(base_curr == from_currency && quote_curr == to_currency)
+            {
+                double bid = SymbolInfoDouble(symbol, SYMBOL_BID);
+                if(bid > 0) return bid;
+            }
+            
+            // Case 2: Found inverse pair (e.g., from_currency = USD, to_currency = AUD -> AUDUSD)
+            if(base_curr == to_currency && quote_curr == from_currency)
+            {
+                double ask = SymbolInfoDouble(symbol, SYMBOL_ASK);
+                // Must use 1.0 / ASK price for inverse rate
+                if(ask > 0) return 1.0 / ask; 
+            }
+        }
+    }
+
+    // CRITICAL FIX: Return 0.0 on failure
+    return 0.0;
+}
+
+double GetPipSize()
+{
+    if (_Point == 0) return 0.0;
+    int digits = (int)SymbolInfoInteger(_Symbol, SYMBOL_DIGITS);
+    int pip_multiplier = (digits % 2 == 1) ? 10 : 100;
+    return _Point * pip_multiplier;
+}
