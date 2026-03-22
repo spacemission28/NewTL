@@ -1,0 +1,488 @@
+//+------------------------------------------------------------------+
+//|                                                S28 Gold rush.mq5 |
+//|                             Copyright 2026, Kostandinos Soteriou |
+//|                                                                  |
+//| Version 2.10                                                     |
+//| - Min safe distance gate (inner offset mode) + throttled logs    |
+//| - Forfeit commit if bid breaches prior H/L before start delay    |
+//|   (gap-open exception); reserved retest hook (muted input)       |
+//+------------------------------------------------------------------+
+#property copyright "Copyright 2026, Kostandinos Soteriou"
+#property version   "2.10"
+#property strict
+
+#include <Trade\Trade.mqh>
+#include <Trade\PositionInfo.mqh>
+#include <Trade\OrderInfo.mqh>
+
+// --- ENUMS ---
+enum E_UNIT_TYPE { UNIT_CENTS, UNIT_POINTS, UNIT_PIPS };
+enum E_AUTOTRADE { Off=0, On=1 };
+
+// --- INPUTS ---
+input group "== EA IDENTITY =="
+input long   Inp_MagicNumber      = 28000;
+
+input group "== HANDSHAKE SETTINGS =="
+input E_AUTOTRADE Inp_AutoTrading = On;
+input ENUM_TIMEFRAMES Inp_Timeframe = PERIOD_D1;
+input int    Inp_StartDelayMinutes = 0;
+input int    Inp_LogThrottleSeconds = 120; // Min seconds between repeated "waiting" logs
+
+input group "== RISK & POSITION SIZING =="
+input double Inp_RPT_Percent      = 0.5;    // Risk % (e.g. 0.5)
+input double Inp_RPT_Lots         = 0.0;    // Set to 0.0 to use RPT_Percent
+
+input group "== TRADE SETTINGS =="
+input E_UNIT_TYPE Inp_UnitType         = UNIT_CENTS;
+input double      Inp_StopLossUnits    = 1000.0;
+input double      Inp_TPDistanceUnits  = 1000.0;
+input int         Inp_MaxTradesPerDay  = 1;
+
+input group "== ENTRY OFFSET SETTINGS =="
+// When enabled, place BuyStop/SellStop entries inside the (HIGH_0/LOW_0) candle range:
+// BuyStop entry  = HIGH_0 - offset
+// SellStop entry = LOW_0 + offset
+// If Inp_InnerEntryOffsetUnits = 0, offset magnitude defaults to Inp_StopLossUnits.
+input bool   Inp_InnerEntryOffsetEnabled = false;
+input double Inp_InnerEntryOffsetUnits   = 0.0;
+
+// Reserved for future: allow entry on retest of prior open/high after invalidation.
+// Keep false until logic is implemented in TryFutureRetestPriorOpenHighEntry().
+input bool   Inp_Future_RetestPriorOpenHigh = false;
+
+input group "== TRAILING SETTINGS =="
+input bool   InpTrailStop            = true;
+input int    Inp_TrailPercentTrigger = 89; // % of TP Distance to trigger Break Even
+
+input group "== WEEKEND MANAGEMENT =="
+input bool   Inp_FridayExit       = true;
+input int    Inp_FridayCloseHour  = 22;  
+
+// --- GLOBALS ---
+CTrade      trade;
+datetime    g_last_gv_processed_time = 0;
+datetime    g_last_maintenance_check = 0;
+string      g_gv_prefix, g_gv_commit_key;
+E_UNIT_TYPE g_active_unit_type;
+datetime    g_last_safe_distance_log_time = 0;
+
+//+------------------------------------------------------------------+
+//| Get Pip Size: 5-digit 1.61040->1.61050 = 10 pips (1 pip=0.00001)|
+//| Yen pairs: 1 pip = 0.01 (100 points)                             |
+//+------------------------------------------------------------------+
+double GetPipSize()
+{
+    if(_Point <= 0) return 0.00001;
+    string sym = _Symbol;
+    bool is_yen = (StringFind(sym, "JPY") >= 0);
+    if(is_yen) return 0.01;  // 110.123: 1 pip = 0.01
+    return 0.00001;          // 1.61040: 1 pip = 0.00001 (10 pips = 0.00010)
+}
+
+//+------------------------------------------------------------------+
+//| Convert units to price (SL/TP distance)                           |
+//+------------------------------------------------------------------+
+double UnitsToPrice(double units)
+{
+    if(g_active_unit_type == UNIT_CENTS) return units / 100.0;
+    if(g_active_unit_type == UNIT_PIPS)  return units * GetPipSize();
+    return units * _Point;  // UNIT_POINTS
+}
+
+//+------------------------------------------------------------------+
+//| Effective inner-offset magnitude in "units" (same as SL if 0)     |
+//+------------------------------------------------------------------+
+double GetEffectiveInnerOffsetUnits()
+{
+    return (Inp_InnerEntryOffsetUnits > 0.0) ? Inp_InnerEntryOffsetUnits : Inp_StopLossUnits;
+}
+
+//+------------------------------------------------------------------+
+//| Current bar open on Inp_Timeframe (bar 0 = forming)             |
+//+------------------------------------------------------------------+
+bool GetCurrentTfBar0Open(double &open_out)
+{
+    MqlRates rates[];
+    ArraySetAsSeries(rates, true);
+    if(CopyRates(_Symbol, Inp_Timeframe, 0, 1, rates) < 1) return false;
+    open_out = rates[0].open;
+    return true;
+}
+
+//+------------------------------------------------------------------+
+//| Min safe distance from prior H/L (inner offset mode only)         |
+//+------------------------------------------------------------------+
+bool MinSafeDistanceFromPriorExtremesOk(const double prior_high, const double prior_low,
+                                        const double min_safe_price)
+{
+    double bid = SymbolInfoDouble(_Symbol, SYMBOL_BID);
+    double ask = SymbolInfoDouble(_Symbol, SYMBOL_ASK);
+    return ((prior_high - bid) >= min_safe_price && (ask - prior_low) >= min_safe_price);
+}
+
+//+------------------------------------------------------------------+
+//| Throttled Print (repeated wait states)                            |
+//+------------------------------------------------------------------+
+void LogThrottled(const string msg)
+{
+    datetime now = TimeCurrent();
+    int thr = Inp_LogThrottleSeconds;
+    if(thr < 30) thr = 30;
+    if(g_last_safe_distance_log_time != 0 && (now - g_last_safe_distance_log_time) < thr)
+        return;
+    g_last_safe_distance_log_time = now;
+    Print(msg);
+}
+
+//+------------------------------------------------------------------+
+//| Future: retest prior open/high (stub — return false until built). |
+//+------------------------------------------------------------------+
+bool TryFutureRetestPriorOpenHighEntry(const double prior_high, const double prior_low,
+                                       const datetime commit_time, const datetime cur_time)
+{
+    if(!Inp_Future_RetestPriorOpenHigh) return false;
+    // TODO: optional entry on retest of prior open/high; return true and caller PlaceOco(h,l).
+    // Reference params to avoid compiler warnings until implemented:
+    if(prior_high <= prior_low || commit_time <= 0 || cur_time < commit_time) return false;
+    return false;
+}
+
+//+------------------------------------------------------------------+
+//| Initialization                                                   |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+    EventSetTimer(1);
+    // Default until CCM updates UNIT_TYPE; prevents uninitialized unit conversions
+    g_active_unit_type = Inp_UnitType;
+    string norm_symbol = _Symbol; StringReplace(norm_symbol, "/", "");
+    string tf_str = EnumToString(Inp_Timeframe);
+    if(StringFind(tf_str, "PERIOD_") >= 0) StringReplace(tf_str, "PERIOD_", "");
+    
+    g_gv_prefix = "CCM_" + norm_symbol + "_" + tf_str + "_";
+    g_gv_commit_key = g_gv_prefix + "COMMIT_ID";
+    
+    trade.SetExpertMagicNumber((int)Inp_MagicNumber);
+    
+    // Pepperstone Filling Mode detection
+    uint filling = (uint)SymbolInfoInteger(_Symbol, SYMBOL_FILLING_MODE);
+    if((filling & SYMBOL_FILLING_FOK) != 0) trade.SetTypeFilling(ORDER_FILLING_FOK);
+    else if((filling & SYMBOL_FILLING_IOC) != 0) trade.SetTypeFilling(ORDER_FILLING_IOC);
+    else trade.SetTypeFilling(ORDER_FILLING_RETURN);
+    
+    Print("S28 GOLD v2.10 Initialized. Logic: AUD-Lot-Fix + v2.6 OCO + safe-dist / pre-delay forfeit.");
+    return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//| Deinitialization                                                 |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+    EventKillTimer();
+}
+
+//+------------------------------------------------------------------+
+//| Main Timer Loop                                                  |
+//+------------------------------------------------------------------+
+void OnTimer()
+{
+    datetime cur = TimeCurrent();
+    UpdateUnitType();
+
+    datetime commit_time = 0;
+    if(GlobalVariableCheck(g_gv_commit_key)) commit_time = (datetime)GlobalVariableGet(g_gv_commit_key);
+
+    // Maintenance (Heartbeat 15s)
+    if(cur - g_last_maintenance_check >= 15) {
+        PerformMaintenance(commit_time);
+        g_last_maintenance_check = cur;
+    }
+
+    // Trade Limit Check
+    if(GetTradesCountToday() >= Inp_MaxTradesPerDay) {
+        PurgePending("Daily Limit Met");
+        g_last_gv_processed_time = commit_time;
+        Comment("Daily trade limit reached."); return;
+    }
+
+    // Signal Logic
+    if(Inp_AutoTrading == On && commit_time > g_last_gv_processed_time)
+    {
+        double h = GlobalVariableGet(g_gv_prefix + "HIGH_0");
+        double l = GlobalVariableGet(g_gv_prefix + "LOW_0");
+        if(h > 0.0 && l > 0.0)
+        {
+            datetime delay_until = commit_time + (Inp_StartDelayMinutes * 60);
+            double   bid         = SymbolInfoDouble(_Symbol, SYMBOL_BID);
+            double   bar0_open   = 0.0;
+            bool     have_open   = GetCurrentTfBar0Open(bar0_open);
+
+            // Before start delay: forfeit this commit if bid trades outside prior range,
+            // unless the new bar gapped through that side (open beyond prior H/L).
+            if(cur < delay_until)
+            {
+                if(have_open)
+                {
+                    bool gap_open_above_prior_high = (bar0_open > h);
+                    bool gap_open_below_prior_low  = (bar0_open < l);
+
+                    if(bid > h && !gap_open_above_prior_high)
+                    {
+                        PrintFormat("S28: Signal forfeited — Bid %.5f > prior high %.5f before start delay (no gap-up). Commit %s",
+                                    bid, h, TimeToString(commit_time));
+                        g_last_gv_processed_time = commit_time;
+                    }
+                    else if(bid < l && !gap_open_below_prior_low)
+                    {
+                        PrintFormat("S28: Signal forfeited — Bid %.5f < prior low %.5f before start delay (no gap-down). Commit %s",
+                                    bid, l, TimeToString(commit_time));
+                        g_last_gv_processed_time = commit_time;
+                    }
+                }
+            }
+            else if(cur >= delay_until)
+            {
+                // Reserved future path (muted by default): retest entry — never true until implemented.
+                if(Inp_Future_RetestPriorOpenHigh &&
+                   TryFutureRetestPriorOpenHighEntry(h, l, commit_time, cur))
+                {
+                    PlaceOco(h, l);
+                    g_last_gv_processed_time = commit_time;
+                }
+                else if(Inp_InnerEntryOffsetEnabled)
+                {
+                    double min_safe = UnitsToPrice(GetEffectiveInnerOffsetUnits());
+                    if(!MinSafeDistanceFromPriorExtremesOk(h, l, min_safe))
+                    {
+                        LogThrottled(StringFormat(
+                            "S28: Waiting min safe distance (need >= offset). H=%.5f L=%.5f Bid=%.5f Ask=%.5f minSafe=%.5f",
+                            h, l, SymbolInfoDouble(_Symbol, SYMBOL_BID), SymbolInfoDouble(_Symbol, SYMBOL_ASK), min_safe));
+                    }
+                    else
+                    {
+                        PlaceOco(h, l);
+                        g_last_gv_processed_time = commit_time;
+                    }
+                }
+                else
+                {
+                    PlaceOco(h, l);
+                    g_last_gv_processed_time = commit_time;
+                }
+            }
+        }
+    }
+}
+
+//+------------------------------------------------------------------+
+//| Order Placement with Lot Fix                                     |
+//+------------------------------------------------------------------+
+void PlaceOco(double high, double low)
+{
+    double lots = Inp_RPT_Lots;
+    
+    if(Inp_RPT_Percent > 0.0) {
+        double balance = AccountInfoDouble(ACCOUNT_BALANCE);
+        double risk_aud = balance * (Inp_RPT_Percent / 100.0);
+        string acct_curr = AccountInfoString(ACCOUNT_CURRENCY);
+        string profit_curr = SymbolInfoString(_Symbol, SYMBOL_CURRENCY_PROFIT);
+
+        double sl_dist = 0;
+        if(g_active_unit_type == UNIT_CENTS)
+            sl_dist = Inp_StopLossUnits / 100.0;
+        else if(g_active_unit_type == UNIT_PIPS)
+            sl_dist = Inp_StopLossUnits * GetPipSize();
+        else
+            sl_dist = Inp_StopLossUnits * _Point;
+
+        double contract_size = SymbolInfoDouble(_Symbol, SYMBOL_TRADE_CONTRACT_SIZE);
+        if(contract_size <= 0) contract_size = 100.0;
+
+        double risk_per_lot_quote = sl_dist * contract_size;
+        double risk_per_lot_aud = risk_per_lot_quote;
+        if(profit_curr != acct_curr) {
+            double audusd = SymbolInfoDouble("AUDUSD", SYMBOL_BID);
+            if(audusd <= 0) audusd = 0.65;
+            if(profit_curr == "USD")
+                risk_per_lot_aud = risk_per_lot_quote / audusd;  // USD to AUD
+            else {
+                double rate = SymbolInfoDouble(profit_curr+"AUD", SYMBOL_BID);  // 1 X = rate AUD (e.g. EURAUD)
+                if(rate > 0) risk_per_lot_aud = risk_per_lot_quote * rate;
+                else {
+                    rate = SymbolInfoDouble("AUD"+profit_curr, SYMBOL_ASK);     // 1 AUD = rate X
+                    if(rate > 0) risk_per_lot_aud = risk_per_lot_quote / rate;
+                }
+            }
+        }
+        lots = risk_aud / MathMax(risk_per_lot_aud, 0.00001);
+    }
+    
+    double step = SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_STEP);
+    lots = MathRound(lots / step) * step;
+    if(lots <= 0) return;
+
+    double sl_v = UnitsToPrice(Inp_StopLossUnits);
+    double tp_v = UnitsToPrice(Inp_TPDistanceUnits);
+    
+    // Optional inner-entry offset (in the same unit system as SL/TP)
+    double offset_v = 0.0;
+    if(Inp_InnerEntryOffsetEnabled)
+        offset_v = UnitsToPrice(GetEffectiveInnerOffsetUnits());
+
+    double buyEntry  = high - offset_v;
+    double sellEntry = low  + offset_v;
+
+    // Basic sanity / broker rejection avoidance.
+    double ask = SymbolInfoDouble(_Symbol, SYMBOL_ASK);
+    double bid = SymbolInfoDouble(_Symbol, SYMBOL_BID);
+    if(buyEntry <= ask || sellEntry >= bid || buyEntry <= 0 || sellEntry <= 0 || buyEntry <= sellEntry)
+    {
+        PrintFormat("OCO skipped (invalid entries). buyEntry=%.5f sellEntry=%.5f ask=%.5f bid=%.5f offset=%.5f",
+                    buyEntry, sellEntry, ask, bid, offset_v);
+        return;
+    }
+
+    // Pepperstone Fix: Use ORDER_TIME_DAY for Metals/Commodities
+    ENUM_ORDER_TYPE_TIME e_type = ORDER_TIME_DAY;
+    datetime e_time = 0;
+
+    PrintFormat("Submitting OCO for %s. Lots: %.2f | SL Distance: %.2f | Offset: %.5f",
+                _Symbol, lots, sl_v, offset_v);
+
+    // SL/TP distances remain the configured ones, but are rebased from the new entries.
+    trade.BuyStop(lots,
+                   NormalizeDouble(buyEntry, _Digits),
+                   _Symbol,
+                   NormalizeDouble(buyEntry - sl_v, _Digits),
+                   NormalizeDouble(buyEntry + tp_v, _Digits),
+                   e_type, e_time);
+                   
+    trade.SellStop(lots,
+                    NormalizeDouble(sellEntry, _Digits),
+                    _Symbol,
+                    NormalizeDouble(sellEntry + sl_v, _Digits),
+                    NormalizeDouble(sellEntry - tp_v, _Digits),
+                    e_type, e_time);
+}
+
+//+------------------------------------------------------------------+
+//| Maintenance & OCO Cleanup                                        |
+//+------------------------------------------------------------------+
+bool HasOurPosition()
+{
+    // PositionGetTicket(i) selects the i-th position, so subsequent PositionGet* calls refer to it.
+    for(int i=PositionsTotal()-1; i>=0; --i)
+    {
+        ulong ticket = PositionGetTicket(i);
+        if(ticket == 0) continue;
+
+        if(PositionGetString(POSITION_SYMBOL) == _Symbol &&
+           PositionGetInteger(POSITION_MAGIC) == Inp_MagicNumber)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void PerformMaintenance(datetime commit) {
+    // If a position exists, delete all opposite side pending orders (OCO)
+    if(HasOurPosition()) { PurgePending("OCO Triggered"); return; }
+
+    // Temporal Purge: Delete expired/previous day's orders
+    for(int i=OrdersTotal()-1; i>=0; i--) {
+        ulong t = OrderGetTicket(i);
+        if(OrderSelect(t) && OrderGetInteger(ORDER_MAGIC)==Inp_MagicNumber) {
+            datetime setup = (datetime)OrderGetInteger(ORDER_TIME_SETUP);
+            if(commit > 0 && setup < commit) trade.OrderDelete(t);
+        }
+    }
+}
+
+void PurgePending(string r) {
+    bool deleted = false;
+    for(int i=OrdersTotal()-1; i>=0; i--) {
+        ulong t = OrderGetTicket(i);
+        if(OrderSelect(t) && OrderGetInteger(ORDER_MAGIC)==Inp_MagicNumber) {
+            if(trade.OrderDelete(t)) deleted = true;
+        }
+    }
+    if(deleted) Print("Purge Action: ", r);
+}
+
+void UpdateUnitType() {
+    string key = g_gv_prefix + "UNIT_TYPE";
+    if(GlobalVariableCheck(key)) {
+        double v = GlobalVariableGet(key);
+        if(v == 3.0) g_active_unit_type = UNIT_CENTS;
+        else if(v == 4.0) g_active_unit_type = UNIT_POINTS;
+        else if(v == 1.0 || v == 2.0 || v == 5.0) g_active_unit_type = UNIT_PIPS;  // NonYenPips, YenPips, or Pips
+        else g_active_unit_type = Inp_UnitType;
+    } else g_active_unit_type = Inp_UnitType;
+}
+
+int GetTradesCountToday() {
+    int c=0;
+    datetime s=(datetime)((TimeCurrent()/86400)*86400);
+    if(HistorySelect(s, TimeCurrent())) {
+        for(int i=0; i<HistoryDealsTotal(); i++) {
+            ulong t=HistoryDealGetTicket(i);
+            if(HistoryDealGetInteger(t,DEAL_MAGIC)==Inp_MagicNumber && HistoryDealGetInteger(t,DEAL_ENTRY)==DEAL_ENTRY_IN) c++;
+        }
+    }
+    return c;
+}
+
+void OnTick() { if(Inp_FridayExit && IsFridayNight()) CloseAll(); if(InpTrailStop) Trail(); }
+
+void Trail() {
+    double d = UnitsToPrice(Inp_TPDistanceUnits);
+    
+    // Calculate the Trigger distance based on the percentage input
+    double trigger_dist = d * ((double)Inp_TrailPercentTrigger / 100.0);
+    
+    for(int i=PositionsTotal()-1; i>=0; --i) {
+        ulong t = PositionGetTicket(i);
+        if(t == 0) continue;
+
+        if(PositionGetString(POSITION_SYMBOL) != _Symbol ||
+           PositionGetInteger(POSITION_MAGIC) != Inp_MagicNumber) continue;
+
+        double ent = PositionGetDouble(POSITION_PRICE_OPEN);
+        double sl  = PositionGetDouble(POSITION_SL);
+        double tp  = PositionGetDouble(POSITION_TP);
+        long   pos_type = PositionGetInteger(POSITION_TYPE);
+
+        double p = (pos_type == POSITION_TYPE_BUY)
+                    ? SymbolInfoDouble(_Symbol, SYMBOL_BID)
+                    : SymbolInfoDouble(_Symbol, SYMBOL_ASK);
+
+        // Move Stop Loss to Break Even once trigger distance is reached.
+        if(pos_type == POSITION_TYPE_BUY && p >= ent + trigger_dist && sl < ent)
+            trade.PositionModify(t, NormalizeDouble(ent, _Digits), NormalizeDouble(tp, _Digits));
+        else if(pos_type == POSITION_TYPE_SELL && p <= ent - trigger_dist && (sl > ent || sl == 0))
+            trade.PositionModify(t, NormalizeDouble(ent, _Digits), NormalizeDouble(tp, _Digits));
+    }
+}
+
+bool IsFridayNight() { 
+    MqlDateTime dt; 
+    TimeToStruct(TimeCurrent(), dt); 
+    return (dt.day_of_week==5 && dt.hour>=Inp_FridayCloseHour); 
+}
+
+void CloseAll() { 
+    PurgePending("Friday Close");
+    for(int i=PositionsTotal()-1; i>=0; --i) {
+        ulong ticket = PositionGetTicket(i);
+        if(ticket == 0) continue;
+
+        if(PositionGetString(POSITION_SYMBOL) == _Symbol &&
+           PositionGetInteger(POSITION_MAGIC) == Inp_MagicNumber)
+        {
+            trade.PositionClose(ticket);
+        }
+    }
+}
