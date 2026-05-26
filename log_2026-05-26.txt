@@ -1,0 +1,1608 @@
+[2026-05-26 16:25:32.037] [INFO] Log file rotated: log_2026-05-26.txt
+[2026-05-26 16:25:32.038] [INFO] Weekly log rotation scheduled for Sundays at 22:00 MT5 platform time. Next rotation: 2026-05-31 22:00:00
+[2026-05-26 16:25:32.039] [INFO] Market data storage folder: /Users/kosta/Desktop/zd logs
+[2026-05-26 16:25:32.039] [INFO] Application logs: /Users/kosta/Desktop/zd logs/logs
+[2026-05-26 16:25:32.040] [INFO] Stored here: *_candles.txt, trade_history.json, session_state.json, robot_layout.json, robot_defaults.json, logs/
+[2026-05-26 16:25:32.040] [INFO] File-based mode initialized - data will be stored locally in /Users/kosta/Desktop/zd logs
+[2026-05-26 16:25:32.041] [INFO] TradeHistoryFileWriter initialized: /Users/kosta/Desktop/zd logs
+[2026-05-26 16:25:32.041] [INFO] TradeHistoryFileWriter started (writing every 2 seconds)
+[2026-05-26 16:25:32.041] [INFO] Market data recording fully operational in file mode
+[2026-05-26 16:25:32.043] [INFO] DataPurgeManager: Startup purge check completed
+[2026-05-26 16:25:32.044] [INFO] DataPurgeManager started - checking for stale files every hour
+[2026-05-26 16:25:32.044] [INFO] Data persistence enabled: files (/Users/kosta/Desktop/zd logs)
+[2026-05-26 16:25:32.044] [INFO] Auto-purge: ≤H1 after 24h, >H1 after 7 days, stale files (30h) on startup
+[2026-05-26 16:25:32.464] [INFO] Zero Delta initialized. Expecting OHLC + Tick data from MT5.
+[2026-05-26 16:25:32.489] [INFO] Loading Zero Delta tab content...
+[2026-05-26 16:25:32.495] [INFO] Migrated robot file to configured folder: /Users/kosta/Desktop/zd logs/robot_layout.json
+[2026-05-26 16:25:32.495] [INFO] Migrated robot file to configured folder: /Users/kosta/Desktop/zd logs/robot_defaults.json
+[2026-05-26 16:25:32.509] [INFO] ControlPanelPane initialized (250px width) - System Parameters and control buttons
+[2026-05-26 16:25:32.509] [INFO] ControlPanel real-time updates started (1s interval)
+[2026-05-26 16:25:32.517] [INFO] RobotMatrixTable initialized with 500 rows and control panel
+[2026-05-26 16:25:32.524] [INFO] Database not available - Trade Logic tab running in file mode
+[2026-05-26 16:25:32.526] [INFO] Defaults loaded from file: /Users/kosta/Desktop/zd logs/robot_defaults.json
+[2026-05-26 16:25:32.526] [INFO] Loaded Daily DD Limit from defaults: 1.0
+[2026-05-26 16:25:32.526] [INFO] Initialized 500 robot rows
+[2026-05-26 16:25:32.529] [INFO] Account balance updated in RobotMatrixTable: 0.00 (was: 0.00)
+[2026-05-26 16:25:32.530] [INFO] Zero Delta tab content loaded successfully
+[2026-05-26 16:25:33.528] [INFO] Total RPT calculated: $0.00 from 0 active robots (Balance for sizing: $0.00)
+[2026-05-26 16:25:34.936] [INFO] === Zero Delta Application Started ===
+[2026-05-26 16:25:34.936] [INFO] Version: 3.1 - Momentum trading slice (per-symbol TF evaluation)
+[2026-05-26 16:25:34.936] [INFO] User: 61527477 | Server: Pepperstone-Demo
+[2026-05-26 16:25:34.936] [INFO] Log rotation: Weekly on Sunday 22:00 EET
+[2026-05-26 16:25:34.936] [INFO] Optimizations: 3s disconnect timeout, 5s file flush, batched UI updates, 10s blue light delay
+[2026-05-26 16:25:34.938] [INFO] Logged in as: 61527477 | Server: Pepperstone-Demo
+[2026-05-26 16:25:35.527] [INFO] Total RPT calculated: $0.00 from 0 active robots (Balance for sizing: $0.00)
+[2026-05-26 16:25:36.050] [INFO] Layout loaded from file: /Users/kosta/Desktop/zd logs/robot_layout.json
+[2026-05-26 16:25:36.053] [INFO] Active property changed for row 1: false -> true
+[2026-05-26 16:25:36.056] [INFO] === activateRobot() called for row 1 ===
+[2026-05-26 16:25:36.057] [INFO] Row 1 activated with saved values
+[2026-05-26 16:25:36.060] [INFO] Populated row 1 with config from database
+[2026-05-26 16:25:36.060] [INFO] Active property changed for row 2: false -> true
+[2026-05-26 16:25:36.060] [INFO] === activateRobot() called for row 2 ===
+[2026-05-26 16:25:36.060] [INFO] Row 2 activated with saved values
+[2026-05-26 16:25:36.062] [INFO] Populated row 2 with config from database
+[2026-05-26 16:25:36.062] [INFO] Session boot: loaded 2 robot configs from file
+[2026-05-26 16:25:36.077] [INFO] SESSION: RECONCILING — new entries blocked until EA /tradehistory snapshot
+[2026-05-26 16:25:36.078] [INFO] SESSION: warm-loaded trade_history.json + session_state.json (if present)
+[2026-05-26 16:25:36.099] [INFO] SUCCESS: HTTP Server started on port 8087 (ZeroDelta_Ticks.mq5 contract).
+[2026-05-26 16:25:36.099] [INFO] INFO: /tickrecorder /tickdata /getcommand /executionfeedback /accountinfo /tradehistory
+[2026-05-26 16:25:36.099] [INFO] INFO: Trading engine active — per-(symbol,TF) OHLC evaluation, command queue wired
+[2026-05-26 16:25:36.099] [INFO] INFO: Configure MT5 EA JavaBaseURL=http://127.0.0.1:8087
+[2026-05-26 16:25:36.100] [INFO] INFO: EOD monitor active — pre-block T-5s, flatten T, straggler T+5s, 1s poll (Europe/Helsinki)
+[2026-05-26 16:25:36.100] [INFO] INFO: Log timestamps use MT5 platform time when EA sync available
+[2026-05-26 16:25:36.100] [INFO] HTTP Server started on port 8087
+[2026-05-26 16:25:36.100] [INFO] Transport + momentum trading engine active
+[2026-05-26 16:25:36.100] [CONNECTION] Data flow monitor started (3s pause detection, 10s extended pause threshold, 1s check interval)
+[2026-05-26 16:25:36.100] [INFO] UI update scheduler started (300ms fallback — OHLC/tick tables flush on each POST too)
+[2026-05-26 16:25:37.104] [CONNECTION] DATA PAUSE #1 - Batch processing ticks and OHLC data (6.8s)
+[2026-05-26 16:25:37.532] [INFO] Total RPT calculated: $0.00 from 2 active robots (Balance for sizing: $0.00)
+[2026-05-26 16:25:39.530] [INFO] Total RPT calculated: $0.00 from 2 active robots (Balance for sizing: $0.00)
+[2026-05-26 16:25:40.602] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 0.00)
+[2026-05-26 16:25:40.602] [INFO] ACCOUNT BALANCE RECEIVED: $47898.33 AUD
+[2026-05-26 16:25:40.602] [INFO] Start-of-day equity set to: 47898.33
+[2026-05-26 16:25:40.603] [INFO] ACCOUNT INFO: Balance=47898.33 AUD, Equity=47898.33
+[2026-05-26 16:25:40.614] [INFO] SESSION: READY — broker snapshot entries=0 open=0 pending=0 orphanBlockedRows=[]
+[2026-05-26 16:25:40.619] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:25:40.637] [INFO] ZD OHLC INGRESS | commit=134 ea=1.40 bars=22 buildMs=0 maxSecSinceClose=59140 pairs=[XAUUSD/M1 XAUUSD/M2 XAUUSD/M3 XAUUSD/M5 XAUUSD/M10 XAUUSD/M15 XAUUSD/M30 XAUUSD/H1 XAUUSD/H3 XAUUSD/H4 XAUUSD/D1 USDJPY/M1 USDJPY/M2 USDJPY/M3 USDJPY/M5 USDJPY/M10 USDJPY/M15 USDJPY/M30 USDJPY/H1 USDJPY/H3 USDJPY/H4 USDJPY/D1]
+[2026-05-26 16:25:40.000] [INFO] Mt5PlatformClock: first EA sync platSec=1779812740 deltaSec=10800 brokerWall=2026-05-26T16:25:40+03:00 zone=+03:00
+[2026-05-26 16:25:40.000] [INFO] OHLC TickRecorder UI: first batch queued 22/22 bars (table rows=22)
+[2026-05-26 16:25:40.000] [INFO] INFO: Received 22 OHLC bars (uiQueued=22)
+[2026-05-26 16:25:40.033] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:25:40.459] [CONNECTION] DATA RESUMED - Processing pause: 4.0s
+[2026-05-26 16:25:41.366] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:25:41.367] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:25:41.368] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:25:43.184] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:25:43.184] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:25:43.184] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:25:45.003] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:25:45.285] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:25:45.285] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:25:45.286] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:25:47.090] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:25:47.091] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:25:47.091] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:25:49.302] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:25:49.302] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:25:49.302] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:25:50.004] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:25:51.097] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:25:51.098] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:25:51.100] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:25:53.102] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:25:53.102] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:25:53.103] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:25:54.674] [CONNECTION] DATA PAUSE #2 - Batch processing ticks and OHLC data (3.7s)
+[2026-05-26 16:25:55.102] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:25:55.102] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:25:55.102] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:25:57.102] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:25:57.102] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:25:57.102] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:25:59.102] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:25:59.103] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:25:59.103] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:26:01.102] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:26:01.102] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:26:01.103] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:26:03.100] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:26:03.101] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:26:03.101] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:26:03.008] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:26:03.204] [CONNECTION] DATA RESUMED - Processing pause: 9.0s
+[2026-05-26 16:26:05.029] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:26:05.030] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:26:05.030] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:26:07.229] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:26:07.230] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:26:07.230] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:26:08.008] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:26:09.130] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:26:09.130] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:26:09.131] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:26:10.181] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:26:11.182] [INFO] Server stopped.
+[2026-05-26 16:26:11.182] [INFO] HTTP Server stopped
+[2026-05-26 16:26:11.183] [INFO] Connection monitor stats: 2 data pauses detected
+[2026-05-26 16:26:11.522] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:26:11.522] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:26:11.523] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:26:11.985] [INFO] Layout loaded from file: /Users/kosta/Desktop/zd logs/robot_layout.json
+[2026-05-26 16:26:11.986] [INFO] Populated row 1 with config from database
+[2026-05-26 16:26:11.986] [INFO] Populated row 2 with config from database
+[2026-05-26 16:26:11.986] [INFO] Session boot: loaded 2 robot configs from file
+[2026-05-26 16:26:11.994] [INFO] Session state loaded from /Users/kosta/Desktop/zd logs/session_state.json deferredRt=0 recoveryPairs=0
+[2026-05-26 16:26:11.995] [INFO] SESSION: applied session_state.json — deferredRt=0 recovery=0 naked=0 patternDedup=0 eod=0
+[2026-05-26 16:26:11.995] [INFO] SESSION: RECONCILING — new entries blocked until EA /tradehistory snapshot
+[2026-05-26 16:26:11.995] [INFO] SESSION: warm-loaded trade_history.json + session_state.json (if present)
+[2026-05-26 16:26:11.996] [INFO] SUCCESS: HTTP Server started on port 8087 (ZeroDelta_Ticks.mq5 contract).
+[2026-05-26 16:26:11.996] [INFO] INFO: /tickrecorder /tickdata /getcommand /executionfeedback /accountinfo /tradehistory
+[2026-05-26 16:26:11.996] [INFO] INFO: Trading engine active — per-(symbol,TF) OHLC evaluation, command queue wired
+[2026-05-26 16:26:11.996] [INFO] INFO: Configure MT5 EA JavaBaseURL=http://127.0.0.1:8087
+[2026-05-26 16:26:11.997] [INFO] INFO: EOD monitor active — pre-block T-5s, flatten T, straggler T+5s, 1s poll (+03:00)
+[2026-05-26 16:26:11.997] [INFO] INFO: Log timestamps use MT5 platform time when EA sync available
+[2026-05-26 16:26:11.997] [INFO] HTTP Server started on port 8087
+[2026-05-26 16:26:11.997] [INFO] Transport + momentum trading engine active
+[2026-05-26 16:26:13.524] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:26:13.524] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:26:13.524] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:26:15.524] [INFO] Robot row 1: RPT 0.10% of balance 47898.33 = $47.90
+[2026-05-26 16:26:15.524] [INFO] Robot row 2: RPT 0.15% of balance 47898.33 = $71.85
+[2026-05-26 16:26:15.524] [INFO] Total RPT calculated: $119.75 from 2 active robots (Balance for sizing: $47898.33)
+[2026-05-26 16:26:17.524] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:17.524] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:17.524] [INFO] Total RPT calculated: $250.00 from 2 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:18.000] [INFO] OHLC TickRecorder UI: first batch queued 22/22 bars (table rows=22)
+[2026-05-26 16:26:18.005] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:26:18.016] [INFO] SESSION: READY — broker snapshot entries=0 open=0 pending=0 orphanBlockedRows=[]
+[2026-05-26 16:26:19.203] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:19.204] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:19.204] [INFO] Total RPT calculated: $250.00 from 2 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:21.305] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:21.306] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:21.306] [INFO] Total RPT calculated: $250.00 from 2 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:23.006] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:26:23.303] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:23.303] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:23.304] [INFO] Total RPT calculated: $250.00 from 2 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:23.377] [INFO] Duplicating row 2 to row 3
+[2026-05-26 16:26:23.377] [INFO] Row 2 duplicated to row 3
+[2026-05-26 16:26:24.343] [INFO] Table lost focus
+[2026-05-26 16:26:25.193] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:25.193] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:25.193] [INFO] Total RPT calculated: $250.00 from 2 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:26.392] [INFO] Table editing stopped
+[2026-05-26 16:26:27.092] [INFO] Table lost focus
+[2026-05-26 16:26:27.393] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:27.394] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:27.394] [INFO] Total RPT calculated: $250.00 from 2 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:28.009] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:26:28.164] [INFO] Table editing stopped
+[2026-05-26 16:26:29.196] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:29.197] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:29.197] [INFO] Total RPT calculated: $250.00 from 2 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:30.080] [INFO] Table lost focus
+[2026-05-26 16:26:31.306] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:31.306] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:31.306] [INFO] Total RPT calculated: $250.00 from 2 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:33.006] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:26:33.300] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:33.300] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:33.300] [INFO] Total RPT calculated: $250.00 from 2 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:35.295] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:35.295] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:35.296] [INFO] Total RPT calculated: $250.00 from 2 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:36.313] [INFO] Table editing stopped
+[2026-05-26 16:26:37.307] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:37.307] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:37.307] [INFO] Total RPT calculated: $250.00 from 2 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:37.369] [INFO] Table lost focus
+[2026-05-26 16:26:38.009] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:26:38.088] [INFO] Table editing stopped
+[2026-05-26 16:26:39.198] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:39.199] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:39.199] [INFO] Total RPT calculated: $250.00 from 2 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:39.442] [INFO] Active property changed for row 3: false -> true
+[2026-05-26 16:26:39.442] [INFO] Re-activated row 3 without resetting values
+[2026-05-26 16:26:40.305] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:26:40.517] [INFO] ZD OHLC INGRESS | commit=56 ea=1.40 bars=22 buildMs=0 maxSecSinceClose=59200 pairs=[XAUUSD/M1 XAUUSD/M2 XAUUSD/M3 XAUUSD/M5 XAUUSD/M10 XAUUSD/M15 XAUUSD/M30 XAUUSD/H1 XAUUSD/H3 XAUUSD/H4 XAUUSD/D1 USDJPY/M1 USDJPY/M2 USDJPY/M3 USDJPY/M5 USDJPY/M10 USDJPY/M15 USDJPY/M30 USDJPY/H1 USDJPY/H3 USDJPY/H4 USDJPY/D1]
+[2026-05-26 16:26:40.000] [INFO] INFO: Received 22 OHLC bars (uiQueued=22)
+[2026-05-26 16:26:41.042] [INFO] Table lost focus
+[2026-05-26 16:26:41.003] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:41.003] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:41.003] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:41.003] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:42.068] [INFO] Table editing stopped
+[2026-05-26 16:26:43.008] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:26:43.008] [INFO] ACCOUNT INFO: Balance=47898.33 AUD, Equity=47898.33
+[2026-05-26 16:26:43.384] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:43.384] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:43.384] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:43.385] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:45.289] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:45.289] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:45.289] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:45.289] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:47.201] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:47.201] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:47.202] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:47.202] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:48.006] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:26:49.395] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:49.395] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:49.395] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:49.395] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:50.192] [INFO] Save Layout button clicked
+[2026-05-26 16:26:50.192] [INFO] Saving layout...
+[2026-05-26 16:26:50.203] [INFO] Layout saved to file: /Users/kosta/Desktop/zd logs/robot_layout.json
+[2026-05-26 16:26:50.203] [INFO] Successfully saved 3 robot configurations
+[2026-05-26 16:26:50.405] [INFO] Robot configuration changed — ZD_MATRIX_SCOPE will be resent on next idle poll
+[2026-05-26 16:26:50.405] [INFO] Configuration changed callback invoked - clearing pending setups
+[2026-05-26 16:26:51.203] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:51.203] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:51.203] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:51.203] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:53.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:26:53.174] [INFO] Tick Display DISABLED (performance mode)
+[2026-05-26 16:26:53.093] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:53.093] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:53.093] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:53.093] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:53.297] [INFO] OHLC Display DISABLED (performance mode)
+[2026-05-26 16:26:55.243] [INFO] === snapshotActiveRows() called (ON button pressed) ===
+[2026-05-26 16:26:55.247] [INFO] Row 1 snapshot: symbol=XAUUSD, timeframe=M30, hasBeenManuallyModified=true
+[2026-05-26 16:26:55.247] [INFO] Row 2 snapshot: symbol=XAUUSD, timeframe=H1, hasBeenManuallyModified=true
+[2026-05-26 16:26:55.247] [INFO] Row 3 snapshot: symbol=XAUUSD, timeframe=M5, hasBeenManuallyModified=true
+[2026-05-26 16:26:55.247] [INFO] Master ON: Locked 3 active rows for editing. Inactive rows remain editable.
+[2026-05-26 16:26:55.247] [INFO] === About to call tableView.refresh() ===
+[2026-05-26 16:26:55.247] [INFO] === tableView.refresh() completed ===
+[2026-05-26 16:26:55.247] [INFO] Master trading ENABLED
+[2026-05-26 16:26:55.388] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:55.388] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:55.388] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:55.388] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:55.003] [INFO] CandleHistory: Added XAUUSD_M1 candle @ 2026-05-26 16:26 (Buffer size: 1)
+[2026-05-26 16:26:55.003] [INFO] CandleHistory: Added XAUUSD_M2 candle @ 2026-05-26 16:26 (Buffer size: 1)
+[2026-05-26 16:26:55.003] [INFO] CandleHistory: Added XAUUSD_M3 candle @ 2026-05-26 16:24 (Buffer size: 1)
+[2026-05-26 16:26:55.004] [INFO] CandleHistory: Added XAUUSD_M5 candle @ 2026-05-26 16:25 (Buffer size: 1)
+[2026-05-26 16:26:55.004] [INFO] CandleHistory: Added XAUUSD_M10 candle @ 2026-05-26 16:20 (Buffer size: 1)
+[2026-05-26 16:26:55.005] [INFO] CandleHistory: Added XAUUSD_M15 candle @ 2026-05-26 16:15 (Buffer size: 1)
+[2026-05-26 16:26:55.005] [INFO] CandleHistory: Added XAUUSD_M30 candle @ 2026-05-26 16:00 (Buffer size: 1)
+[2026-05-26 16:26:55.005] [INFO] CandleHistory: Added XAUUSD_H1 candle @ 2026-05-26 16:00 (Buffer size: 1)
+[2026-05-26 16:26:55.005] [INFO] CandleHistory: Added XAUUSD_H3 candle @ 2026-05-26 15:00 (Buffer size: 1)
+[2026-05-26 16:26:55.006] [INFO] CandleHistory: Added XAUUSD_H4 candle @ 2026-05-26 16:00 (Buffer size: 1)
+[2026-05-26 16:26:55.006] [INFO] CandleHistory: Added XAUUSD_D1 candle @ 2026-05-26 00:00 (Buffer size: 1)
+[2026-05-26 16:26:55.006] [INFO] CandleHistory: Added USDJPY_M1 candle @ 2026-05-26 16:26 (Buffer size: 1)
+[2026-05-26 16:26:55.006] [INFO] CandleHistory: Added USDJPY_M2 candle @ 2026-05-26 16:26 (Buffer size: 1)
+[2026-05-26 16:26:55.007] [INFO] CandleHistory: Added USDJPY_M3 candle @ 2026-05-26 16:24 (Buffer size: 1)
+[2026-05-26 16:26:55.007] [INFO] CandleHistory: Added USDJPY_M5 candle @ 2026-05-26 16:25 (Buffer size: 1)
+[2026-05-26 16:26:55.007] [INFO] CandleHistory: Added USDJPY_M10 candle @ 2026-05-26 16:20 (Buffer size: 1)
+[2026-05-26 16:26:55.007] [INFO] CandleHistory: Added USDJPY_M15 candle @ 2026-05-26 16:15 (Buffer size: 1)
+[2026-05-26 16:26:55.007] [INFO] CandleHistory: Added USDJPY_M30 candle @ 2026-05-26 16:00 (Buffer size: 1)
+[2026-05-26 16:26:55.008] [INFO] CandleHistory: Added USDJPY_H1 candle @ 2026-05-26 16:00 (Buffer size: 1)
+[2026-05-26 16:26:55.008] [INFO] CandleHistory: Added USDJPY_H3 candle @ 2026-05-26 15:00 (Buffer size: 1)
+[2026-05-26 16:26:55.008] [INFO] CandleHistory: Added USDJPY_H4 candle @ 2026-05-26 16:00 (Buffer size: 1)
+[2026-05-26 16:26:55.008] [INFO] CandleHistory: Added USDJPY_D1 candle @ 2026-05-26 00:00 (Buffer size: 1)
+[2026-05-26 16:26:57.135] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:57.135] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:57.135] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:57.136] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:26:57.198] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:26:57.200] [INFO] Conversion rates updated (4 pairs)
+[2026-05-26 16:26:58.003] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:26:59.042] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:26:59.042] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:59.042] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:26:59.042] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:00.000] [INFO] CandleHistory: Added XAUUSD_M1 candle @ 2026-05-26 16:27 (Buffer size: 2)
+[2026-05-26 16:27:00.001] [INFO] CandleHistory: Added XAUUSD_M3 candle @ 2026-05-26 16:27 (Buffer size: 2)
+[2026-05-26 16:27:00.003] [INFO] CandleHistory: Added USDJPY_M1 candle @ 2026-05-26 16:27 (Buffer size: 2)
+[2026-05-26 16:27:00.004] [INFO] CandleHistory: Added USDJPY_M3 candle @ 2026-05-26 16:27 (Buffer size: 2)
+[2026-05-26 16:27:01.132] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:01.132] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:01.132] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:01.133] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:03.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:27:03.442] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:03.442] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:03.442] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:03.443] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:05.234] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:05.235] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:05.235] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:05.235] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:07.041] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:07.042] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:07.042] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:07.042] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:08.008] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:27:08.003] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:27:09.337] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:09.337] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:09.337] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:09.337] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:11.233] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:11.233] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:11.233] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:11.233] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:13.003] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:27:13.074] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:13.075] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:13.075] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:13.075] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:15.335] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:15.335] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:15.335] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:15.335] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:17.233] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:17.233] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:17.233] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:17.234] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:18.004] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:27:19.344] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:19.344] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:19.344] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:19.344] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:20.401] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:27:21.093] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:21.093] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:21.093] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:21.094] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:23.004] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:27:23.072] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:23.072] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:23.072] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:23.072] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:23.126] [INFO] Master OFF: All rows unlocked
+[2026-05-26 16:27:23.126] [INFO] Master trading MUTED
+[2026-05-26 16:27:24.212] [INFO] Table lost focus
+[2026-05-26 16:27:25.381] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:25.381] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:25.381] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:25.381] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:26.163] [INFO] Table editing stopped
+[2026-05-26 16:27:27.095] [INFO] Table lost focus
+[2026-05-26 16:27:27.156] [INFO] === snapshotActiveRows() called (ON button pressed) ===
+[2026-05-26 16:27:27.156] [INFO] Row 1 snapshot: symbol=XAUUSD, timeframe=M30, hasBeenManuallyModified=true
+[2026-05-26 16:27:27.156] [INFO] Row 2 snapshot: symbol=XAUUSD, timeframe=H1, hasBeenManuallyModified=true
+[2026-05-26 16:27:27.156] [INFO] Row 3 snapshot: symbol=XAUUSD, timeframe=M5, hasBeenManuallyModified=true
+[2026-05-26 16:27:27.157] [INFO] Master ON: Locked 3 active rows for editing. Inactive rows remain editable.
+[2026-05-26 16:27:27.157] [INFO] === About to call tableView.refresh() ===
+[2026-05-26 16:27:27.157] [INFO] === tableView.refresh() completed ===
+[2026-05-26 16:27:27.157] [INFO] Master trading ENABLED
+[2026-05-26 16:27:27.269] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:27.269] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:27.270] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:27.270] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:28.003] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:27:29.172] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:29.172] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:29.172] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:29.172] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:31.359] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:31.360] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:31.360] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:31.360] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:32.394] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:27:33.002] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:27:33.253] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:33.253] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:33.253] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:33.253] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:35.356] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:35.356] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:35.356] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:35.356] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:37.251] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:37.251] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:37.251] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:37.251] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:38.003] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:27:39.358] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:39.358] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:39.358] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:39.359] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:41.411] [INFO] ZD OHLC INGRESS | commit=166 ea=1.40 bars=22 buildMs=0 maxSecSinceClose=59261 pairs=[XAUUSD/M1 XAUUSD/M2 XAUUSD/M3 XAUUSD/M5 XAUUSD/M10 XAUUSD/M15 XAUUSD/M30 XAUUSD/H1 XAUUSD/H3 XAUUSD/H4 XAUUSD/D1 USDJPY/M1 USDJPY/M2 USDJPY/M3 USDJPY/M5 USDJPY/M10 USDJPY/M15 USDJPY/M30 USDJPY/H1 USDJPY/H3 USDJPY/H4 USDJPY/D1]
+[2026-05-26 16:27:41.000] [INFO] INFO: Received 22 OHLC bars (uiQueued=22)
+[2026-05-26 16:27:41.058] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:41.058] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:41.058] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:41.058] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:43.013] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:27:43.014] [INFO] ACCOUNT INFO: Balance=47898.33 AUD, Equity=47898.33
+[2026-05-26 16:27:43.256] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:43.256] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:43.256] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:43.257] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:43.003] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:27:45.150] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:45.151] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:45.151] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:45.151] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:47.054] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:47.055] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:47.055] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:47.055] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:48.005] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:27:48.300] [INFO] Master OFF: All rows unlocked
+[2026-05-26 16:27:48.301] [INFO] Master trading MUTED
+[2026-05-26 16:27:49.340] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:49.340] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:49.340] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:49.340] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:49.485] [INFO] Table lost focus
+[2026-05-26 16:27:50.302] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:27:51.136] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:51.136] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:51.136] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:51.137] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:52.189] [INFO] Table editing stopped
+[2026-05-26 16:27:53.005] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:27:53.317] [INFO] === snapshotActiveRows() called (ON button pressed) ===
+[2026-05-26 16:27:53.317] [INFO] Row 1 snapshot: symbol=XAUUSD, timeframe=M30, hasBeenManuallyModified=true
+[2026-05-26 16:27:53.317] [INFO] Row 2 snapshot: symbol=XAUUSD, timeframe=H1, hasBeenManuallyModified=true
+[2026-05-26 16:27:53.318] [INFO] Row 3 snapshot: symbol=XAUUSD, timeframe=M5, hasBeenManuallyModified=true
+[2026-05-26 16:27:53.318] [INFO] Master ON: Locked 3 active rows for editing. Inactive rows remain editable.
+[2026-05-26 16:27:53.318] [INFO] === About to call tableView.refresh() ===
+[2026-05-26 16:27:53.318] [INFO] === tableView.refresh() completed ===
+[2026-05-26 16:27:53.318] [INFO] Master trading ENABLED
+[2026-05-26 16:27:53.347] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:53.347] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:53.347] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:53.347] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:55.135] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:55.135] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:55.135] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:55.135] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:57.334] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:57.334] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:57.335] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:57.335] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:27:58.008] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:27:58.009] [INFO] Conversion rates updated (4 pairs)
+[2026-05-26 16:27:58.008] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:27:59.218] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:27:59.219] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:59.219] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:27:59.219] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:00.000] [INFO] CandleHistory: Added XAUUSD_M1 candle @ 2026-05-26 16:28 (Buffer size: 3)
+[2026-05-26 16:28:00.006] [INFO] CandleHistory: Added XAUUSD_M2 candle @ 2026-05-26 16:28 (Buffer size: 2)
+[2026-05-26 16:28:00.005] [INFO] CandleHistory: Added USDJPY_M1 candle @ 2026-05-26 16:28 (Buffer size: 3)
+[2026-05-26 16:28:00.006] [INFO] CandleHistory: Added USDJPY_M2 candle @ 2026-05-26 16:28 (Buffer size: 2)
+[2026-05-26 16:28:01.224] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:01.224] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:01.224] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:01.225] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:03.013] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:28:03.129] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:03.130] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:03.130] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:03.130] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:05.342] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:05.343] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:05.343] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:05.343] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:07.223] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:07.223] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:07.223] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:07.224] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:08.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:28:09.282] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:09.283] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:09.283] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:09.283] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:11.265] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:11.265] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:11.265] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:11.265] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:13.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:28:13.037] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:13.038] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:13.038] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:13.038] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:15.263] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:15.264] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:15.264] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:15.264] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:17.056] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:17.056] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:17.056] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:17.056] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:18.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:28:19.380] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:19.380] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:19.381] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:19.381] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:20.488] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:28:21.173] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:21.174] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:21.174] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:21.174] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:23.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:28:23.381] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:23.381] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:23.381] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:23.382] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:25.369] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:25.369] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:25.369] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:25.369] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:27.073] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:27.073] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:27.073] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:27.074] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:28.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:28:29.373] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:29.373] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:29.373] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:29.374] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:31.270] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:31.270] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:31.270] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:31.270] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:33.010] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:28:33.362] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:33.362] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:33.362] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:33.362] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:35.260] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:35.261] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:35.261] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:35.261] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:37.355] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:37.355] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:37.355] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:37.356] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:38.006] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:28:39.368] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:39.368] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:39.368] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:39.368] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:41.172] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:41.172] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:41.172] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:41.172] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:41.500] [INFO] ZD OHLC INGRESS | commit=276 ea=1.40 bars=22 buildMs=0 maxSecSinceClose=59321 pairs=[XAUUSD/M1 XAUUSD/M2 XAUUSD/M3 XAUUSD/M5 XAUUSD/M10 XAUUSD/M15 XAUUSD/M30 XAUUSD/H1 XAUUSD/H3 XAUUSD/H4 XAUUSD/D1 USDJPY/M1 USDJPY/M2 USDJPY/M3 USDJPY/M5 USDJPY/M10 USDJPY/M15 USDJPY/M30 USDJPY/H1 USDJPY/H3 USDJPY/H4 USDJPY/D1]
+[2026-05-26 16:28:41.000] [INFO] INFO: Received 22 OHLC bars (uiQueued=22)
+[2026-05-26 16:28:43.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:28:43.008] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:43.008] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:43.008] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:43.008] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:45.362] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:45.363] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:45.363] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:45.363] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:47.173] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:47.173] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:47.173] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:47.174] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:48.006] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:28:48.006] [INFO] ACCOUNT INFO: Balance=47898.33 AUD, Equity=47898.33
+[2026-05-26 16:28:49.360] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:49.360] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:49.360] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:49.361] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:50.007] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:28:51.276] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:51.276] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:51.276] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:51.276] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:52.212] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:28:53.006] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:28:53.276] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:53.276] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:53.276] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:53.276] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:55.370] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:55.370] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:55.370] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:55.370] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:57.174] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:57.175] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:57.175] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:57.176] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:28:57.099] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:28:58.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:28:59.380] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:28:59.380] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:59.380] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:28:59.381] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:00.002] [INFO] CandleHistory: Added USDJPY_M1 candle @ 2026-05-26 16:29 (Buffer size: 4)
+[2026-05-26 16:29:00.000] [INFO] CandleHistory: Added XAUUSD_M1 candle @ 2026-05-26 16:29 (Buffer size: 4)
+[2026-05-26 16:29:01.176] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:01.177] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:01.177] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:01.177] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:03.018] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:29:03.377] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:03.377] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:03.377] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:03.378] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:05.267] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:05.268] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:05.268] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:05.268] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:07.060] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:07.060] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:07.060] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:07.061] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:08.008] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:29:09.371] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:09.372] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:09.372] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:09.372] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:11.089] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:11.090] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:11.090] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:11.090] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:13.005] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:29:13.063] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:13.063] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:13.063] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:13.063] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:15.265] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:15.266] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:15.266] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:15.266] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:17.167] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:17.167] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:17.167] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:17.168] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:18.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:29:19.070] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:19.070] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:19.070] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:19.071] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:20.202] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:29:21.393] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:21.393] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:21.393] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:21.394] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:23.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:29:23.086] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:23.086] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:23.086] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:23.087] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:25.074] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:25.075] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:25.075] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:25.075] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:27.362] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:27.362] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:27.362] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:27.362] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:28.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:29:29.272] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:29.273] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:29.273] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:29.273] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:31.078] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:31.079] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:31.079] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:31.079] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:33.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:29:33.271] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:33.271] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:33.271] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:33.271] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:35.078] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:35.078] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:35.078] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:35.079] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:37.375] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:37.375] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:37.375] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:37.376] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:38.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:29:39.365] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:39.365] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:39.365] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:39.366] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:41.077] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:41.077] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:41.077] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:41.077] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:41.503] [INFO] ZD OHLC INGRESS | commit=386 ea=1.40 bars=22 buildMs=0 maxSecSinceClose=59381 pairs=[XAUUSD/M1 XAUUSD/M2 XAUUSD/M3 XAUUSD/M5 XAUUSD/M10 XAUUSD/M15 XAUUSD/M30 XAUUSD/H1 XAUUSD/H3 XAUUSD/H4 XAUUSD/D1 USDJPY/M1 USDJPY/M2 USDJPY/M3 USDJPY/M5 USDJPY/M10 USDJPY/M15 USDJPY/M30 USDJPY/H1 USDJPY/H3 USDJPY/H4 USDJPY/D1]
+[2026-05-26 16:29:41.000] [INFO] INFO: Received 22 OHLC bars (uiQueued=22)
+[2026-05-26 16:29:43.009] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:29:43.376] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:43.376] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:43.376] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:43.376] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:45.176] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:45.176] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:45.176] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:45.176] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:47.273] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:47.274] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:47.274] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:47.274] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:48.017] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:29:48.018] [INFO] Conversion rates updated (4 pairs)
+[2026-05-26 16:29:48.018] [INFO] ACCOUNT INFO: Balance=47898.33 AUD, Equity=47898.33
+[2026-05-26 16:29:48.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:29:49.169] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:49.169] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:49.169] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:49.169] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:50.395] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:29:51.384] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:51.384] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:51.384] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:51.384] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:53.006] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:29:53.366] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:53.366] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:53.366] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:53.366] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:55.075] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:55.075] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:55.075] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:55.075] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:57.362] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:57.363] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:57.363] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:57.363] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:29:57.408] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:29:58.006] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:29:59.276] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:29:59.276] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:59.276] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:29:59.276] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:00.000] [INFO] CandleHistory: Added XAUUSD_M1 candle @ 2026-05-26 16:30 (Buffer size: 5)
+[2026-05-26 16:30:00.000] [INFO] CandleHistory: Added XAUUSD_M2 candle @ 2026-05-26 16:30 (Buffer size: 3)
+[2026-05-26 16:30:00.001] [INFO] CandleHistory: Added XAUUSD_M3 candle @ 2026-05-26 16:30 (Buffer size: 3)
+[2026-05-26 16:30:00.001] [INFO] CandleHistory: Added XAUUSD_M5 candle @ 2026-05-26 16:30 (Buffer size: 2)
+[2026-05-26 16:30:00.007] [INFO] EVAL | row=3 magic=300 | XAUUSD M5 | barClose=2026-05-26 16:30 | BEGIN | PASS | evaluation started
+[2026-05-26 16:30:00.001] [INFO] EVAL | row=3 magic=300 | XAUUSD M5 | barClose=2026-05-26 16:30 | X1 | PASS | O=4526.14000 H=4527.52000 L=4522.05000 C=4522.39000 | H-L=547.00 Cents (5.47000 price)
+[2026-05-26 16:30:00.003] [INFO] EVAL | row=3 magic=300 | XAUUSD M5 | barClose=2026-05-26 16:30 | pattern | PASS | Setup B PATTERN1_BUY (BUY)
+[2026-05-26 16:30:00.004] [INFO] EVAL | row=3 magic=300 | XAUUSD M5 | barClose=2026-05-26 16:30 | x1_spread_doji | PASS | body=3.75000 > k×spread=0.25500 (spread=0.17000 k=1.50 source=CACHED)
+[2026-05-26 16:30:00.004] [INFO] EVAL | row=3 magic=300 | XAUUSD M5 | barClose=2026-05-26 16:30 | min_x1 | PASS | x1=547.00 Cents (5.47000 price) vs min=400.00 Cents (4.00000 price)
+[2026-05-26 16:30:00.004] [INFO] EVAL | row=3 magic=300 | XAUUSD M5 | barClose=2026-05-26 16:30 | min_gap | FAIL | gapPct=6.22 < min=20.00 | STOP
+[2026-05-26 16:30:00.005] [INFO] CandleHistory: Added XAUUSD_M10 candle @ 2026-05-26 16:30 (Buffer size: 2)
+[2026-05-26 16:30:00.005] [INFO] CandleHistory: Added XAUUSD_M15 candle @ 2026-05-26 16:30 (Buffer size: 2)
+[2026-05-26 16:30:00.006] [INFO] CandleHistory: Added XAUUSD_M30 candle @ 2026-05-26 16:30 (Buffer size: 2)
+[2026-05-26 16:30:00.006] [INFO] EVAL | row=1 magic=100 | XAUUSD M30 | barClose=2026-05-26 16:30 | BEGIN | PASS | evaluation started
+[2026-05-26 16:30:00.006] [INFO] EVAL | row=1 magic=100 | XAUUSD M30 | barClose=2026-05-26 16:30 | X1 | PASS | O=4520.50000 H=4527.52000 L=4516.13000 C=4522.39000 | H-L=1139.00 Cents (11.39000 price)
+[2026-05-26 16:30:00.006] [INFO] EVAL | row=1 magic=100 | XAUUSD M30 | barClose=2026-05-26 16:30 | pattern | FAIL | no momentum pair — need bull X2+bear X1 (BUY) or bear X2+bull X1 (SELL) | STOP
+[2026-05-26 16:30:00.007] [INFO] CandleHistory: Added USDJPY_M1 candle @ 2026-05-26 16:30 (Buffer size: 5)
+[2026-05-26 16:30:00.008] [INFO] CandleHistory: Added USDJPY_M2 candle @ 2026-05-26 16:30 (Buffer size: 3)
+[2026-05-26 16:30:00.008] [INFO] CandleHistory: Added USDJPY_M3 candle @ 2026-05-26 16:30 (Buffer size: 3)
+[2026-05-26 16:30:00.009] [INFO] CandleHistory: Added USDJPY_M5 candle @ 2026-05-26 16:30 (Buffer size: 2)
+[2026-05-26 16:30:00.009] [INFO] CandleHistory: Added USDJPY_M10 candle @ 2026-05-26 16:30 (Buffer size: 2)
+[2026-05-26 16:30:00.009] [INFO] CandleHistory: Added USDJPY_M15 candle @ 2026-05-26 16:30 (Buffer size: 2)
+[2026-05-26 16:30:00.010] [INFO] CandleHistory: Added USDJPY_M30 candle @ 2026-05-26 16:30 (Buffer size: 2)
+[2026-05-26 16:30:01.079] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:01.079] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:01.079] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:01.079] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:03.018] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:30:03.361] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:03.361] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:03.361] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:03.361] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:05.176] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:05.176] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:05.177] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:05.177] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:07.378] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:07.379] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:07.379] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:07.379] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:08.005] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:30:09.278] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:09.278] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:09.279] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:09.279] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:11.092] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:11.092] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:11.092] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:11.092] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:13.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:30:13.075] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:13.075] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:13.075] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:13.075] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:15.372] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:15.372] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:15.372] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:15.372] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:17.077] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:17.078] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:17.078] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:17.078] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:18.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:30:19.373] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:19.373] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:19.373] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:19.373] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:20.095] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:30:21.076] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:21.076] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:21.076] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:21.076] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:23.006] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:30:23.368] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:23.368] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:23.368] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:23.368] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:25.273] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:25.274] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:25.274] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:25.274] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:27.176] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:27.176] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:27.176] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:27.176] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:28.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:30:29.388] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:29.388] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:29.388] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:29.388] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:31.279] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:31.279] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:31.279] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:31.279] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:33.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:30:33.074] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:33.074] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:33.074] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:33.074] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:35.357] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:35.357] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:35.357] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:35.358] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:37.173] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:37.174] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:37.174] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:37.174] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:38.009] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:30:39.373] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:39.374] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:39.374] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:39.374] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:41.360] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:41.360] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:41.360] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:41.361] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:42.113] [INFO] ZD OHLC INGRESS | commit=496 ea=1.40 bars=22 buildMs=0 maxSecSinceClose=59442 pairs=[XAUUSD/M1 XAUUSD/M2 XAUUSD/M3 XAUUSD/M5 XAUUSD/M10 XAUUSD/M15 XAUUSD/M30 XAUUSD/H1 XAUUSD/H3 XAUUSD/H4 XAUUSD/D1 USDJPY/M1 USDJPY/M2 USDJPY/M3 USDJPY/M5 USDJPY/M10 USDJPY/M15 USDJPY/M30 USDJPY/H1 USDJPY/H3 USDJPY/H4 USDJPY/D1]
+[2026-05-26 16:30:42.000] [INFO] INFO: Received 22 OHLC bars (uiQueued=22)
+[2026-05-26 16:30:43.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:30:43.076] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:43.076] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:43.076] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:43.076] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:45.267] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:45.267] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:45.267] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:45.268] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:47.073] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:47.074] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:47.074] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:47.074] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:48.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:30:49.264] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:49.264] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:49.264] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:49.264] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:50.010] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:30:51.076] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:51.076] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:51.076] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:51.076] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:53.009] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:30:53.009] [INFO] ACCOUNT INFO: Balance=47898.33 AUD, Equity=47898.33
+[2026-05-26 16:30:53.382] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:53.382] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:53.382] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:53.382] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:55.288] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:55.288] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:55.288] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:55.288] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:57.073] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:57.074] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:57.074] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:57.074] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:30:58.013] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:30:58.013] [INFO] Conversion rates updated (4 pairs)
+[2026-05-26 16:30:58.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:30:59.361] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:30:59.361] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:59.361] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:30:59.362] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:00.000] [INFO] CandleHistory: Added XAUUSD_M1 candle @ 2026-05-26 16:31 (Buffer size: 6)
+[2026-05-26 16:31:00.007] [INFO] CandleHistory: Added USDJPY_M1 candle @ 2026-05-26 16:31 (Buffer size: 6)
+[2026-05-26 16:31:01.076] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:01.077] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:01.077] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:01.077] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:03.019] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:31:03.174] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:03.174] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:03.174] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:03.175] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:05.076] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:05.076] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:05.076] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:05.076] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:07.362] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:07.363] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:07.363] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:07.363] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:08.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:31:09.077] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:09.077] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:09.077] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:09.078] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:11.367] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:11.368] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:11.368] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:11.368] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:13.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:31:13.278] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:13.278] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:13.278] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:13.279] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:15.373] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:15.373] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:15.373] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:15.374] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:17.274] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:17.274] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:17.274] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:17.275] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:18.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:31:19.075] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:19.076] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:19.076] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:19.077] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:21.014] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:31:21.370] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:21.370] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:21.370] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:21.371] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:23.006] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:31:23.372] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:23.372] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:23.373] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:23.373] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:25.159] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:25.159] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:25.159] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:25.160] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:27.374] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:27.375] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:27.375] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:27.375] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:28.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:31:29.276] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:29.276] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:29.276] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:29.277] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:31.376] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:31.377] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:31.377] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:31.377] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:33.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:31:33.172] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:33.173] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:33.173] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:33.173] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:35.377] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:35.377] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:35.377] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:35.377] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:37.277] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:37.277] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:37.277] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:37.278] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:38.012] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:31:39.074] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:39.075] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:39.075] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:39.076] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:41.366] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:41.367] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:41.367] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:41.367] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:42.104] [INFO] ZD OHLC INGRESS | commit=605 ea=1.40 bars=22 buildMs=0 maxSecSinceClose=59502 pairs=[XAUUSD/M1 XAUUSD/M2 XAUUSD/M3 XAUUSD/M5 XAUUSD/M10 XAUUSD/M15 XAUUSD/M30 XAUUSD/H1 XAUUSD/H3 XAUUSD/H4 XAUUSD/D1 USDJPY/M1 USDJPY/M2 USDJPY/M3 USDJPY/M5 USDJPY/M10 USDJPY/M15 USDJPY/M30 USDJPY/H1 USDJPY/H3 USDJPY/H4 USDJPY/D1]
+[2026-05-26 16:31:42.000] [INFO] INFO: Received 22 OHLC bars (uiQueued=22)
+[2026-05-26 16:31:43.008] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:31:43.073] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:43.073] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:43.073] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:43.074] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:45.290] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:45.290] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:45.290] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:45.290] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:47.171] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:47.171] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:47.171] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:47.172] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:48.006] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:31:49.378] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:49.378] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:49.378] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:49.378] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:51.012] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:31:51.170] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:51.170] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:51.170] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:51.171] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:53.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:31:53.007] [INFO] ACCOUNT INFO: Balance=47898.33 AUD, Equity=47898.33
+[2026-05-26 16:31:53.378] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:53.378] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:53.378] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:53.378] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:55.371] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:55.372] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:55.372] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:55.372] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:57.181] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:57.181] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:57.181] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:57.181] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:31:57.198] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:31:58.009] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:31:59.381] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:31:59.381] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:59.381] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:31:59.381] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:00.000] [INFO] CandleHistory: Added XAUUSD_M1 candle @ 2026-05-26 16:32 (Buffer size: 7)
+[2026-05-26 16:32:00.000] [INFO] CandleHistory: Added XAUUSD_M2 candle @ 2026-05-26 16:32 (Buffer size: 4)
+[2026-05-26 16:32:00.001] [INFO] CandleHistory: Added USDJPY_M1 candle @ 2026-05-26 16:32 (Buffer size: 7)
+[2026-05-26 16:32:00.002] [INFO] CandleHistory: Added USDJPY_M2 candle @ 2026-05-26 16:32 (Buffer size: 4)
+[2026-05-26 16:32:01.076] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:01.076] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:01.076] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:01.076] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:03.014] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:32:03.272] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:03.272] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:03.272] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:03.273] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:05.374] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:05.374] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:05.374] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:05.374] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:07.365] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:07.365] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:07.366] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:07.366] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:08.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:32:09.176] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:09.176] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:09.176] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:09.176] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:11.076] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:11.076] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:11.076] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:11.077] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:13.009] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:32:13.368] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:13.368] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:13.368] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:13.369] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:15.176] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:15.176] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:15.176] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:15.176] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:17.077] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:17.077] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:17.077] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:17.077] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:18.008] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:32:19.367] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:19.367] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:19.367] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:19.367] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:21.011] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:32:21.076] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:21.076] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:21.076] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:21.077] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:23.008] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:32:23.366] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:23.403] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:23.403] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:23.403] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:25.076] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:25.076] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:25.076] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:25.076] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:27.381] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:27.381] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:27.382] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:27.382] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:28.009] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:32:29.360] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:29.360] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:29.360] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:29.360] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:31.076] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:31.076] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:31.076] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:31.077] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:33.008] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:32:33.368] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:33.368] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:33.368] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:33.369] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:35.072] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:35.072] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:35.072] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:35.073] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:37.279] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:37.279] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:37.279] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:37.279] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:38.008] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:32:39.377] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:39.377] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:39.377] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:39.377] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:41.390] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:41.391] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:41.391] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:41.391] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:42.599] [INFO] ZD OHLC INGRESS | commit=715 ea=1.40 bars=22 buildMs=1 maxSecSinceClose=59562 pairs=[XAUUSD/M1 XAUUSD/M2 XAUUSD/M3 XAUUSD/M5 XAUUSD/M10 XAUUSD/M15 XAUUSD/M30 XAUUSD/H1 XAUUSD/H3 XAUUSD/H4 XAUUSD/D1 USDJPY/M1 USDJPY/M2 USDJPY/M3 USDJPY/M5 USDJPY/M10 USDJPY/M15 USDJPY/M30 USDJPY/H1 USDJPY/H3 USDJPY/H4 USDJPY/D1]
+[2026-05-26 16:32:42.000] [INFO] INFO: Received 22 OHLC bars (uiQueued=22)
+[2026-05-26 16:32:43.003] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:32:43.079] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:43.079] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:43.079] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:43.080] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:45.390] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:45.390] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:45.390] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:45.391] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:47.273] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:47.273] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:47.273] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:47.273] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:48.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:32:49.074] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:49.075] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:49.075] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:49.075] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:51.108] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:32:51.383] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:51.384] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:51.384] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:51.384] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:53.008] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:32:53.177] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:53.177] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:53.177] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:53.177] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:55.375] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:55.376] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:55.376] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:55.376] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:57.175] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:57.175] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:57.175] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:57.175] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:32:57.097] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:32:57.097] [INFO] Conversion rates updated (4 pairs)
+[2026-05-26 16:32:57.097] [INFO] ACCOUNT INFO: Balance=47898.33 AUD, Equity=47898.33
+[2026-05-26 16:32:58.008] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:32:59.379] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:32:59.379] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:59.379] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:32:59.379] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:00.000] [INFO] CandleHistory: Added XAUUSD_M1 candle @ 2026-05-26 16:33 (Buffer size: 8)
+[2026-05-26 16:33:00.001] [INFO] CandleHistory: Added XAUUSD_M3 candle @ 2026-05-26 16:33 (Buffer size: 4)
+[2026-05-26 16:33:00.003] [INFO] CandleHistory: Added USDJPY_M1 candle @ 2026-05-26 16:33 (Buffer size: 8)
+[2026-05-26 16:33:00.004] [INFO] CandleHistory: Added USDJPY_M3 candle @ 2026-05-26 16:33 (Buffer size: 4)
+[2026-05-26 16:33:01.172] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:01.172] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:01.172] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:01.172] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:03.017] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:33:03.383] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:03.383] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:03.383] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:03.384] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:05.360] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:05.360] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:05.360] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:05.361] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:07.176] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:07.176] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:07.176] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:07.177] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:08.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:33:09.379] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:09.379] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:09.379] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:09.379] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:11.276] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:11.278] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:11.278] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:11.279] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:13.006] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:33:13.039] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:13.039] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:13.039] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:13.040] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:15.366] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:15.366] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:15.366] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:15.366] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:17.273] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:17.273] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:17.273] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:17.273] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:18.009] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:33:19.072] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:19.072] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:19.072] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:19.072] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:21.205] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:33:21.389] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:21.389] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:21.389] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:21.389] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:23.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:33:23.289] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:23.289] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:23.289] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:23.289] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:25.081] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:25.082] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:25.082] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:25.082] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:27.367] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:27.368] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:27.368] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:27.368] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:28.009] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:33:29.076] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:29.076] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:29.076] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:29.076] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:31.274] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:31.275] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:31.275] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:31.275] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:33.006] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:33:33.065] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:33.065] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:33.066] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:33.066] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:35.376] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:35.376] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:35.376] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:35.376] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:37.073] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:37.073] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:37.074] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:37.074] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:38.010] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:33:39.361] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:39.361] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:39.361] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:39.361] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:41.166] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:41.167] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:41.167] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:41.167] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:42.601] [INFO] ZD OHLC INGRESS | commit=824 ea=1.40 bars=22 buildMs=0 maxSecSinceClose=59623 pairs=[XAUUSD/M1 XAUUSD/M2 XAUUSD/M3 XAUUSD/M5 XAUUSD/M10 XAUUSD/M15 XAUUSD/M30 XAUUSD/H1 XAUUSD/H3 XAUUSD/H4 XAUUSD/D1 USDJPY/M1 USDJPY/M2 USDJPY/M3 USDJPY/M5 USDJPY/M10 USDJPY/M15 USDJPY/M30 USDJPY/H1 USDJPY/H3 USDJPY/H4 USDJPY/D1]
+[2026-05-26 16:33:43.000] [INFO] INFO: Received 22 OHLC bars (uiQueued=22)
+[2026-05-26 16:33:43.006] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:33:43.376] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:43.376] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:43.376] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:43.377] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:45.267] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:45.268] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:45.268] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:45.268] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:47.376] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:47.377] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:47.377] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:47.377] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:48.119] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:33:48.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:33:49.360] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:49.360] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:49.360] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:49.361] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:51.206] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:33:51.066] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:51.066] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:51.067] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:51.067] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:53.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:33:53.279] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:53.279] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:53.279] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:53.280] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:55.377] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:55.377] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:55.377] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:55.378] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:57.255] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:57.255] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:57.255] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:57.256] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:33:57.198] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:33:57.198] [INFO] Conversion rates updated (4 pairs)
+[2026-05-26 16:33:57.198] [INFO] ACCOUNT INFO: Balance=47898.33 AUD, Equity=47898.33
+[2026-05-26 16:33:58.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:33:59.077] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:33:59.077] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:59.077] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:33:59.077] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:00.000] [INFO] CandleHistory: Added XAUUSD_M1 candle @ 2026-05-26 16:34 (Buffer size: 9)
+[2026-05-26 16:34:00.002] [INFO] CandleHistory: Added XAUUSD_M2 candle @ 2026-05-26 16:34 (Buffer size: 5)
+[2026-05-26 16:34:00.004] [INFO] CandleHistory: Added USDJPY_M1 candle @ 2026-05-26 16:34 (Buffer size: 9)
+[2026-05-26 16:34:00.005] [INFO] CandleHistory: Added USDJPY_M2 candle @ 2026-05-26 16:34 (Buffer size: 5)
+[2026-05-26 16:34:01.184] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:01.184] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:01.184] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:01.185] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:03.020] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:34:03.361] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:03.361] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:03.361] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:03.362] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:05.171] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:05.171] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:05.171] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:05.172] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:07.076] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:07.076] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:07.076] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:07.076] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:08.009] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:34:09.373] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:09.374] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:09.374] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:09.374] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:11.266] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:11.266] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:11.266] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:11.267] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:13.012] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:34:13.077] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:13.077] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:13.077] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:13.078] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:15.280] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:15.280] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:15.280] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:15.280] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:17.085] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:17.085] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:17.086] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:17.086] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:18.013] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:34:19.351] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:19.351] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:19.351] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:19.352] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:21.186] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:34:21.277] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:21.278] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:21.278] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:21.278] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:23.010] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:34:23.378] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:23.379] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:23.379] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:23.379] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:25.089] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:25.089] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:25.089] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:25.090] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:27.390] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:27.391] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:27.391] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:27.391] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:28.009] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:34:29.364] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:29.364] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:29.365] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:29.365] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:31.173] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:31.173] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:31.173] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:31.173] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:33.009] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:34:33.071] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:33.071] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:33.071] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:33.072] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:35.360] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:35.361] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:35.361] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:35.361] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:37.259] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:37.259] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:37.259] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:37.260] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:38.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:34:39.077] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:39.077] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:39.077] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:39.078] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:41.362] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:41.362] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:41.362] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:41.363] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:43.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:34:43.302] [INFO] ZD OHLC INGRESS | commit=933 ea=1.40 bars=22 buildMs=0 maxSecSinceClose=59683 pairs=[XAUUSD/M1 XAUUSD/M2 XAUUSD/M3 XAUUSD/M5 XAUUSD/M10 XAUUSD/M15 XAUUSD/M30 XAUUSD/H1 XAUUSD/H3 XAUUSD/H4 XAUUSD/D1 USDJPY/M1 USDJPY/M2 USDJPY/M3 USDJPY/M5 USDJPY/M10 USDJPY/M15 USDJPY/M30 USDJPY/H1 USDJPY/H3 USDJPY/H4 USDJPY/D1]
+[2026-05-26 16:34:43.000] [INFO] INFO: Received 22 OHLC bars (uiQueued=22)
+[2026-05-26 16:34:43.085] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:43.085] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:43.085] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:43.086] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:45.373] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:45.374] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:45.374] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:45.374] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:47.277] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:47.277] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:47.277] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:47.278] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:48.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:34:49.086] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:49.086] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:49.086] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:49.086] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:51.288] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:34:51.376] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:51.376] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:51.376] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:51.376] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:53.011] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:34:53.392] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:53.392] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:53.392] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:53.393] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:55.172] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:55.172] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:55.172] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:55.173] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:57.364] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:57.365] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:57.365] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:57.365] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:34:57.296] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:34:58.012] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:34:58.012] [INFO] ACCOUNT INFO: Balance=47898.33 AUD, Equity=47898.33
+[2026-05-26 16:34:59.070] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:34:59.070] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:59.070] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:34:59.071] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:00.005] [INFO] CandleHistory: Added USDJPY_M1 candle @ 2026-05-26 16:35 (Buffer size: 10)
+[2026-05-26 16:35:00.006] [INFO] CandleHistory: Added USDJPY_M5 candle @ 2026-05-26 16:35 (Buffer size: 3)
+[2026-05-26 16:35:00.000] [INFO] CandleHistory: Added XAUUSD_M1 candle @ 2026-05-26 16:35 (Buffer size: 10)
+[2026-05-26 16:35:00.001] [INFO] CandleHistory: Added XAUUSD_M5 candle @ 2026-05-26 16:35 (Buffer size: 3)
+[2026-05-26 16:35:00.002] [INFO] EVAL | row=3 magic=300 | XAUUSD M5 | barClose=2026-05-26 16:35 | BEGIN | PASS | evaluation started
+[2026-05-26 16:35:00.002] [INFO] EVAL | row=3 magic=300 | XAUUSD M5 | barClose=2026-05-26 16:35 | X1 | PASS | O=4522.58000 H=4527.84000 L=4521.74000 C=4522.37000 | H-L=610.00 Cents (6.10000 price)
+[2026-05-26 16:35:00.002] [INFO] EVAL | row=3 magic=300 | XAUUSD M5 | barClose=2026-05-26 16:35 | pattern | FAIL | no momentum pair — need bull X2+bear X1 (BUY) or bear X2+bull X1 (SELL) | STOP
+[2026-05-26 16:35:01.179] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:01.179] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:01.179] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:01.179] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:03.018] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:35:03.386] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:03.387] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:03.387] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:03.387] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:05.277] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:05.277] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:05.278] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:05.278] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:07.177] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:07.177] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:07.178] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:07.178] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:08.014] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:35:09.074] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:09.074] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:09.074] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:09.075] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:11.369] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:11.369] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:11.369] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:11.370] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:13.005] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:35:13.177] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:13.178] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:13.178] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:13.178] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:15.066] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:15.066] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:15.066] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:15.066] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:17.289] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:17.289] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:17.289] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:17.289] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:18.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:35:19.072] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:19.072] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:19.072] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:19.072] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:21.199] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:35:21.279] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:21.280] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:21.280] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:21.280] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:23.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:35:23.179] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:23.179] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:23.179] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:23.179] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:25.073] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:25.073] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:25.073] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:25.074] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:27.275] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:27.275] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:27.275] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:27.275] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:28.006] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:35:29.071] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:29.071] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:29.071] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:29.072] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:31.275] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:31.275] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:31.275] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:31.276] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:33.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:35:33.211] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:33.211] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:33.211] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:33.211] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:35.213] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:35.213] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:35.213] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:35.213] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:37.116] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:37.117] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:37.117] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:37.117] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:38.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:35:39.396] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:39.397] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:39.397] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:39.397] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:41.099] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:41.099] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:41.099] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:41.099] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:43.008] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:35:43.303] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:43.303] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:43.303] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:43.303] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:43.490] [INFO] ZD OHLC INGRESS | commit=1043 ea=1.40 bars=22 buildMs=0 maxSecSinceClose=59743 pairs=[XAUUSD/M1 XAUUSD/M2 XAUUSD/M3 XAUUSD/M5 XAUUSD/M10 XAUUSD/M15 XAUUSD/M30 XAUUSD/H1 XAUUSD/H3 XAUUSD/H4 XAUUSD/D1 USDJPY/M1 USDJPY/M2 USDJPY/M3 USDJPY/M5 USDJPY/M10 USDJPY/M15 USDJPY/M30 USDJPY/H1 USDJPY/H3 USDJPY/H4 USDJPY/D1]
+[2026-05-26 16:35:43.000] [INFO] INFO: Received 22 OHLC bars (uiQueued=22)
+[2026-05-26 16:35:45.199] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:45.200] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:45.200] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:45.200] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:47.089] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:47.089] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:47.089] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:47.089] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:48.007] [INFO] Account balance updated in RobotMatrixTable: 47898.33 (was: 47898.33)
+[2026-05-26 16:35:49.402] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:49.402] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:49.402] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:49.403] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
+[2026-05-26 16:35:51.097] [INFO] GET /getcommand: ZD_MATRIX_SCOPE,XAUUSD,M5,XAUUSD,H1,XAUUSD,M30
+[2026-05-26 16:35:51.104] [INFO] Robot row 1: RPT 0.10% of balance 100000.00 = $100.00
+[2026-05-26 16:35:51.104] [INFO] Robot row 2: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:51.104] [INFO] Robot row 3: RPT 0.15% of balance 100000.00 = $150.00
+[2026-05-26 16:35:51.105] [INFO] Total RPT calculated: $400.00 from 3 active robots (Balance for sizing: $100000.00)
